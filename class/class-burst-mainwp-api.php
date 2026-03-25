@@ -20,10 +20,13 @@ defined( 'ABSPATH' ) || exit;
 
 class Burst_MainWP_API {
 
-	// ── Singleton ─────────────────────────────────────────────────────────────
-
 	private static ?self $instance = null;
 
+	/**
+	 * Singleton instance accessor.
+	 *
+	 * @return self Singleton instance of the API class.
+	 */
 	public static function instance(): self {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
@@ -31,6 +34,10 @@ class Burst_MainWP_API {
 		return self::$instance;
 	}
 
+	/** The constructor is private to enforce singleton usage.  This class is not
+	 * designed to be used with hooks or instantiated multiple times; instead, its
+	 * methods are called explicitly during page rendering when needed.
+	 */
 	private function __construct() {
 		// No hooks — this class is called explicitly during page render.
 	}
@@ -95,11 +102,11 @@ class Burst_MainWP_API {
 
 		$response = wp_remote_post(
 			$endpoint,
-			array(
-				'headers' => array( 'Content-Type' => 'application/json' ),
+			[
+				'headers' => [ 'Content-Type' => 'application/json' ],
 				'body'    => wp_json_encode( $body ),
 				'timeout' => 15,
-			)
+			]
 		);
 
 		if ( is_wp_error( $response ) ) {
@@ -129,14 +136,14 @@ class Burst_MainWP_API {
 	 * Validate that an auth response contains all required fields.
 	 *
 	 * @param mixed $data Decoded JSON from the child endpoint.
-	 * @return bool
+	 * @return bool True if the response is valid, false otherwise.
 	 */
 	private function is_valid_auth_response( mixed $data ): bool {
 		if ( ! is_array( $data ) ) {
 			return false;
 		}
 
-		foreach ( array( 'token', 'nonce', 'root_url', 'capabilities' ) as $key ) {
+		foreach ( [ 'token', 'nonce', 'root_url', 'capabilities' ] as $key ) {
 			if ( empty( $data[ $key ] ) ) {
 				return false;
 			}
@@ -149,13 +156,13 @@ class Burst_MainWP_API {
 	 * Build a signed request body using MainWP's asymmetric signing infrastructure.
 	 *
 	 * @param object $site_data MainWP website row (must include `privkey`, `adminname`, `id`).
-	 * @param string $function  MainWP function name used as part of the signing payload.
+	 * @param string $_function  MainWP function name used as part of the signing payload.
 	 * @param array  $extra     Additional fields merged into the body.
 	 * @return array<string,mixed>|false Signed body ready to JSON-encode, or false on failure.
 	 */
-	private function build_signed_body( object $site_data, string $function, array $extra = array() ): array|false {
+	private function build_signed_body( object $site_data, string $_function, array $extra = [] ): array|false {
 		$nonce        = wp_rand( 0, 9999 );
-		$sign_payload = $function . $nonce;
+		$sign_payload = $_function . $nonce;
 		$signed       = $this->sign_payload( $sign_payload, $site_data );
 
 		if ( ! $signed ) {
@@ -163,13 +170,13 @@ class Burst_MainWP_API {
 		}
 
 		return array_merge(
-			array(
+			[
 				'user'            => $site_data->adminname,
 				'nonce'           => $nonce,
 				'mainwpsignature' => $signed['signature'],
-				'function'        => $function,
+				'function'        => $_function,
 				'verifylib'       => $signed['use_seclib'] ? 1 : 0,
-			),
+			],
 			$extra
 		);
 	}
@@ -180,11 +187,12 @@ class Burst_MainWP_API {
 	 * MainWP supports both OpenSSL and a phpseclib-based fallback.  This method
 	 * detects which one to use by consulting MainWP_Connect_Lib::is_use_fallback_sec_lib().
 	 *
-	 * @param string $payload   The raw string to sign (typically `$function . $nonce`).
+	 * @param string $payload   The raw string to sign (typically `$_function . $nonce`).
 	 * @param object $site_data MainWP website row (must include `privkey`).
 	 * @return array{signature:string,use_seclib:bool}|false Encoded signature, or false on failure.
 	 */
 	private function sign_payload( string $payload, object $site_data ): array|false {
+		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 		$raw_privkey  = base64_decode( $site_data->privkey );
 		$signature    = '';
 		$sign_success = false;
@@ -195,27 +203,35 @@ class Burst_MainWP_API {
 			\MainWP\Dashboard\MainWP_Connect_Lib::is_use_fallback_sec_lib( $site_data )
 		) {
 			$sign_success = \MainWP\Dashboard\MainWP_Connect_Lib::connect_sign(
-				$payload, $signature, $raw_privkey, $site_data->id
+				$payload,
+				$signature,
+				$raw_privkey,
+				$site_data->id
 			);
 			$use_seclib   = true;
 		} else {
 			$alg          = \MainWP\Dashboard\MainWP_System_Utility::get_connect_sign_algorithm( $site_data );
 			$sign_success = \MainWP\Dashboard\MainWP_Connect::connect_sign(
-				$payload, $signature, $raw_privkey, $alg, $site_data->id
+				$payload,
+				$signature,
+				$raw_privkey,
+				$alg,
+				$site_data->id
 			);
 		}
 
 		if ( ! $sign_success || empty( $signature ) ) {
-			while ( $msg = openssl_error_string() ) {
+			$msg = openssl_error_string();
+			while ( $msg ) {
 				$this->debug_log( 'OpenSSL signing error: ' . $msg );
 			}
 			return false;
 		}
 
-		return array(
-			'signature'  => base64_encode( $signature ),
+		return [
+			'signature'  => base64_encode( $signature ), // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 			'use_seclib' => $use_seclib,
-		);
+		];
 	}
 
 	/**

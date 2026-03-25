@@ -17,12 +17,12 @@ defined( 'ABSPATH' ) || exit;
  * singleton for the lifetime of the request.
  *
  * @param string $option_name Option key as stored on the child.
- * @param mixed  $default     Value to return when the option is absent.
- * @return mixed
+ * @param mixed  $_default     Value to return when the option is absent.
+ * @return mixed Option value or default.
  */
-function burst_get_option( string $option_name, mixed $default = null ): mixed {
+function burst_get_option( string $option_name, mixed $_default = null ): mixed {
 	$individual = Burst_MainWP_Individual::instance();
 	$options    = $individual->get_child_options();
 
-	return $options[ $option_name ] ?? $default;
+	return $options[ $option_name ] ?? $_default;
 }

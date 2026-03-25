@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Burst" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+    <config name="phpVersion" value="70400"/>
+	<description>Burst specific standards</description>
+
+	<!--
+	#############################################################################
+	COMMAND LINE ARGUMENTS
+	https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset
+	#############################################################################
+	-->
+
+	<file>.</file>
+
+	<!-- Exclude gitlab dir -->
+	<exclude-pattern>/.gitlab/*</exclude-pattern>
+
+    <!-- Exclude dist-build -->
+    <exclude-pattern>/dist-build/*</exclude-pattern>
+	<!-- Exclude the Composer Vendor directory. -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/tests/*</exclude-pattern>
+
+	<!-- Exclude the Node Modules directory. -->
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>languages/*</exclude-pattern>
+
+    <!-- This is just a compatibility class without function, other than preventing fatal errors on upgrades -->
+	<exclude-pattern>/includes/class-compatibility.php</exclude-pattern>
+    <!-- Old files for upgrade purposes -->
+	<exclude-pattern>/src/</exclude-pattern>
+	<exclude-pattern>*/index.php</exclude-pattern>
+
+	<!-- imported libraries are exluded -->
+	<exclude-pattern>/includes/helpers/*</exclude-pattern>
+	<exclude-pattern>*/imprintjs/*</exclude-pattern>
+	<exclude-pattern>*/EDD_SL_Plugin_Updater*</exclude-pattern>
+    <exclude-pattern>/includes/Admin/App/media/*</exclude-pattern>
+
+	<!--	Exlcude all JS from rules-->
+	<exclude-pattern>build/*</exclude-pattern>
+	<exclude-pattern>*.js</exclude-pattern>
+
+	<!-- Exclude minified CSS file. -->
+	<exclude-pattern>*min.css</exclude-pattern>
+	<exclude-pattern>*generated.css</exclude-pattern>
+
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="."/>
+
+	<!-- Check up to 12 files simultaneously. -->
+	<arg name="parallel" value="12"/>
+
+    <!-- prefer to re-add this, but currently not feasible -->
+    <rule ref="WordPress.DB.DirectDatabaseQuery">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Commenting.ClassComment">
+        <exclude name="Squiz.Commenting.ClassComment.Missing"/>
+    </rule>
+
+    <rule ref="WordPress.WP.Capabilities.CheckCapabilities">
+        <properties>
+            <property name="custom_capabilities" type="array">
+                <element value="view_burst_statistics" />
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+    </rule>
+
+    <!-- Exclude Yoda Condition check -->
+    <rule ref="WordPress.PHP.YodaConditions">
+        <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+    </rule>
+
+    <!-- Exclude missing file doc comment -->
+    <rule ref="Squiz.Commenting.FileComment">
+        <exclude name="Squiz.Commenting.FileComment.Missing" />
+    </rule>
+
+    <rule ref="Universal.Arrays.DisallowShortArraySyntax">
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found"/>
+    </rule>
+    <rule ref="Squiz.Commenting.VariableComment">
+        <exclude name="Squiz.Commenting.VariableComment.Missing"/>
+    </rule>
+
+    <rule ref="Universal.Operators.DisallowShortTernary">
+        <exclude name="Universal.Operators.DisallowShortTernary.Found"/>
+    </rule>
+
+    <!-- Let's also check that everything is properly documented. -->
+    <rule ref="WordPress-Docs"/>
+
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
+<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+    <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification"/>
+</rule>
+
+<rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint">
+    <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification"/>
+</rule>
+
+
+<rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
+    <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingTraversableTypeHintSpecification"/>
+</rule>
+
+<!-- Ontbrekende typehints -->
+<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHintSpacing"/>
+<rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing"/>
+
+<rule ref="WordPress" />
+    <rule ref="Squiz.Commenting.FileComment">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Commenting.VariableComment">
+        <exclude name="Squiz.Commenting.VariableComment.Missing"/>
+        <exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
+    </rule>
+	<!-- Check for PHP cross-version compatibility. -->
+	<config name="testVersion" value="7.4-"/>
+	<rule ref="PHPCompatibilityWP">
+		<include-pattern>*\.php$</include-pattern>
+	</rule>
+
+	<config name="minimum_wp_version" value="6.4"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="burst-statistics"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n.MissingArg">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="burst-statistics"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Exclude JS files for WordPress.WhiteSpace.OperatorSpacing-->
+	<rule ref="WordPress.WhiteSpace.OperatorSpacing">
+		<exclude-pattern>*.js</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n.MissingArgText">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="burst-statistics"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n.NonSingularStringLiteralText">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="burst-statistics"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n.NonSingularStringLiteral">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="burst-statistics"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n.NonSingularConcatenatedString">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="burst-statistics"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n.NonSingularConcatenatedStringText">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="burst-statistics"/>
+			</property>
+		</properties>
+	</rule>
+
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="burst"/>
+			</property>
+		</properties>
+	</rule>
+
+</ruleset>

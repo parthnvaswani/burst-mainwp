@@ -39,12 +39,12 @@ spl_autoload_register( 'burst_mainwp_autoload' );
  *
  * Maps  Burst_MainWP_Foo_Bar  →  class/class-burst-mainwp-foo-bar.php
  */
-function burst_mainwp_autoload( string $class ): void {
-	if ( strpos( $class, 'Burst_MainWP_' ) !== 0 ) {
+function burst_mainwp_autoload( string $_class ): void {
+	if ( strpos( $_class, 'Burst_MainWP_' ) !== 0 ) {
 		return;
 	}
 
-	$filename = 'class-' . strtolower( str_replace( '_', '-', $class ) ) . '.php';
+	$filename = 'class-' . strtolower( str_replace( '_', '-', $_class ) ) . '.php';
 	$path     = BURST_PATH . 'class/' . $filename;
 
 	if ( file_exists( $path ) ) {
@@ -66,16 +66,16 @@ add_filter( 'mainwp_getextensions', 'burst_mainwp_register_extension' );
  * This filter runs very early; keep it lightweight — no class instantiation here.
  *
  * @param array $extensions Registered MainWP extensions.
- * @return array
+ * @return array Updated extensions list with Burst included.
  */
 function burst_mainwp_register_extension( array $extensions ): array {
-	$extensions[] = array(
-		'plugin'   => BURST_MAINWP_FILE,
-		'api'      => 'burst_mainwp_extension_api',
-		'mainwp'   => true,
-		'slug'     => 'burst-mainwp-extension',
-		'name'     => 'Burst Statistics',
-	);
+	$extensions[] = [
+		'plugin' => BURST_MAINWP_FILE,
+		'api'    => 'burst_mainwp_extension_api',
+		'mainwp' => true,
+		'slug'   => 'burst-mainwp-extension',
+		'name'   => 'Burst Statistics',
+	];
 	return $extensions;
 }
 
@@ -101,7 +101,7 @@ function burst_mainwp_init(): void {
 	}
 
 	// Extension must be enabled / licensed in MainWP.
-	$check = apply_filters( 'mainwp_extension_enabled_check', BURST_MAINWP_FILE );
+	$check = apply_filters( 'burst_mainwp_extension_enabled_check', BURST_MAINWP_FILE );
 	if ( ! is_array( $check ) || ! isset( $check['key'] ) ) {
 		return;
 	}
@@ -122,9 +122,9 @@ function burst_mainwp_activate(): void {
 	if ( ! is_plugin_active( 'mainwp/mainwp.php' ) ) {
 		deactivate_plugins( plugin_basename( BURST_MAINWP_FILE ) );
 		wp_die(
-			esc_html__( 'Burst MainWP Extension requires MainWP Dashboard to be installed and activated.', 'burst-mainwp-extension' ),
-			esc_html__( 'Plugin Activation Error', 'burst-mainwp-extension' ),
-			array( 'back_link' => true )
+			esc_html__( 'Burst MainWP Extension requires MainWP Dashboard to be installed and activated.', 'burst-statistics' ),
+			esc_html__( 'Plugin Activation Error', 'burst-statistics' ),
+			[ 'back_link' => true ]
 		);
 	}
 }

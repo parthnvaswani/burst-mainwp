@@ -13,8 +13,6 @@ defined( 'ABSPATH' ) || exit;
 
 class Burst_MainWP_Individual {
 
-	// ── Singleton ─────────────────────────────────────────────────────────────
-
 	private static ?self $instance = null;
 
 	/**
@@ -25,6 +23,11 @@ class Burst_MainWP_Individual {
 	 */
 	private ?array $child_data = null;
 
+	/**
+	 * Singleton instance accessor.
+	 *
+	 * @return self Singleton instance of the Individual integration class.
+	 */
 	public static function instance(): self {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
@@ -32,12 +35,14 @@ class Burst_MainWP_Individual {
 		return self::$instance;
 	}
 
+	/** The constructor is private to enforce singleton usage.  This class is not
+	 * designed to be used with hooks or instantiated multiple times; instead, its
+	 * methods are called explicitly during page rendering when needed.
+	 */
 	private function __construct() {
-		add_filter( 'mainwp_getsubpages_sites', array( $this, 'add_subpage' ) );
-		add_filter( 'mainwp_getmetaboxes', array( $this, 'register_widget' ) );
+		add_filter( 'mainwp_getsubpages_sites', [ $this, 'add_subpage' ] );
+		add_filter( 'mainwp_getmetaboxes', [ $this, 'register_widget' ] );
 	}
-
-	// ── Public accessors ──────────────────────────────────────────────────────
 
 	/**
 	 * Return the child-site options array, or an empty array when not yet set.
@@ -48,7 +53,7 @@ class Burst_MainWP_Individual {
 	 * @return array<string,mixed>
 	 */
 	public function get_child_options(): array {
-		return $this->child_data['options'] ?? array();
+		return $this->child_data['options'] ?? [];
 	}
 
 	// ── MainWP Hooks ──────────────────────────────────────────────────────────
@@ -57,16 +62,16 @@ class Burst_MainWP_Individual {
 	 * Add a "Burst Statistics" sub-page to individual site views.
 	 *
 	 * @param array $subpages Existing sub-pages registered by MainWP / other extensions.
-	 * @return array
+	 * @return array Modified sub-pages with the Burst Statistics page added.
 	 */
 	public function add_subpage( array $subpages ): array {
-		$subpages[] = array(
-			'title'       => esc_html__( 'Burst Statistics', 'burst-mainwp-extension' ),
+		$subpages[] = [
+			'title'       => esc_html__( 'Burst Statistics', 'burst-statistics' ),
 			'slug'        => 'BurstStatistics',
 			'sitetab'     => true,
 			'menu_hidden' => true,
-			'callback'    => array( $this, 'render_individual_site' ),
-		);
+			'callback'    => [ $this, 'render_individual_site' ],
+		];
 		return $subpages;
 	}
 
@@ -74,17 +79,17 @@ class Burst_MainWP_Individual {
 	 * Register a quick-stats widget on the MainWP site-overview dashboard.
 	 *
 	 * @param array $metaboxes Registered meta-boxes.
-	 * @return array
+	 * @return array Modified meta-boxes with the Burst Statistics widget added.
 	 */
 	public function register_widget( array $metaboxes ): array {
-		$metaboxes[] = array(
+		$metaboxes[] = [
 			'id'       => 'burst-statistics-widget',
-			'title'    => esc_html__( 'Burst Statistics', 'burst-mainwp-extension' ),
-			'callback' => array( $this, 'render_widget' ),
-			'page'     => array( 'ManageSitesDashboard' ),
+			'title'    => esc_html__( 'Burst Statistics', 'burst-statistics' ),
+			'callback' => [ $this, 'render_widget' ],
+			'page'     => [ 'ManageSitesDashboard' ],
 			'context'  => 'normal',
 			'priority' => 'core',
-		);
+		];
 		return $metaboxes;
 	}
 
@@ -101,26 +106,26 @@ class Burst_MainWP_Individual {
 		$website_id = isset( $_GET['dashboard'] ) ? absint( $_GET['dashboard'] ) : 0;
 
 		if ( ! $website_id ) {
-			echo '<p>' . esc_html__( 'No site selected.', 'burst-mainwp-extension' ) . '</p>';
+			echo '<p>' . esc_html__( 'No site selected.', 'burst-statistics' ) . '</p>';
 			return;
 		}
 		?>
 		<div class="burst-widget-preview">
-			<h3><?php esc_html_e( 'Quick Stats (Last 7 Days)', 'burst-mainwp-extension' ); ?></h3>
+			<h3><?php esc_html_e( 'Quick Stats (Last 7 Days)', 'burst-statistics' ); ?></h3>
 			<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:20px 0;">
 				<div style="padding:15px;background:#f8f9fa;border-radius:4px;">
 					<div style="font-size:24px;font-weight:600;">--</div>
-					<div style="font-size:12px;color:#666;"><?php esc_html_e( 'Page Views', 'burst-mainwp-extension' ); ?></div>
+					<div style="font-size:12px;color:#666;"><?php esc_html_e( 'Page Views', 'burst-statistics' ); ?></div>
 				</div>
 				<div style="padding:15px;background:#f8f9fa;border-radius:4px;">
 					<div style="font-size:24px;font-weight:600;">--</div>
-					<div style="font-size:12px;color:#666;"><?php esc_html_e( 'Visitors', 'burst-mainwp-extension' ); ?></div>
+					<div style="font-size:12px;color:#666;"><?php esc_html_e( 'Visitors', 'burst-statistics' ); ?></div>
 				</div>
 			</div>
 			<div style="text-align:center;padding-top:15px;border-top:1px solid #e0e0e0;">
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=ManageSitesBurstStatistics&id=' . $website_id ) ); ?>"
 					class="button button-primary">
-					<?php esc_html_e( 'View Full Statistics', 'burst-mainwp-extension' ); ?>
+					<?php esc_html_e( 'View Full Statistics', 'burst-statistics' ); ?>
 				</a>
 			</div>
 		</div>
@@ -135,13 +140,15 @@ class Burst_MainWP_Individual {
 	 * MainWP calls this as the registered `callback` for the BurstStatistics sub-page.
 	 */
 	public function render_individual_site(): void {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		do_action( 'mainwp_pageheader_sites', 'BurstStatistics' );
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$site_id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
 
 		if ( ! $site_id ) {
-			echo '<div class="ui red message">' . esc_html__( 'Invalid site ID.', 'burst-mainwp-extension' ) . '</div>';
+			echo '<div class="ui red message">' . esc_html__( 'Invalid site ID.', 'burst-statistics' ) . '</div>';
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			do_action( 'mainwp_pagefooter_sites', 'BurstStatistics' );
 			return;
 		}
@@ -149,13 +156,15 @@ class Burst_MainWP_Individual {
 		$website = Burst_MainWP_API::instance()->get_site_data( $site_id );
 
 		if ( ! $website ) {
-			echo '<div class="ui red message">' . esc_html__( 'Site not found.', 'burst-mainwp-extension' ) . '</div>';
+			echo '<div class="ui red message">' . esc_html__( 'Site not found.', 'burst-statistics' ) . '</div>';
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			do_action( 'mainwp_pagefooter_sites', 'BurstStatistics' );
 			return;
 		}
 
 		$this->render_content( $website );
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		do_action( 'mainwp_pagefooter_sites', 'BurstStatistics' );
 	}
 
@@ -175,7 +184,7 @@ class Burst_MainWP_Individual {
 			echo '<div class="ui red message">'
 				. esc_html__(
 					'Could not connect to child site. Please ensure Burst Statistics is installed and active on the child site.',
-					'burst-mainwp-extension'
+					'burst-statistics'
 				)
 				. '</div>';
 			return;
@@ -189,12 +198,12 @@ class Burst_MainWP_Individual {
 				<?php
 				printf(
 					/* translators: %s: child site name */
-					esc_html__( 'Burst Statistics for %s', 'burst-mainwp-extension' ),
+					esc_html__( 'Burst Statistics for %s', 'burst-statistics' ),
 					'<span class="ui green text">' . esc_html( stripslashes( $website->name ) ) . '</span>'
 				);
 				?>
 				<div class="sub header">
-					<?php esc_html_e( 'View detailed analytics and statistics for this site.', 'burst-mainwp-extension' ); ?>
+					<?php esc_html_e( 'View detailed analytics and statistics for this site.', 'burst-statistics' ); ?>
 				</div>
 			</h2>
 			<div class="ui hidden divider"></div>
@@ -214,7 +223,7 @@ class Burst_MainWP_Individual {
 		wp_enqueue_style(
 			'burst-tailwind',
 			BURST_APP_URL . '/src/tailwind.generated.css',
-			array(),
+			[],
 			$version
 		);
 
@@ -226,10 +235,10 @@ class Burst_MainWP_Individual {
 			BURST_APP_URL . '/build/' . $js_data['js_file'],
 			$dependencies,
 			$version,
-			array(
+			[
 				'strategy'  => 'async',
 				'in_footer' => false,
-			)
+			]
 		);
 
 		wp_localize_script(
@@ -255,9 +264,9 @@ class Burst_MainWP_Individual {
 	 */
 	private function build_localized_settings( array $js_data, array $child_data, object $website ): array {
 		$child_root = trailingslashit( $child_data['root_url'] );
-		$extra      = is_array( $child_data['extra'] ?? null ) ? $child_data['extra'] : array();
+		$extra      = is_array( $child_data['extra'] ?? null ) ? $child_data['extra'] : [];
 
-		$settings = array(
+		$settings = [
 			// ── Core plugin information ──────────────────────────────────────
 			'is_pro'                      => defined( 'BURST_PRO' ),
 			'plugin_url'                  => trailingslashit( BURST_URL ),
@@ -276,11 +285,11 @@ class Burst_MainWP_Individual {
 			'view_sales_burst_statistics' => $this->user_can_view_sales(),
 			'manage_burst_statistics'     => $this->user_can_manage(),
 			'can_install_plugins'         => $this->child_can( 'install_plugins' ),
-			'share_link_permissions'      => array(
+			'share_link_permissions'      => [
 				'can_change_date'          => true,
 				'can_filter'               => true,
 				'is_shareable_link_viewer' => false,
-			),
+			],
 
 			// ── MainWP context flag ──────────────────────────────────────────
 			// React uses this to configure the apiFetch middleware.
@@ -296,11 +305,11 @@ class Burst_MainWP_Individual {
 			'date_ranges'                 => $this->get_date_ranges(),
 			'tour_shown'                  => true,
 			'current_ip'                  => self::get_ip_address(),
-		);
+		];
 
 		// Merge extra data forwarded from the child (e.g. feature flags, options).
 		// Child keys must NOT silently overwrite security-critical settings.
-		$protected = array( 'nonce', 'burst_nonce', 'child_token', 'root', 'is_mainwp' );
+		$protected = [ 'nonce', 'burst_nonce', 'child_token', 'root', 'is_mainwp' ];
 		foreach ( $protected as $key ) {
 			unset( $extra[ $key ] );
 		}
@@ -320,21 +329,36 @@ class Burst_MainWP_Individual {
 	 * `child_data['capabilities']` as `[ 'cap_name' => 1|0 ]`.
 	 *
 	 * @param string $capability Capability slug.
-	 * @return bool
+	 * @return bool True if the capability is present and truthy, false otherwise.
 	 */
 	private function child_can( string $capability ): bool {
-		$caps = $this->child_data['capabilities'] ?? array();
+		$caps = $this->child_data['capabilities'] ?? [];
 		return isset( $caps[ $capability ] ) && (int) $caps[ $capability ] === 1;
 	}
 
+	/**
+	 * Check if the current user can manage Burst Statistics on the child site.
+	 *
+	 * @return bool True if the user can manage, false otherwise.
+	 */
 	public function user_can_manage(): bool {
 		return $this->child_can( 'manage_burst_statistics' );
 	}
 
+	/**
+	 * Check if the current user can view Burst Statistics on the child site.
+	 *
+	 * @return bool True if the user can view, false otherwise.
+	 */
 	public function user_can_view(): bool {
 		return $this->child_can( 'view_burst_statistics' );
 	}
 
+	/**
+	 * Check if the current user can view sales statistics on the child site.
+	 *
+	 * @return bool True if the user can view sales stats, false otherwise.
+	 */
 	public function user_can_view_sales(): bool {
 		return $this->child_can( 'view_sales_burst_statistics' );
 	}
@@ -349,7 +373,7 @@ class Burst_MainWP_Individual {
 	public function get_date_ranges(): array {
 		return apply_filters(
 			'burst_date_ranges',
-			array(
+			[
 				'today',
 				'yesterday',
 				'last-7-days',
@@ -360,7 +384,7 @@ class Burst_MainWP_Individual {
 				'week-to-date',
 				'month-to-date',
 				'year-to-date',
-			)
+			]
 		);
 	}
 
@@ -375,12 +399,12 @@ class Burst_MainWP_Individual {
 	 * @return array{json_translations:array,js_file:string,dependencies:array,version:string}
 	 */
 	public static function get_chunk_translations( string $dir ): array {
-		$default = array(
-			'json_translations' => array(),
+		$default = [
+			'json_translations' => [],
 			'js_file'           => '',
-			'dependencies'      => array(),
+			'dependencies'      => [],
 			'version'           => '',
-		);
+		];
 
 		$text_domain   = 'burst-statistics';
 		$languages_dir = defined( 'BURST_PRO' )
@@ -388,19 +412,19 @@ class Burst_MainWP_Individual {
 			: WP_CONTENT_DIR . '/languages/plugins';
 
 		$locale            = determine_locale();
-		$json_translations = array();
-		$language_files    = array();
+		$json_translations = [];
+		$language_files    = [];
 
 		if ( is_dir( $languages_dir ) ) {
 			$pattern        = "$languages_dir/{$text_domain}-{$locale}-*.json";
-			$language_files = glob( $pattern ) ?: array();
+			$language_files = glob( $pattern ) ?: [];
 		}
 
 		foreach ( $language_files as $language_file ) {
 			$src    = basename( $language_file );
-			$handle = str_replace( array( $text_domain . '-', $locale . '-', '.json' ), '', $src );
+			$handle = str_replace( [ $text_domain . '-', $locale . '-', '.json' ], '', $src );
 
-			wp_register_script( $handle, plugins_url( $src, __FILE__ ), array(), true, true );
+			wp_register_script( $handle, plugins_url( $src, __FILE__ ), [], true, true );
 			$locale_data = load_script_textdomain( $handle, $text_domain, $languages_dir );
 			wp_deregister_script( $handle );
 
@@ -410,8 +434,8 @@ class Burst_MainWP_Individual {
 		}
 
 		$build_path  = BURST_PATH . $dir . '/';
-		$js_files    = glob( $build_path . 'index*.js' ) ?: array();
-		$asset_files = glob( $build_path . 'index*.asset.php' ) ?: array();
+		$js_files    = glob( $build_path . 'index*.js' ) ?: [];
+		$asset_files = glob( $build_path . 'index*.asset.php' ) ?: [];
 
 		if ( empty( $js_files ) || empty( $asset_files ) ) {
 			return $default;
@@ -427,12 +451,12 @@ class Burst_MainWP_Individual {
 
 		$asset_file = require $asset_path;
 
-		return array(
+		return [
 			'json_translations' => $json_translations,
 			'js_file'           => $js_filename,
-			'dependencies'      => $asset_file['dependencies'] ?? array(),
+			'dependencies'      => $asset_file['dependencies'] ?? [],
 			'version'           => $asset_file['version'] ?? BURST_MAINWP_VERSION,
-		);
+		];
 	}
 
 	/**
@@ -445,12 +469,12 @@ class Burst_MainWP_Individual {
 	 * @return string Valid IP or empty string.
 	 */
 	public static function get_ip_address(): string {
-		$candidates = array();
+		$candidates = [];
 
-		$headers = array(
+		$headers = [
 			'HTTP_CF_CONNECTING_IP',
 			'HTTP_TRUE_CLIENT_IP',
-		);
+		];
 		foreach ( $headers as $header ) {
 			if ( ! empty( $_SERVER[ $header ] ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -465,14 +489,14 @@ class Burst_MainWP_Individual {
 			}
 		}
 
-		foreach ( array( 'HTTP_X_REAL_IP', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_CLIENT_IP', 'REMOTE_ADDR' ) as $h ) {
+		foreach ( [ 'HTTP_X_REAL_IP', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_CLIENT_IP', 'REMOTE_ADDR' ] as $h ) {
 			if ( ! empty( $_SERVER[ $h ] ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				$candidates[] = sanitize_text_field( wp_unslash( $_SERVER[ $h ] ) );
 			}
 		}
 
-		$valid = array();
+		$valid = [];
 		foreach ( $candidates as $ip ) {
 			$ip = trim( $ip );
 			if ( $ip === '' || $ip === '127.0.0.1' ) {
@@ -506,7 +530,7 @@ class Burst_MainWP_Individual {
 		global $wp_roles;
 
 		if ( ! isset( $wp_roles ) ) {
-			return array();
+			return [];
 		}
 
 		return $wp_roles->get_names();
