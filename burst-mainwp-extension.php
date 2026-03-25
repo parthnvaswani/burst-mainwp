@@ -101,7 +101,7 @@ function burst_mainwp_init(): void {
 	}
 
 	// Extension must be enabled / licensed in MainWP.
-	$check = apply_filters( 'burst_mainwp_extension_enabled_check', BURST_MAINWP_FILE );
+	$check = apply_filters( 'mainwp_extension_enabled_check', BURST_MAINWP_FILE ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	if ( ! is_array( $check ) || ! isset( $check['key'] ) ) {
 		return;
 	}
