@@ -193,20 +193,7 @@ class Burst_MainWP_Individual {
 		// Cache for use by capability helpers and burst_get_option().
 		$this->child_data = $child_data;
 		?>
-		<div id="mainwp-burst-statistics" class="ui padded segment">
-			<h2 class="ui header">
-				<?php
-				printf(
-					/* translators: %s: child site name */
-					esc_html__( 'Burst Statistics for %s', 'burst-statistics' ),
-					'<span class="ui green text">' . esc_html( stripslashes( $website->name ) ) . '</span>'
-				);
-				?>
-				<div class="sub header">
-					<?php esc_html_e( 'View detailed analytics and statistics for this site.', 'burst-statistics' ); ?>
-				</div>
-			</h2>
-			<div class="ui hidden divider"></div>
+		<div id="mainwp-burst-statistics">
 			<div id="burst-statistics" data-site-id="<?php echo esc_attr( $website->id ); ?>"
 				data-site-url="<?php echo esc_url( $website->url ); ?>">
 			</div>

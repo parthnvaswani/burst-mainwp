@@ -211,7 +211,7 @@ const GoalsBlock = () => {
 	const onGoalsInfoClick = useCallback( () => {
 		burst_settings.goals_information_shown = '1';
 		setOption( 'goals_information_shown', true );
-		window.location.hash = '#settings/goals';
+		window.location.hash = '#/settings/goals';
 	}, []);
 
 	// Safely extract data from queries
@@ -397,7 +397,7 @@ const GoalsBlock = () => {
 				<BlockFooter>
 					{burst_settings.manage_burst_statistics && <a
 						className={'burst-button burst-button--secondary'}
-						href={'#settings/goals'}
+						href={'#/settings/goals'}
 					>
 						{__( 'View setup', 'burst-statistics' )}
 					</a> }
