@@ -30,6 +30,10 @@ const HOST_LIGHT_THEME_CLASSES = [
 const HOST_UI_CLASSES = [ 'mainwp-ui', 'updraft-central-ui' ];
 const DASHBOARD_DARK_THEME_CLASS = 'dashboard-default-dark-theme';
 const DASHBOARD_LIGHT_THEME_CLASS = 'dashboard-default-theme';
+const ALL_DARK_THEME_CLASSES = [
+	...HOST_DARK_THEME_CLASSES,
+	DASHBOARD_DARK_THEME_CLASS
+];
 
 const ThemeContext = createContext<ThemeContextValue | undefined>( undefined );
 
@@ -38,7 +42,7 @@ const getBodyTheme = (): ThemeMode => {
 		return 'light';
 	}
 
-	return HOST_DARK_THEME_CLASSES.some( ( className ) =>
+	return ALL_DARK_THEME_CLASSES.some( ( className ) =>
 		document.body.classList.contains( className )
 	) ?
 		'dark' :

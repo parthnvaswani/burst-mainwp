@@ -194,6 +194,19 @@
 			background-color: theme(colors.dashboard-dark.base) !important;
 		}
 
+		/* Tabs: keep inactive tabs muted while preserving active tab contrast. */
+		button[role='tab'][class*='bg-white'] {
+			background-color: theme(colors.dashboard-dark.surface) !important;
+		}
+
+		button[role='tab'][data-active='true'][class*='data-[active="true"]:bg-blue-lighter'] {
+			background-color: theme(colors.blue.dark) !important;
+		}
+
+		button[role='tab'][data-active='true'][class*='data-[active="true"]:bg-brand-lightest'] {
+			background-color: theme(colors.green.dark) !important;
+		}
+
 		.text-black,
 		.text-gray,
 		.text-gray-300,
@@ -244,6 +257,19 @@
 		.border-gray-400,
 		.border-divider {
 			border-color: rgb(242 242 242 / 18%) !important;
+		}
+
+		/* Tabs: override generic border tint so active tab remains clearly selected. */
+		button[role='tab'][class*='border-transparent'] {
+			border-color: transparent !important;
+		}
+
+		button[role='tab'][data-active='true'][class*='data-[active="true"]:border-blue-darker'] {
+			border-color: theme(colors.blue.darker) !important;
+		}
+
+		button[role='tab'][data-active='true'][class*='data-[active="true"]:border-brand'] {
+			border-color: theme(colors.brand.DEFAULT) !important;
 		}
 
 		.shadow-sm,

@@ -1509,6 +1509,19 @@ body.dashboard-default-dark-theme {
 			background-color: #121313 !important;
 		}
 
+		/* Tabs: keep inactive tabs muted while preserving active tab contrast. */
+		button[role='tab'][class*='bg-white'] {
+			background-color: #1c1d1b !important;
+		}
+
+		button[role='tab'][data-active='true'][class*='data-[active="true"]:bg-blue-lighter'] {
+			background-color: #142963 !important;
+		}
+
+		button[role='tab'][data-active='true'][class*='data-[active="true"]:bg-brand-lightest'] {
+			background-color: #233525 !important;
+		}
+
 		.text-black,
 		.text-gray,
 		.text-gray-300,
@@ -1559,6 +1572,19 @@ body.dashboard-default-dark-theme {
 		.border-gray-400,
 		.border-divider {
 			border-color: rgb(242 242 242 / 18%) !important;
+		}
+
+		/* Tabs: override generic border tint so active tab remains clearly selected. */
+		button[role='tab'][class*='border-transparent'] {
+			border-color: transparent !important;
+		}
+
+		button[role='tab'][data-active='true'][class*='data-[active="true"]:border-blue-darker'] {
+			border-color: #1E73BE !important;
+		}
+
+		button[role='tab'][data-active='true'][class*='data-[active="true"]:border-brand'] {
+			border-color: #2B8133 !important;
 		}
 
 		.shadow-sm,
@@ -2079,10 +2105,6 @@ input[type=radio]:checked::before {
   left: 1rem;
 }
 
-#burst-statistics .left-\[160px\] {
-  left: 160px;
-}
-
 #burst-statistics .right-0 {
   right: 0px;
 }
@@ -2579,8 +2601,8 @@ input[type=radio]:checked::before {
   height: 5px;
 }
 
-#burst-statistics .h-\[96vh\] {
-  height: 96vh;
+#burst-statistics .h-\[95vh\] {
+  height: 95vh;
 }
 
 #burst-statistics .h-fit {
@@ -2624,8 +2646,8 @@ input[type=radio]:checked::before {
   max-height: 90vh;
 }
 
-#burst-statistics .max-h-\[96vh\] {
-  max-height: 96vh;
+#burst-statistics .max-h-\[95vh\] {
+  max-height: 95vh;
 }
 
 #burst-statistics .max-h-toastify-toast-max-height {
@@ -9530,10 +9552,6 @@ a.burst-button,
     display: block;
   }
 
-  #burst-statistics .sm\:inline {
-    display: inline;
-  }
-
   #burst-statistics .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -9637,10 +9655,6 @@ a.burst-button,
 
   #burst-statistics .lg\:col-span-9 {
     grid-column: span 9 / span 9;
-  }
-
-  #burst-statistics .lg\:ml-\[80px\] {
-    margin-left: 80px;
   }
 
   #burst-statistics .lg\:w-4\/6 {

@@ -63,9 +63,6 @@ const ThemeToggleButton = () => {
 		return null;
 	}
 
-	const toggleLabel = isDarkTheme ?
-		__( 'Light mode', 'burst-statistics' ) :
-		__( 'Dark mode', 'burst-statistics' );
 	const ariaLabel = isDarkTheme ?
 		__( 'Switch to light mode', 'burst-statistics' ) :
 		__( 'Switch to dark mode', 'burst-statistics' );
@@ -84,7 +81,6 @@ const ThemeToggleButton = () => {
 				color="currentColor"
 				className="shrink-0"
 			/>
-			<span className="hidden sm:inline">{toggleLabel}</span>
 		</button>
 	);
 };
