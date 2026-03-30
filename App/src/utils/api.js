@@ -16,7 +16,8 @@ if ( burst_settings.is_mainwp && burst_settings.root ) {
 
 		options.headers = {
 			...( options.headers || {}),
-			'Authorization': 'Basic ' + burst_settings.child_token
+			'Authorization': 'Basic ' + burst_settings.child_token,
+			'X-BURSTMAINWP': '1'
 		};
 		delete options.headers['X-WP-Nonce'];
 

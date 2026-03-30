@@ -10,9 +10,7 @@ import { useRef, useState, useEffect, useMemo } from 'react';
 import useLicenseData from '@/hooks/useLicenseData';
 import SubscriptionHeader from '../Common/Pro/SubscriptionHeader';
 import useSettingsData from '@/hooks/useSettingsData';
-import {useAttachmentUrl} from '@/hooks/useAttachmentUrl';
-import { useTheme } from '@/hooks/useTheme';
-import Icon from '@/utils/Icon';
+import { useAttachmentUrl } from '@/hooks/useAttachmentUrl';
 import useShareableLinkStore from '@/store/useShareableLinkStore';
 import {
 	isFilterEnabledRoute,
@@ -55,35 +53,6 @@ const BurstLogo = () => (
 		<LogoDark className="hidden h-11 w-auto px-0 py-2 dark:block" />
 	</>
 );
-
-const ThemeToggleButton = () => {
-	const { isDarkTheme, toggleTheme, isHostManagedContext } = useTheme();
-
-	if ( isHostManagedContext ) {
-		return null;
-	}
-
-	const ariaLabel = isDarkTheme ?
-		__( 'Switch to light mode', 'burst-statistics' ) :
-		__( 'Switch to dark mode', 'burst-statistics' );
-
-	return (
-		<button
-			type="button"
-			onClick={toggleTheme}
-			className="burst-theme-toggle inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-white focus:outline-none focus:ring-2 focus:ring-primary/30"
-			aria-label={ariaLabel}
-			aria-pressed={isDarkTheme}
-		>
-			<Icon
-				name={isDarkTheme ? 'sun' : 'moon'}
-				size={16}
-				color="currentColor"
-				className="shrink-0"
-			/>
-		</button>
-	);
-};
 
 /**
  * Header component. Renders the header section with logo, navigation menu, and action buttons.
@@ -197,7 +166,6 @@ const Header = () => {
 				{isShareableLinkViewer && ! isWhiteLabel && (
 					<div className="flex items-center gap-4">
 						<TransparencyModal />
-						<ThemeToggleButton />
 
 						<a
 							href={burst_get_website_url( '', {
@@ -257,8 +225,6 @@ const Header = () => {
 								/>
 							) )}
 						</div>
-
-						<ThemeToggleButton />
 
 						<ButtonInput
 							className="hidden sm:block"
