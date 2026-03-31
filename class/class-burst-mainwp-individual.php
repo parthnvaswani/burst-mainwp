@@ -9,14 +9,16 @@
  * @package Burst_Statistics_MainWP
  */
 
+namespace BurstMainWP;
+
 defined( 'ABSPATH' ) || exit;
 
-class Burst_MainWP_Individual {
+class Individual {
 
 	private static ?self $instance = null;
 
 	/**
-	 * Child-site data returned by {@see Burst_MainWP_API::get_child_auth()}.
+	 * Child-site data returned by {@see API::get_child_auth()}.
 	 * Populated during {@see render_content()} and consumed by capability helpers.
 	 *
 	 * @var array<string,mixed>|null
@@ -83,7 +85,7 @@ class Burst_MainWP_Individual {
 			return;
 		}
 
-		$website = Burst_MainWP_API::instance()->get_site_data( $site_id );
+		$website = API::instance()->get_site_data( $site_id );
 
 		if ( ! $website ) {
 			echo '<div class="ui red message">' . esc_html__( 'Site not found.', 'burst-statistics' ) . '</div>';
@@ -108,7 +110,7 @@ class Burst_MainWP_Individual {
 	 * @param object $website MainWP website row object.
 	 */
 	public function render_content( object $website ): void {
-		$child_data = Burst_MainWP_API::instance()->get_child_auth( (int) $website->id );
+		$child_data = API::instance()->get_child_auth( (int) $website->id );
 
 		if ( ! $child_data ) {
 			echo '<div class="ui red message">'
@@ -174,7 +176,7 @@ class Burst_MainWP_Individual {
 	 * MainWP dashboard.
 	 *
 	 * @param array  $js_data    Asset manifest data from {@see get_chunk_translations()}.
-	 * @param array  $child_data Auth data returned by {@see Burst_MainWP_API::get_child_auth()}.
+	 * @param array  $child_data Auth data returned by {@see API::get_child_auth()}.
 	 * @param object $website    MainWP website row object.
 	 * @return array<string,mixed>
 	 */
@@ -230,9 +232,7 @@ class Burst_MainWP_Individual {
 		];
 
 		$text_domain   = 'burst-statistics';
-		$languages_dir = defined( 'BURST_PRO' )
-			? BURST_PATH . 'languages'
-			: WP_CONTENT_DIR . '/languages/plugins';
+		$languages_dir = WP_CONTENT_DIR . '/languages/plugins';
 
 		$locale            = determine_locale();
 		$json_translations = [];

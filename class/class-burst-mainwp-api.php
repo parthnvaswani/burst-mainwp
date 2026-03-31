@@ -16,9 +16,11 @@
  * @package Burst_Statistics_MainWP
  */
 
+namespace BurstMainWP;
+
 defined( 'ABSPATH' ) || exit;
 
-class Burst_MainWP_API {
+class API {
 
 	private static ?self $instance = null;
 

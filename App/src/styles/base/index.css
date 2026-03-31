@@ -141,6 +141,7 @@
 
 		.burst-statistics-wrapper .ui.header,
 		.burst-statistics-wrapper .ui.header .sub.header,
+		.burst-statistics-wrapper h3,
 		.burst-statistics-wrapper h2,
 		.burst-statistics-wrapper p {
 			color: theme(colors.dashboard-dark.text) !important;
