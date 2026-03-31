@@ -1447,6 +1447,8 @@ body.dashboard-default-theme {
 	}
 
 body.dashboard-default-dark-theme {
+		background-color: #121313 !important;
+
 		.burst-statistics-wrapper {
 			background: #121313 !important;
 			color: #F2F2F2;
@@ -1454,6 +1456,7 @@ body.dashboard-default-dark-theme {
 
 		.burst-statistics-wrapper .ui.header,
 		.burst-statistics-wrapper .ui.header .sub.header,
+		.burst-statistics-wrapper h3,
 		.burst-statistics-wrapper h2,
 		.burst-statistics-wrapper p {
 			color: #F2F2F2 !important;
@@ -1567,7 +1570,10 @@ body.dashboard-default-dark-theme,
 			color: #2B8133 !important;
 		}
 
-		a,
+		a {
+			color: #F2F2F2 !important;
+		}
+
 		a.text-blue,
 		a.text-button-accent,
 		.hover\:text-blue:hover {
@@ -1610,6 +1616,10 @@ body.dashboard-default-dark-theme,
 
 		.bg-green-light {
 			background-color: rgb(108 152 0 / 20%) !important;
+		}
+
+		.bg-yellow-light {
+			background-color: rgb(255 195 0 / 16%) !important;
 		}
 
 		.text-green-700,
@@ -1773,8 +1783,8 @@ body.dashboard-default-dark-theme,
 		}
 
 		/* react-data-table-component (rdt_*) universal dark overrides.
-		   These elements are styled by styled-components hash classes so
-		   plain Tailwind utility overrides do not reach them. */
+			These elements are styled by styled-components hash classes so
+			plain Tailwind utility overrides do not reach them. */
 		.burst-data-table .rdt_Table,
 		.burst-data-table .rdt_Table > div,
 		.burst-data-table .rdt_TableBody .rdt_TableRow,
@@ -1968,7 +1978,7 @@ body.dashboard-default-dark-theme,
 		}
 
 		/* Radio option selected label — bg-primary-light is already overridden above,
-		   but the border-primary highlight also needs adjustment. */
+			but the border-primary highlight also needs adjustment. */
 		.border-primary {
 			border-color: #2B8133 !important;
 		}

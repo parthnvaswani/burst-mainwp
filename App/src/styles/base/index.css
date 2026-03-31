@@ -254,7 +254,10 @@
 			color: theme(colors.dashboard-dark.accent) !important;
 		}
 
-		a,
+		a {
+			color: theme(colors.dashboard-dark.text) !important;
+		}
+
 		a.text-blue,
 		a.text-button-accent,
 		.hover\:text-blue:hover {
@@ -297,6 +300,10 @@
 
 		.bg-green-light {
 			background-color: rgb(108 152 0 / 20%) !important;
+		}
+
+		.bg-yellow-light {
+			background-color: rgb(255 195 0 / 16%) !important;
 		}
 
 		.text-green-700,
