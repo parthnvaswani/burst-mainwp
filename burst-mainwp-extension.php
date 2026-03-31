@@ -32,8 +32,8 @@ spl_autoload_register( 'burst_mainwp_autoload' );
  * Autoloader for BurstMainWP namespaced classes and legacy prefixed classes.
  *
  * Maps:
- * - BurstMainWP\\Foo_Bar   -> class/class-burst-mainwp-foo-bar.php
- * - Burst_MainWP_Foo_Bar   -> class/class-burst-mainwp-foo-bar.php
+ * - BurstMainWP\\Foo_Bar   -> class/class-foo-bar.php
+ * - Burst_MainWP_Foo_Bar   -> class/class-foo-bar.php
  */
 function burst_mainwp_autoload( string $_class ): void {
 	if ( strpos( $_class, 'BurstMainWP\\' ) === 0 ) {
@@ -41,7 +41,7 @@ function burst_mainwp_autoload( string $_class ): void {
 		if ( strpos( $relative, 'Burst_MainWP_' ) === 0 ) {
 			$relative = substr( $relative, strlen( 'Burst_MainWP_' ) );
 		}
-		$filename = 'class-burst-mainwp-' . strtolower( str_replace( [ '\\', '_' ], '-', $relative ) ) . '.php';
+		$filename = 'class-' . strtolower( str_replace( [ '\\', '_' ], '-', $relative ) ) . '.php';
 	} elseif ( strpos( $_class, 'Burst_MainWP_' ) === 0 ) {
 		$filename = 'class-' . strtolower( str_replace( '_', '-', $_class ) ) . '.php';
 	} else {

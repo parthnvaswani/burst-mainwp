@@ -18,14 +18,6 @@ class Individual {
 	private static ?self $instance = null;
 
 	/**
-	 * Child-site data returned by {@see API::get_child_auth()}.
-	 * Populated during {@see render_content()} and consumed by capability helpers.
-	 *
-	 * @var array<string,mixed>|null
-	 */
-	private ?array $child_data = null;
-
-	/**
 	 * Singleton instance accessor.
 	 *
 	 * @return self Singleton instance of the Individual integration class.
@@ -78,7 +70,7 @@ class Individual {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$site_id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
 
-		if ( ! $site_id ) {
+		if ( 0 === $site_id ) {
 			echo '<div class="ui red message">' . esc_html__( 'Invalid site ID.', 'burst-statistics' ) . '</div>';
 			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			do_action( 'mainwp_pagefooter_sites', 'BurstStatistics' );
@@ -122,7 +114,6 @@ class Individual {
 			return;
 		}
 
-		$this->child_data = $child_data;
 		?>
 		<div id="mainwp-burst-statistics">
 			<div id="burst-statistics" class="burst" data-site-id="<?php echo esc_attr( $website->id ); ?>"

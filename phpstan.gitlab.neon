@@ -1,0 +1,22 @@
+parameters:
+    treatPhpDocTypesAsCertain: false
+    level: 5
+    paths:
+        - class
+        - burst-mainwp-extension.php
+    bootstrapFiles:
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+        - tests/phpstan-bootstrap.php
+    ignoreErrors:
+        - '#Call to static method .+ on an unknown class MainWP\\Dashboard\\#'
+        - '#Construct empty\(\) is not allowed\. Use more strict comparison#'
+        - '#Short ternary operator is not allowed#'
+        - '#Result of \|\| is always true#'
+        - '#Strict comparison using === between .+ will always evaluate to true#'
+        - '#Unreachable statement - code above always terminates#'
+        - '#never returns .+ so it can be removed from the return type#'
+    excludePaths:
+        - .gitlab/
+        - vendor/
+        - node_modules/
+        - App/

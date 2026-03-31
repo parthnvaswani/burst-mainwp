@@ -198,7 +198,11 @@ class API {
 	 */
 	private function sign_payload( string $payload, object $site_data ): array|false {
 		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
-		$raw_privkey  = base64_decode( $site_data->privkey );
+		$raw_privkey = base64_decode( $site_data->privkey, true );
+		if ( false === $raw_privkey ) {
+			return false;
+		}
+
 		$signature    = '';
 		$sign_success = false;
 		$use_seclib   = false;
@@ -225,7 +229,7 @@ class API {
 			);
 		}
 
-		if ( ! $sign_success || empty( $signature ) ) {
+		if ( ! $sign_success || '' === $signature ) {
 			$msg = openssl_error_string();
 			while ( $msg ) {
 				$this->debug_log( 'OpenSSL signing error: ' . $msg );
