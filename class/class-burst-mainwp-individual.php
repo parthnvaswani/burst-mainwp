@@ -41,19 +41,6 @@ class Burst_MainWP_Individual {
 	 */
 	private function __construct() {
 		add_filter( 'mainwp_getsubpages_sites', [ $this, 'add_subpage' ] );
-		add_filter( 'mainwp_getmetaboxes', [ $this, 'register_widget' ] );
-	}
-
-	/**
-	 * Return the child-site options array, or an empty array when not yet set.
-	 *
-	 * Used by {@see burst_get_option()} so that function never touches raw
-	 * internal state directly.
-	 *
-	 * @return array<string,mixed>
-	 */
-	public function get_child_options(): array {
-		return $this->child_data['options'] ?? [];
 	}
 
 	// ── MainWP Hooks ──────────────────────────────────────────────────────────
@@ -73,63 +60,6 @@ class Burst_MainWP_Individual {
 			'callback'    => [ $this, 'render_individual_site' ],
 		];
 		return $subpages;
-	}
-
-	/**
-	 * Register a quick-stats widget on the MainWP site-overview dashboard.
-	 *
-	 * @param array $metaboxes Registered meta-boxes.
-	 * @return array Modified meta-boxes with the Burst Statistics widget added.
-	 */
-	public function register_widget( array $metaboxes ): array {
-		$metaboxes[] = [
-			'id'       => 'burst-statistics-widget',
-			'title'    => esc_html__( 'Burst Statistics', 'burst-statistics' ),
-			'callback' => [ $this, 'render_widget' ],
-			'page'     => [ 'ManageSitesDashboard' ],
-			'context'  => 'normal',
-			'priority' => 'core',
-		];
-		return $metaboxes;
-	}
-
-	// ── Widget ────────────────────────────────────────────────────────────────
-
-	/**
-	 * Render the compact quick-stats widget shown on the site overview page.
-	 *
-	 * Intentionally shows placeholder values — the full React app is available
-	 * via the "View Full Statistics" link, which is the primary interaction.
-	 */
-	public function render_widget(): void {
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$website_id = isset( $_GET['dashboard'] ) ? absint( $_GET['dashboard'] ) : 0;
-
-		if ( ! $website_id ) {
-			echo '<p>' . esc_html__( 'No site selected.', 'burst-statistics' ) . '</p>';
-			return;
-		}
-		?>
-		<div class="burst-widget-preview">
-			<h3><?php esc_html_e( 'Quick Stats (Last 7 Days)', 'burst-statistics' ); ?></h3>
-			<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:20px 0;">
-				<div style="padding:15px;background:#f8f9fa;border-radius:4px;">
-					<div style="font-size:24px;font-weight:600;">--</div>
-					<div style="font-size:12px;color:#666;"><?php esc_html_e( 'Page Views', 'burst-statistics' ); ?></div>
-				</div>
-				<div style="padding:15px;background:#f8f9fa;border-radius:4px;">
-					<div style="font-size:24px;font-weight:600;">--</div>
-					<div style="font-size:12px;color:#666;"><?php esc_html_e( 'Visitors', 'burst-statistics' ); ?></div>
-				</div>
-			</div>
-			<div style="text-align:center;padding-top:15px;border-top:1px solid #e0e0e0;">
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=ManageSitesBurstStatistics&id=' . $website_id ) ); ?>"
-					class="button button-primary">
-					<?php esc_html_e( 'View Full Statistics', 'burst-statistics' ); ?>
-				</a>
-			</div>
-		</div>
-		<?php
 	}
 
 	// ── Individual Site Page ──────────────────────────────────────────────────
@@ -190,7 +120,6 @@ class Burst_MainWP_Individual {
 			return;
 		}
 
-		// Cache for use by capability helpers and burst_get_option().
 		$this->child_data = $child_data;
 		?>
 		<div id="mainwp-burst-statistics">
@@ -250,128 +179,35 @@ class Burst_MainWP_Individual {
 	 * @return array<string,mixed>
 	 */
 	private function build_localized_settings( array $js_data, array $child_data, object $website ): array {
-		$child_root = trailingslashit( $child_data['root_url'] );
-		$extra      = is_array( $child_data['extra'] ?? null ) ? $child_data['extra'] : [];
+		$child_root        = trailingslashit( $child_data['root_url'] );
+		$localization_data = is_array( $child_data['localization_data'] ?? null ) ? $child_data['localization_data'] : [];
 
 		$settings = [
 			// ── Core plugin information ──────────────────────────────────────
-			'is_pro'                      => defined( 'BURST_PRO' ),
-			'plugin_url'                  => trailingslashit( BURST_URL ),
-			'installed_by'                => burst_get_option( 'teamupdraft_installation_source_burst-statistics', '' ),
+			'plugin_url'        => trailingslashit( BURST_URL ),
 
 			// ── Child-site REST credentials ──────────────────────────────────
 			// These override the dashboard URLs so apiFetch calls the child.
-			'root'                        => $child_root,
-			'nonce'                       => $child_data['nonce'],
-			'burst_nonce'                 => $child_data['nonce'],
-			'child_token'                 => $child_data['token'],
-			'site_url'                    => trailingslashit( $website->url ),
-
-			// ── User permissions ─────────────────────────────────────────────
-			'user_roles'                  => $this->get_user_roles(),
-			'view_sales_burst_statistics' => $this->user_can_view_sales(),
-			'manage_burst_statistics'     => $this->user_can_manage(),
-			'can_install_plugins'         => $this->child_can( 'install_plugins' ),
-			'share_link_permissions'      => [
-				'can_change_date'          => true,
-				'can_filter'               => true,
-				'is_shareable_link_viewer' => false,
-			],
+			'root'              => $child_root,
+			'child_token'       => $child_data['token'],
+			'site_url'          => trailingslashit( $website->url ),
 
 			// ── MainWP context flag ──────────────────────────────────────────
 			// React uses this to configure the apiFetch middleware.
-			'is_mainwp'                   => true,
+			'is_mainwp'         => true,
 
 			// ── Localization ─────────────────────────────────────────────────
-			'json_translations'           => $js_data['json_translations'],
-			'date_format'                 => get_option( 'date_format' ),
-			'gmt_offset'                  => get_option( 'gmt_offset' ),
-			'time_format'                 => get_option( 'time_format' ),
-
-			// ── Config ───────────────────────────────────────────────────────
-			'date_ranges'                 => $this->get_date_ranges(),
-			'tour_shown'                  => true,
-			'current_ip'                  => self::get_ip_address(),
+			'json_translations' => $js_data['json_translations'],
 		];
 
-		// Merge extra data forwarded from the child (e.g. feature flags, options).
-		// Child keys must NOT silently overwrite security-critical settings.
-		$protected = [ 'nonce', 'burst_nonce', 'child_token', 'root', 'is_mainwp' ];
-		foreach ( $protected as $key ) {
-			unset( $extra[ $key ] );
+		// Put settings into localization_data so they are available in the same object in React.
+		foreach ( $settings as $key => $value ) {
+			$localization_data[ $key ] = $value;
 		}
 
 		return apply_filters(
 			'burst_localize_script',
-			array_merge( $settings, $extra )
-		);
-	}
-
-	// ── Capability helpers ────────────────────────────────────────────────────
-
-	/**
-	 * Check whether the current child-site user holds a given capability.
-	 *
-	 * Capabilities are forwarded by the child during auth and stored in
-	 * `child_data['capabilities']` as `[ 'cap_name' => 1|0 ]`.
-	 *
-	 * @param string $capability Capability slug.
-	 * @return bool True if the capability is present and truthy, false otherwise.
-	 */
-	private function child_can( string $capability ): bool {
-		$caps = $this->child_data['capabilities'] ?? [];
-		return isset( $caps[ $capability ] ) && (int) $caps[ $capability ] === 1;
-	}
-
-	/**
-	 * Check if the current user can manage Burst Statistics on the child site.
-	 *
-	 * @return bool True if the user can manage, false otherwise.
-	 */
-	public function user_can_manage(): bool {
-		return $this->child_can( 'manage_burst_statistics' );
-	}
-
-	/**
-	 * Check if the current user can view Burst Statistics on the child site.
-	 *
-	 * @return bool True if the user can view, false otherwise.
-	 */
-	public function user_can_view(): bool {
-		return $this->child_can( 'view_burst_statistics' );
-	}
-
-	/**
-	 * Check if the current user can view sales statistics on the child site.
-	 *
-	 * @return bool True if the user can view sales stats, false otherwise.
-	 */
-	public function user_can_view_sales(): bool {
-		return $this->child_can( 'view_sales_burst_statistics' );
-	}
-
-	// ── Static helpers ────────────────────────────────────────────────────────
-
-	/**
-	 * Return the list of allowed date ranges for the React date-picker.
-	 *
-	 * @return string[]
-	 */
-	public function get_date_ranges(): array {
-		return apply_filters(
-			'burst_date_ranges',
-			[
-				'today',
-				'yesterday',
-				'last-7-days',
-				'last-30-days',
-				'last-90-days',
-				'last-month',
-				'last-year',
-				'week-to-date',
-				'month-to-date',
-				'year-to-date',
-			]
+			$localization_data
 		);
 	}
 
@@ -444,82 +280,5 @@ class Burst_MainWP_Individual {
 			'dependencies'      => $asset_file['dependencies'] ?? [],
 			'version'           => $asset_file['version'] ?? BURST_MAINWP_VERSION,
 		];
-	}
-
-	/**
-	 * Determine the visitor's real IP address.
-	 *
-	 * Preference order: Cloudflare → True-Client-IP → X-Forwarded-For →
-	 * X-Real-IP → X-Cluster-Client-IP → Client-IP → REMOTE_ADDR.
-	 * Loopback and private-range addresses are de-prioritised.
-	 *
-	 * @return string Valid IP or empty string.
-	 */
-	public static function get_ip_address(): string {
-		$candidates = [];
-
-		$headers = [
-			'HTTP_CF_CONNECTING_IP',
-			'HTTP_TRUE_CLIENT_IP',
-		];
-		foreach ( $headers as $header ) {
-			if ( ! empty( $_SERVER[ $header ] ) ) {
-				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-				$candidates[] = sanitize_text_field( wp_unslash( $_SERVER[ $header ] ) );
-			}
-		}
-
-		if ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$forwarded = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
-			foreach ( explode( ',', $forwarded ) as $part ) {
-				$candidates[] = trim( $part );
-			}
-		}
-
-		foreach ( [ 'HTTP_X_REAL_IP', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_CLIENT_IP', 'REMOTE_ADDR' ] as $h ) {
-			if ( ! empty( $_SERVER[ $h ] ) ) {
-				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-				$candidates[] = sanitize_text_field( wp_unslash( $_SERVER[ $h ] ) );
-			}
-		}
-
-		$valid = [];
-		foreach ( $candidates as $ip ) {
-			$ip = trim( $ip );
-			if ( $ip === '' || $ip === '127.0.0.1' ) {
-				continue;
-			}
-			if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 ) ) {
-				$valid[] = $ip;
-			}
-		}
-
-		if ( empty( $valid ) ) {
-			return (string) apply_filters( 'burst_visitor_ip', '' );
-		}
-
-		// Prefer public IPs.
-		foreach ( $valid as $ip ) {
-			if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
-				return (string) apply_filters( 'burst_visitor_ip', $ip );
-			}
-		}
-
-		return (string) apply_filters( 'burst_visitor_ip', $valid[0] );
-	}
-
-	/**
-	 * Return all registered WordPress role names.
-	 *
-	 * @return array<string,string> Role slug → display name.
-	 */
-	private function get_user_roles(): array {
-		global $wp_roles;
-
-		if ( ! isset( $wp_roles ) ) {
-			return [];
-		}
-
-		return $wp_roles->get_names();
 	}
 }

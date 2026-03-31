@@ -103,7 +103,10 @@ class Burst_MainWP_API {
 		$response = wp_remote_post(
 			$endpoint,
 			[
-				'headers' => [ 'Content-Type' => 'application/json' ],
+				'headers' => [
+					'Content-Type'  => 'application/json',
+					'X-BURSTMAINWP' => '1',
+				],
 				'body'    => wp_json_encode( $body ),
 				'timeout' => 15,
 			]
@@ -143,13 +146,13 @@ class Burst_MainWP_API {
 			return false;
 		}
 
-		foreach ( [ 'token', 'nonce', 'root_url', 'capabilities' ] as $key ) {
+		foreach ( [ 'token', 'root_url', 'localization_data' ] as $key ) {
 			if ( empty( $data[ $key ] ) ) {
 				return false;
 			}
 		}
 
-		return is_array( $data['capabilities'] );
+		return true;
 	}
 
 	/**
@@ -229,7 +232,8 @@ class Burst_MainWP_API {
 		}
 
 		return [
-			'signature'  => base64_encode( $signature ), // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+			'signature'  => base64_encode( $signature ),
 			'use_seclib' => $use_seclib,
 		];
 	}

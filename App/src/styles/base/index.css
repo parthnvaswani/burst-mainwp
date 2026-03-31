@@ -132,6 +132,8 @@
 	}
 
 	body.dashboard-default-dark-theme {
+		background-color: theme(colors.dashboard-dark.base) !important;
+
 		.burst-statistics-wrapper {
 			background: theme(colors.dashboard-dark.base) !important;
 			color: theme(colors.dashboard-dark.text);
@@ -198,7 +200,7 @@
 		.bg-primary-lightest,
 		.bg-brand-lightest,
 		.bg-blue-light {
-			background-color: theme(colors.dashboard-dark.base) !important;
+			background-color: theme(colors.dashboard-dark.surface) !important;
 		}
 
 		/* Tabs: keep inactive tabs muted while preserving active tab contrast. */
@@ -373,7 +375,7 @@
 		.burst-data-table.no-custom-burst-style,
 		.burst-data-table.no-custom-burst-style .rdt_Table,
 		.burst-data-table.no-custom-burst-style [role='table'] {
-			background-color: theme(colors.dashboard-dark.base) !important;
+			background-color: theme(colors.dashboard-dark.surface) !important;
 			color: theme(colors.dashboard-dark.text) !important;
 		}
 
@@ -453,15 +455,15 @@
 		}
 
 		/* react-data-table-component (rdt_*) universal dark overrides.
-		   These elements are styled by styled-components hash classes so
-		   plain Tailwind utility overrides do not reach them. */
+			These elements are styled by styled-components hash classes so
+			plain Tailwind utility overrides do not reach them. */
 		.burst-data-table .rdt_Table,
 		.burst-data-table .rdt_Table > div,
 		.burst-data-table .rdt_TableBody .rdt_TableRow,
 		.burst-data-table .rdt_TableCol,
 		.burst-data-table .rdt_TableCol_Sortable,
 		.burst-data-table .rdt_TableCell {
-			background-color: theme(colors.dashboard-dark.base) !important;
+			background-color: theme(colors.dashboard-dark.surface) !important;
 			color: theme(colors.dashboard-dark.text) !important;
 			border-color: rgb(242 242 242 / 10%) !important;
 		}
@@ -469,19 +471,19 @@
 		/* Table header — slightly darker than rows */
 		.burst-data-table .rdt_TableHead,
 		.burst-data-table .rdt_TableHeadRow {
-			background-color: theme(colors.dashboard-dark.base) !important;
+			background-color: theme(colors.dashboard-dark.surface) !important;
 			color: theme(colors.dashboard-dark.text) !important;
 			border-color: rgb(242 242 242 / 14%) !important;
 		}
 
 		/* Alternating rows */
 		.burst-data-table .rdt_TableBody .rdt_TableRow:nth-child(even) {
-			background-color: theme(colors.dashboard-dark.base) !important;
+			background-color: theme(colors.dashboard-dark.surface) !important;
 		}
 
 		/* Pagination bar */
 		.rdt_Pagination {
-			background-color: theme(colors.dashboard-dark.base) !important;
+			background-color: theme(colors.dashboard-dark.surface) !important;
 			color: theme(colors.dashboard-dark.text) !important;
 			border-color: rgb(242 242 242 / 14%) !important;
 		}
@@ -499,7 +501,7 @@
 		}
 
 		.rdt_Pagination select {
-			background-color: theme(colors.dashboard-dark.base) !important;
+			background-color: theme(colors.dashboard-dark.surface) !important;
 			color: theme(colors.dashboard-dark.text) !important;
 			border-color: rgb(242 242 242 / 20%) !important;
 		}
@@ -648,7 +650,7 @@
 		}
 
 		/* Radio option selected label — bg-primary-light is already overridden above,
-		   but the border-primary highlight also needs adjustment. */
+			but the border-primary highlight also needs adjustment. */
 		.border-primary {
 			border-color: theme(colors.dashboard-dark.accent) !important;
 		}
