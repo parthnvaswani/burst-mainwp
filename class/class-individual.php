@@ -269,7 +269,7 @@ class Individual {
 			'json_translations' => $json_translations,
 			'js_file'           => $js_filename,
 			'dependencies'      => $asset_file['dependencies'] ?? [],
-			'version'           => $asset_file['version'] ?? BURST_MAINWP_VERSION,
+			'version'           => $asset_file['version'] ?? BURST_VERSION,
 		];
 	}
 }
