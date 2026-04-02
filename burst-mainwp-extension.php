@@ -7,10 +7,10 @@
  * Author:      Burst Statistics
  * Author URI:  https://burst-statistics.com
  * License:     GPL v3
- * Text Domain: burst-mainwp-extension
+ * Text Domain: burst-statistics
  * Requires PHP: 8.0
  *
- * @package Burst_Statistics_MainWP
+ * @package BurstMainWP
  */
 
 defined( 'ABSPATH' ) || die();
@@ -19,42 +19,41 @@ defined( 'ABSPATH' ) || die();
 
 define( 'BURST_MAINWP_VERSION', '1.0.0' );
 define( 'BURST_MAINWP_FILE', __FILE__ );
-define( 'BURST_PATH', plugin_dir_path( __FILE__ ) );
-define( 'BURST_URL', plugins_url( '', __FILE__ ) );
-define( 'BURST_APP_URL', plugins_url( 'App', __FILE__ ) );
-define( 'BURST_APP_PATH', plugin_dir_path( __FILE__ ) . 'App' );
-
-/*
- * BURST_PRO: define only when this is the Pro build.
- * Un-comment the line below when shipping the Pro edition.
- */
-define( 'BURST_PRO', true );
+define( 'BURST_MAINWP_PATH', plugin_dir_path( __FILE__ ) );
+define( 'BURST_MAINWP_URL', plugins_url( '', __FILE__ ) );
+define( 'BURST_MAINWP_APP_URL', plugins_url( 'App', __FILE__ ) );
+define( 'BURST_MAINWP_APP_PATH', plugin_dir_path( __FILE__ ) . 'App' );
 
 // ── Autoloader ───────────────────────────────────────────────────────────────
 
 spl_autoload_register( 'burst_mainwp_autoload' );
 
 /**
- * PSR-4-style autoloader for Burst_MainWP_* classes.
+ * Autoloader for BurstMainWP namespaced classes and legacy prefixed classes.
  *
- * Maps  Burst_MainWP_Foo_Bar  →  class/class-burst-mainwp-foo-bar.php
+ * Maps:
+ * - BurstMainWP\\Foo_Bar   -> class/class-foo-bar.php
+ * - Burst_MainWP_Foo_Bar   -> class/class-foo-bar.php
  */
 function burst_mainwp_autoload( string $_class ): void {
-	if ( strpos( $_class, 'Burst_MainWP_' ) !== 0 ) {
+	if ( strpos( $_class, 'BurstMainWP\\' ) === 0 ) {
+		$relative = substr( $_class, strlen( 'BurstMainWP\\' ) );
+		if ( strpos( $relative, 'Burst_MainWP_' ) === 0 ) {
+			$relative = substr( $relative, strlen( 'Burst_MainWP_' ) );
+		}
+		$filename = 'class-' . strtolower( str_replace( [ '\\', '_' ], '-', $relative ) ) . '.php';
+	} elseif ( strpos( $_class, 'Burst_MainWP_' ) === 0 ) {
+		$filename = 'class-' . strtolower( str_replace( '_', '-', $_class ) ) . '.php';
+	} else {
 		return;
 	}
 
-	$filename = 'class-' . strtolower( str_replace( '_', '-', $_class ) ) . '.php';
-	$path     = BURST_PATH . 'class/' . $filename;
+	$path = BURST_MAINWP_PATH . 'class/' . $filename;
 
 	if ( file_exists( $path ) ) {
 		require_once $path;
 	}
 }
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-require_once BURST_PATH . 'functions.php';
 
 // ── MainWP Extension Registration ────────────────────────────────────────────
 
@@ -101,14 +100,15 @@ function burst_mainwp_init(): void {
 	}
 
 	// Extension must be enabled / licensed in MainWP.
-	$check = apply_filters( 'mainwp_extension_enabled_check', BURST_MAINWP_FILE ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+	$check = apply_filters( 'mainwp_extension_enabled_check', BURST_MAINWP_FILE );
 	if ( ! is_array( $check ) || ! isset( $check['key'] ) ) {
 		return;
 	}
 
 	$initialized = true;
 
-	Burst_MainWP_Individual::instance();
+	\BurstMainWP\Individual::instance();
 }
 
 // ── Activation ────────────────────────────────────────────────────────────────

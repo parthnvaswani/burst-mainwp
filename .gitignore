@@ -1,11 +1,4 @@
-/includes/Admin/App/build
-/includes/Admin/App/package-lock.json
-/includes/Admin/Dashboard_Widget/build
-/includes/Admin/Dashboard_Widget/package-lock.json
-/src/Admin/App/build
-/src/Admin/App/package-lock.json
-/src/Admin/Dashboard_Widget/build
-/package-lock.json
+/App/build
 lib/vendor/composer/installed.php
 .claude
 ###WordPress###
