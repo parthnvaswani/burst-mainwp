@@ -206,10 +206,12 @@ class Individual {
 					'reporting' === $menu_item['id'] &&
 					is_array( $menu_item['menu_items'] )
 				) {
-					$menu_item['menu_items'] = array_values( array_filter(
-						$menu_item['menu_items'],
-						fn( $sub_menu_item ) => ! ( isset( $sub_menu_item['id'] ) && 'customization' === $sub_menu_item['id'] )
-					) );
+					$menu_item['menu_items'] = array_values(
+						array_filter(
+							$menu_item['menu_items'],
+							fn( $sub_menu_item ) => ! ( isset( $sub_menu_item['id'] ) && 'customization' === $sub_menu_item['id'] )
+						)
+					);
 				}
 			}
 			unset( $menu_item );
