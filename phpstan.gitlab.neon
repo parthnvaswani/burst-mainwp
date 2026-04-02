@@ -15,8 +15,8 @@ parameters:
         - '#Strict comparison using === between .+ will always evaluate to true#'
         - '#Unreachable statement - code above always terminates#'
         - '#never returns .+ so it can be removed from the return type#'
-    excludePaths:
-        - .gitlab/
-        - vendor/
-        - node_modules/
-        - App/
+     excludePaths:
+        - .gitlab/ (?)
+        - vendor/ (?)
+        - node_modules/ (?)
+        - App/ (?)
