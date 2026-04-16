@@ -102,9 +102,18 @@ class Individual {
 	 * @param object $website MainWP website row object.
 	 */
 	public function render_content( object $website ): void {
+		$this->debug_log(
+			sprintf(
+				'render_content start: site_id=%d site_url=%s',
+				(int) ( $website->id ?? 0 ),
+				(string) ( $website->url ?? '' )
+			)
+		);
+
 		$child_data = API::instance()->get_child_auth( (int) $website->id );
 
 		if ( ! $child_data ) {
+			$this->debug_log( sprintf( 'render_content failed: get_child_auth returned false for site_id=%d', (int) ( $website->id ?? 0 ) ) );
 			echo '<div class="ui red message">'
 				. esc_html__(
 					'Could not connect to child site. Please ensure Burst Statistics is installed and active on the child site.',
@@ -113,6 +122,14 @@ class Individual {
 				. '</div>';
 			return;
 		}
+
+		$this->debug_log(
+			sprintf(
+				'render_content auth success: root_url=%s has_token=%s',
+				(string) ( $child_data['root_url'] ?? '' ),
+				empty( $child_data['token'] ) ? 'no' : 'yes'
+			)
+		);
 
 		?>
 		<div id="mainwp-burst-statistics">
@@ -124,6 +141,7 @@ class Individual {
 
 		$js_data = self::get_chunk_translations( 'App/build' );
 		if ( empty( $js_data['js_file'] ) ) {
+			$this->debug_log( 'render_content aborted: App/build index bundle missing.' );
 			return;
 		}
 
@@ -155,6 +173,21 @@ class Individual {
 			'burst_settings',
 			$this->build_localized_settings( $js_data, $child_data, $website )
 		);
+
+		$this->debug_log( 'render_content completed: localized burst_settings and enqueued assets.' );
+	}
+
+	/**
+	 * Write extension debug logs to PHP error log when WP_DEBUG is enabled.
+	 *
+	 * @param string $message Human-readable message.
+	 * @return void
+	 */
+	private function debug_log( string $message ): void {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( '[Burst MainWP] ' . $message );
+		}
 	}
 
 	// ── Localization ──────────────────────────────────────────────────────────
