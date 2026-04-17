@@ -40,7 +40,7 @@ function SettingsFooter({ onSubmit, control }) {
 								' opacity-100' :
 								' opacity-0' ) +
 							( 'red' === currentState?.color ?
-								' bg-red-light border border-red' :
+								' bg-red-100 border border-red' :
 								'' )
 						}
 					>
@@ -49,7 +49,7 @@ function SettingsFooter({ onSubmit, control }) {
 								'text-sm' +
 								( 'red' === currentState?.color ?
 									' font-semibold text-red' :
-									' italic text-gray-900' )
+									' italic text-text-gray' )
 							}
 						>
 							{currentState?.message}

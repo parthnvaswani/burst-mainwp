@@ -1,8 +1,6 @@
-import { keyFrames, animations } from './tailwind.animations';
-import { ToastComponents } from './src/tailwind-plugins/toast-components';
+import { keyFrames, animations } from './tailwind.animations.mjs';
 
 /** @type {import('tailwindcss').Config} */
-// Define common color objects to alias duplicate colors.
 
 const brandColor = {
 	lightest: '#ecf4ed',
@@ -62,77 +60,13 @@ const dashboardDarkColor = {
 	danger: "#c6273b",
 };
 
-/**
- * Toastify colors mapped to CSS variables.
- */
-const toastifyColors = {
-	light: '#fff',
-	dark: '#333',
-	info: yellowColor.DEFAULT,
-	success: greenColor.DEFAULT,
-	warning: orangeColor.DEFAULT,
-	error: redColor.DEFAULT,
-	transparent: 'rgba(255, 255, 255, 0.7)'
-};
-
-/**
- * Toastify text colors mapped to CSS variables.
- */
-const toastifyTextColors = {
-	light: '#1A1A1AE5',
-	dark: '#FFFFFFE5',
-	info: '#fff',
-	success: '#fff',
-	warning: '#fff',
-	error: '#fff'
-};
-
-/**
- * Toastify progress bar colors mapped to CSS variables.
- */
-const toastifyProgressColors = {
-	light: 'linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55)',
-	dark: '#bb86fc',
-	info: 'var(--toastify-color-info)',
-	success: 'var(--toastify-color-success)',
-	warning: 'var(--toastify-color-warning)',
-	error: 'var(--toastify-color-error)'
-};
-
-module.exports = {
-	mode: "jit",
-	darkMode: "class",
-	content: ["./src/**/*.{js,jsx,ts,tsx}"],
-	safelist: [
-		"animate-spin",
-		"animate-pulseSlow",
-		"animate-shimmer",
-		{
-			pattern: /(yellow|green|blue|black|gray-400)$/,
-			variants: ["hover", "[&_a:hover]", "[&_a>.burst-bullet:hover]"],
-		},
-		{ pattern: /^rdr/ },
-		{ pattern: /^rdt/ },
-		{ pattern: /^Toastify/ },
-	],
+export default {
+	content: ["./src/**/*.{js,jsx,ts,tsx,css}"],
 	theme: {
 		extend: {
 			screens: {
-				"toast-mobile": "480px",
 				xxs: "576px",
 				"2xl": "1600px",
-			},
-			spacing: {
-				"toastify-toast-width": "320px",
-				"toastify-toast-min-height": "42px",
-				"toastify-toast-max-height": "800px",
-			},
-			zIndex: {
-				toastify: "9999",
-			},
-			borderColor: {
-				"toastify-spinner": "#616161",
-				"toastify-spinner-empty": "#e0e0e0",
 			},
 			boxShadow: {
 				rsp: "rgba(0,0,0,0.1) 0 4px 6px -1px, rgba(0,0,0,0.06) 0 2px 4px -1px",
@@ -141,26 +75,14 @@ module.exports = {
 				secondaryButtonHover: "0 0 0 3px rgba(0, 0, 0, 0.1)",
 				tertiaryButtonHover: "0 0 0 3px rgba(255, 0, 0, 0.3)",
 				proButtonHover: `0 0 0 3px ${brandColor.light}`,
-
-				// LEVEL 1: LOW
-				// Tighter spread (max 4px). Best for list items, buttons, or small inputs.
-				// --------------------------------------------------------------------------
 				"layered-low-b":
 					"0 1px 1px rgb(0 0 0 / 0.05), 0 2px 2px rgb(0 0 0 / 0.05), 0 4px 4px rgb(0 0 0 / 0.03)",
 				"layered-low-t":
 					"0 -1px 1px rgb(0 0 0 / 0.05), 0 -2px 2px rgb(0 0 0 / 0.05), 0 -4px 4px rgb(0 0 0 / 0.03)",
-
-				// LEVEL 2: MID (Your Baseline)
-				// Balanced spread (max 16px). Best for content cards, headers, and panels.
-				// --------------------------------------------------------------------------
 				"layered-mid-b":
 					"0 1px 1px rgb(0 0 0 / 0.05), 0 2px 2px rgb(0 0 0 / 0.05), 0 4px 4px rgb(0 0 0 / 0.03), 0 8px 8px rgb(0 0 0 / 0.025)",
 				"layered-mid-t":
 					"0 -1px 1px rgb(0 0 0 / 0.05), 0 -2px 2px rgb(0 0 0 / 0.05), 0 -4px 4px rgb(0 0 0 / 0.03), 0 -8px 8px rgb(0 0 0 / 0.025)",
-
-				// LEVEL 3: HIGH
-				// Wide spread (max 32px). Best for modals, dialogs, or floating actions.
-				// --------------------------------------------------------------------------
 				"layered-high-b":
 					"0 1px 1px rgb(0 0 0 / 0.06), 0 2px 2px rgb(0 0 0 / 0.05), 0 4px 4px rgb(0 0 0 / 0.03), 0 8px 8px rgb(0 0 0 / 0.025), 0 16px 16px rgb(0 0 0 / 0.025)",
 				"layered-high-t":
@@ -185,11 +107,8 @@ module.exports = {
 				orange: orangeColor,
 				gold: goldColor,
 				brand: brandColor,
-				toastify: toastifyColors,
-
 				white: "#fff",
 				black: "#151615",
-
 				gray: {
 					50: "#f9f9f9",
 					100: "#f8f9fa",
@@ -202,27 +121,15 @@ module.exports = {
 					800: "#343a40",
 					900: "#212529",
 				},
-
 				"button-accent": "#2271b1",
 				border: "#dfdfdf",
 				divider: "#ccc",
-
 				wp: {
 					blue: "#2271b1",
 					gray: "#f0f0f1",
 					orange: "#d63638",
 					black: "#1d2327",
 				},
-			},
-			backgroundImage: {
-				"toastify-progress-light": toastifyProgressColors.light,
-			},
-			backgroundColor: {
-				"toastify-progress-dark": toastifyProgressColors.dark,
-				"toastify-progress-info": toastifyProgressColors.info,
-				"toastify-progress-success": toastifyProgressColors.success,
-				"toastify-progress-warning": toastifyProgressColors.warning,
-				"toastify-progress-error": toastifyProgressColors.error,
 			},
 			textColor: (theme) => ({
 				black: "#1a1a1ae5",
@@ -235,8 +142,6 @@ module.exports = {
 				green: theme("colors.green.DEFAULT"),
 				red: theme("colors.red.DEFAULT"),
 				orange: theme("colors.orange.DEFAULT"),
-				toastify: toastifyTextColors,
-
 				"button-contrast": "#000",
 				"button-secondary": "#fff",
 				"button-accent": theme("colors.button-accent"),
@@ -256,22 +161,29 @@ module.exports = {
 			}),
 		},
 		fontSize: {
-			xxs: ["0.5625rem", "0.8125rem"], // 9px with ~13px line-height
-			xs: ["0.625rem", "0.875rem"], // 10px with 14px line-height
-			sm: ["0.75rem", "1.125rem"], // 12px with 18px line-height
-			base: ["0.8125rem", "1.25rem"], // 13px with 20px line-height
-			md: ["0.875rem", "1.375rem"], // 14px with 22px line-height
-			lg: ["1rem", "1.625rem"], // 16px with 26px line-height
-			xl: ["1.125rem", "1.625rem"], // 18px with 26px line-height
-			"2xl": ["1.25rem", "1.75rem"], // 20px with 28px line-height
-			"3xl": ["1.5rem", "2rem"], // 24px with 32px line-height
-			"4xl": ["1.875rem", "2.25rem"], // 30px with 36px line-height
-			"5xl": ["3.5rem", "1"], // 56px / normal line-height
+			xxs: ["0.5625rem", "0.8125rem"],
+			xs: ["0.625rem", "0.875rem"],
+			sm: ["0.75rem", "1.125rem"],
+			base: ["0.8125rem", "1.25rem"],
+			md: ["0.875rem", "1.375rem"],
+			lg: ["1rem", "1.625rem"],
+			xl: ["1.125rem", "1.625rem"],
+			"2xl": ["1.25rem", "1.75rem"],
+			"3xl": ["1.5rem", "2rem"],
+			"4xl": ["1.875rem", "2.25rem"],
+			"5xl": ["3.5rem", "1"],
 		},
 	},
-	variants: {
-		extend: {},
-	},
-	plugins: [ToastComponents],
-	important: "#burst-statistics",
+	safelist: [
+		"animate-spin",
+		"animate-pulseSlow",
+		"animate-shimmer",
+		{
+			pattern: /(yellow|green|blue|black|gray-400)$/,
+			variants: ["hover", "[&_a:hover]", "[&_a>.burst-bullet:hover]"],
+		},
+		{ pattern: /^rdr/ },
+		{ pattern: /^rdt/ },
+	],
+	// important: "#burst-statistics",
 };
