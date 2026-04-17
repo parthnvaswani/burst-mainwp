@@ -250,6 +250,8 @@ class API {
 	 * @param string $message Human-readable message.
 	 */
 	private function debug_log( string $message ): void {
-		unset( $message );
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( '[Burst MainWP] ' . $message );
+		}
 	}
 }
