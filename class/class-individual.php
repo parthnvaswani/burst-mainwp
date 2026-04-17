@@ -198,6 +198,25 @@ class Individual {
 			$localization_data[ $key ] = $value;
 		}
 
+		// Remove "Customization" sub-menu from the "Reporting" menu if it exists, as it's not working in the MainWP context.
+		if ( isset( $localization_data['menu'] ) && is_array( $localization_data['menu'] ) ) {
+			foreach ( $localization_data['menu'] as &$menu_item ) {
+				if (
+					isset( $menu_item['id'], $menu_item['menu_items'] ) &&
+					'reporting' === $menu_item['id'] &&
+					is_array( $menu_item['menu_items'] )
+				) {
+					$menu_item['menu_items'] = array_values(
+						array_filter(
+							$menu_item['menu_items'],
+							fn( $sub_menu_item ) => ! ( isset( $sub_menu_item['id'] ) && 'customization' === $sub_menu_item['id'] )
+						)
+					);
+				}
+			}
+			unset( $menu_item );
+		}
+
 		return apply_filters(
 			'burst_localize_script',
 			$localization_data
