@@ -921,7 +921,7 @@ class App {
 					return $this->get_data( $request );
 				},
 				'permission_callback' => function () {
-					return $this->user_can_view();
+					return $this->user_can_view_sales();
 				},
 			]
 		);
