@@ -130,7 +130,7 @@ class API {
 			}
 		}
 
-		if ( ! $response || is_wp_error( $response ) ) {
+		if ( is_wp_error( $response ) ) {
 			return false;
 		}
 
