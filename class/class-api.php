@@ -296,9 +296,10 @@ class API {
 	 * @param string $message Human-readable message.
 	 */
 	private function debug_log( string $message ): void {
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-			error_log( '[Burst MainWP] ' . $message );
+		if ( ! isset( $GLOBALS['burst_mainwp_debug_messages'] ) || ! is_array( $GLOBALS['burst_mainwp_debug_messages'] ) ) {
+			$GLOBALS['burst_mainwp_debug_messages'] = [];
 		}
+
+		$GLOBALS['burst_mainwp_debug_messages'][] = '[API] ' . $message;
 	}
 }

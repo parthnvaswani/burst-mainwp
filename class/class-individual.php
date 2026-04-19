@@ -111,9 +111,15 @@ class Individual {
 		);
 
 		$child_data = API::instance()->get_child_auth( (int) $website->id );
+		$debug_messages = $GLOBALS['burst_mainwp_debug_messages'] ?? [];
 
 		echo '<pre class="debug-mainwp-child-data">';
-		var_dump($child_data);
+		var_dump(
+			[
+				'messages'   => $debug_messages,
+				'child_data' => $child_data,
+			]
+		);
 		echo '</pre>';
 
 		if ( ! $child_data ) {
@@ -188,10 +194,11 @@ class Individual {
 	 * @return void
 	 */
 	private function debug_log( string $message ): void {
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-			error_log( '[Burst MainWP] ' . $message );
+		if ( ! isset( $GLOBALS['burst_mainwp_debug_messages'] ) || ! is_array( $GLOBALS['burst_mainwp_debug_messages'] ) ) {
+			$GLOBALS['burst_mainwp_debug_messages'] = [];
 		}
+
+		$GLOBALS['burst_mainwp_debug_messages'][] = '[Individual] ' . $message;
 	}
 
 	// ── Localization ──────────────────────────────────────────────────────────
