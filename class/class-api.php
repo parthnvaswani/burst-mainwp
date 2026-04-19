@@ -86,45 +86,19 @@ class API {
 	 *         Auth payload on success, false on any failure.
 	 */
 	public function get_child_auth( int $site_id ): array|false {
-		$this->debug_log( sprintf( 'get_child_auth start: site_id=%d', $site_id ) );
-
 		if ( ! class_exists( 'MainWP\Dashboard\MainWP_Connect' ) ) {
-			$this->debug_log( 'get_child_auth failed: MainWP_Connect class missing.' );
 			return false;
 		}
 
 		$site_data = $this->get_site_data( $site_id );
 		if ( ! $site_data ) {
-			$this->debug_log( sprintf( 'get_child_auth failed: no site data for site_id=%d', $site_id ) );
 			return false;
 		}
-
-		$this->debug_log(
-			sprintf(
-				'get_child_auth site data: site_id=%d url=%s admin=%s has_privkey=%s',
-				(int) ( $site_data->id ?? 0 ),
-				(string) ( $site_data->url ?? '' ),
-				(string) ( $site_data->adminname ?? '' ),
-				empty( $site_data->privkey ) ? 'no' : 'yes'
-			)
-		);
 
 		$body = $this->build_signed_body( $site_data, 'burst_proxy' );
 		if ( ! $body ) {
-			$this->debug_log( 'get_child_auth failed: build_signed_body returned false.' );
 			return false;
 		}
-
-		$this->debug_log(
-			sprintf(
-				'get_child_auth signed body: keys=%s function=%s verifylib=%s nonce=%s user=%s',
-				implode( ',', array_keys( $body ) ),
-				(string) ( $body['function'] ?? '' ),
-				isset( $body['verifylib'] ) ? (string) $body['verifylib'] : '<missing>',
-				isset( $body['nonce'] ) ? (string) $body['nonce'] : '<missing>',
-				(string) ( $body['user'] ?? '' )
-			)
-		);
 
 		$endpoint_base = trailingslashit( $site_data->url );
 		$endpoints     = [
@@ -133,12 +107,8 @@ class API {
 		];
 
 		$response = null;
-		$endpoint = '';
 
-		foreach ( $endpoints as $candidate_endpoint ) {
-			$endpoint = $candidate_endpoint;
-			$this->debug_log( 'get_child_auth posting to endpoint: ' . $endpoint );
-
+		foreach ( $endpoints as $endpoint ) {
 			$response = wp_remote_post(
 				$endpoint,
 				[
@@ -152,40 +122,27 @@ class API {
 			);
 
 			if ( is_wp_error( $response ) ) {
-				$this->debug_log( 'get_child_auth WP_Error: ' . $response->get_error_message() );
 				continue;
 			}
 
-			$http_code = (int) wp_remote_retrieve_response_code( $response );
-			$this->debug_log( sprintf( 'get_child_auth response code: %d', $http_code ) );
-
-			if ( 200 === $http_code ) {
+			if ( 200 === (int) wp_remote_retrieve_response_code( $response ) ) {
 				break;
 			}
-
-			$body_excerpt = substr( (string) wp_remote_retrieve_body( $response ), 0, 500 );
-			$this->debug_log( sprintf( 'get_child_auth unexpected HTTP %d from %s', $http_code, $endpoint ) );
-			$this->debug_log( 'get_child_auth response body (excerpt): ' . $body_excerpt );
 		}
 
 		if ( ! $response || is_wp_error( $response ) ) {
 			return false;
 		}
 
-		$http_code = (int) wp_remote_retrieve_response_code( $response );
-		if ( 200 !== $http_code ) {
+		if ( 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
 			return false;
 		}
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( ! $this->is_valid_auth_response( $data ) ) {
-			$this->debug_log( 'get_child_auth: invalid or incomplete auth response.' );
-			$this->debug_log( 'get_child_auth response payload: ' . wp_json_encode( $data ) );
 			return false;
 		}
-
-		$this->debug_log( 'get_child_auth success: received token and localization_data.' );
 
 		return $data;
 	}
@@ -223,11 +180,9 @@ class API {
 	private function build_signed_body( object $site_data, string $_function, array $extra = [] ): array|false {
 		$nonce        = wp_rand( 0, 9999 );
 		$sign_payload = $_function . $nonce;
-		$this->debug_log( sprintf( 'build_signed_body start: function=%s nonce=%s', $_function, (string) $nonce ) );
 		$signed       = $this->sign_payload( $sign_payload, $site_data );
 
 		if ( ! $signed ) {
-			$this->debug_log( 'build_signed_body failed: sign_payload returned false.' );
 			return false;
 		}
 
@@ -254,12 +209,9 @@ class API {
 	 * @return array{signature:string,use_seclib:bool}|false Encoded signature, or false on failure.
 	 */
 	private function sign_payload( string $payload, object $site_data ): array|false {
-		$this->debug_log( sprintf( 'sign_payload start: payload_length=%d site_id=%d', strlen( $payload ), (int) ( $site_data->id ?? 0 ) ) );
-
 		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 		$raw_privkey = base64_decode( $site_data->privkey, true );
 		if ( false === $raw_privkey ) {
-			$this->debug_log( 'sign_payload failed: invalid base64 private key.' );
 			return false;
 		}
 
@@ -271,7 +223,6 @@ class API {
 			class_exists( 'MainWP\Dashboard\MainWP_Connect_Lib' ) &&
 			\MainWP\Dashboard\MainWP_Connect_Lib::is_use_fallback_sec_lib( $site_data )
 		) {
-			$this->debug_log( 'sign_payload using MainWP fallback sec lib.' );
 			$sign_success = \MainWP\Dashboard\MainWP_Connect_Lib::connect_sign(
 				$payload,
 				$signature,
@@ -280,9 +231,7 @@ class API {
 			);
 			$use_seclib   = true;
 		} else {
-			$this->debug_log( 'sign_payload using MainWP OpenSSL signer.' );
 			$alg          = \MainWP\Dashboard\MainWP_System_Utility::get_connect_sign_algorithm( $site_data );
-			$this->debug_log( 'sign_payload algorithm: ' . $alg );
 			$sign_success = \MainWP\Dashboard\MainWP_Connect::connect_sign(
 				$payload,
 				$signature,
@@ -293,34 +242,13 @@ class API {
 		}
 
 		if ( ! $sign_success || '' === $signature ) {
-			$msg = openssl_error_string();
-			while ( $msg ) {
-				$this->debug_log( 'OpenSSL signing error: ' . $msg );
-				$msg = openssl_error_string();
-			}
-			$this->debug_log( 'sign_payload failed: empty signature or signer returned false.' );
 			return false;
 		}
-
-		$this->debug_log( 'sign_payload success.' );
 
 		return [
 			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 			'signature'  => base64_encode( $signature ),
 			'use_seclib' => $use_seclib,
 		];
-	}
-
-	/**
-	 * Write a debug message to the PHP error log, but only when WP_DEBUG is on.
-	 *
-	 * @param string $message Human-readable message.
-	 */
-	private function debug_log( string $message ): void {
-		if ( ! isset( $GLOBALS['burst_mainwp_debug_messages'] ) || ! is_array( $GLOBALS['burst_mainwp_debug_messages'] ) ) {
-			$GLOBALS['burst_mainwp_debug_messages'] = [];
-		}
-
-		$GLOBALS['burst_mainwp_debug_messages'][] = '[API] ' . $message;
 	}
 }

@@ -91,13 +91,11 @@ add_action( 'mainwp_activated', 'burst_mainwp_init' );
 function burst_mainwp_init(): void {
 	static $initialized = false;
 	if ( $initialized ) {
-		burst_mainwp_debug_log( 'init skipped: already initialized for this request.' );
 		return;
 	}
 
 	// MainWP Dashboard must be present.
 	if ( ! class_exists( 'MainWP\Dashboard\MainWP_Connect' ) ) {
-		burst_mainwp_debug_log( 'init skipped: MainWP_Connect class not found.' );
 		return;
 	}
 
@@ -105,27 +103,12 @@ function burst_mainwp_init(): void {
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	$check = apply_filters( 'mainwp_extension_enabled_check', BURST_MAINWP_FILE );
 	if ( ! is_array( $check ) || ! isset( $check['key'] ) ) {
-		burst_mainwp_debug_log( 'init skipped: extension not enabled by mainwp_extension_enabled_check.' );
 		return;
 	}
 
 	$initialized = true;
-	burst_mainwp_debug_log( 'init success: registering Individual integration.' );
 
 	\BurstMainWP\Individual::instance();
-}
-
-/**
- * Write extension bootstrap debug messages when WP_DEBUG is enabled.
- *
- * @param string $message Human-readable message.
- * @return void
- */
-function burst_mainwp_debug_log( string $message ): void {
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-		error_log( '[Burst MainWP] ' . $message );
-	}
 }
 
 // ── Activation ────────────────────────────────────────────────────────────────
