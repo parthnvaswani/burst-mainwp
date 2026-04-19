@@ -126,33 +126,54 @@ class API {
 			)
 		);
 
-		$endpoint = trailingslashit( $site_data->url ) . 'wp-json/burst/v1/mainwp-auth';
+		$endpoint_base = trailingslashit( $site_data->url );
+		$endpoints     = [
+			$endpoint_base . 'wp-json/burst/v1/mainwp-auth',
+			$endpoint_base . '?rest_route=/burst/v1/mainwp-auth',
+		];
 
-		$this->debug_log( 'get_child_auth posting to endpoint: ' . $endpoint );
+		$response = null;
+		$endpoint = '';
 
-		$response = wp_remote_post(
-			$endpoint,
-			[
-				'headers' => [
-					'Content-Type'  => 'application/json',
-					'X-BURSTMAINWP' => '1',
-				],
-				'body'    => wp_json_encode( $body ),
-				'timeout' => 15,
-			]
-		);
+		foreach ( $endpoints as $candidate_endpoint ) {
+			$endpoint = $candidate_endpoint;
+			$this->debug_log( 'get_child_auth posting to endpoint: ' . $endpoint );
 
-		if ( is_wp_error( $response ) ) {
-			$this->debug_log( 'get_child_auth WP_Error: ' . $response->get_error_message() );
+			$response = wp_remote_post(
+				$endpoint,
+				[
+					'headers' => [
+						'Content-Type'  => 'application/json',
+						'X-BURSTMAINWP' => '1',
+					],
+					'body'    => wp_json_encode( $body ),
+					'timeout' => 15,
+				]
+			);
+
+			if ( is_wp_error( $response ) ) {
+				$this->debug_log( 'get_child_auth WP_Error: ' . $response->get_error_message() );
+				continue;
+			}
+
+			$http_code = (int) wp_remote_retrieve_response_code( $response );
+			$this->debug_log( sprintf( 'get_child_auth response code: %d', $http_code ) );
+
+			if ( 200 === $http_code ) {
+				break;
+			}
+
+			$body_excerpt = substr( (string) wp_remote_retrieve_body( $response ), 0, 500 );
+			$this->debug_log( sprintf( 'get_child_auth unexpected HTTP %d from %s', $http_code, $endpoint ) );
+			$this->debug_log( 'get_child_auth response body (excerpt): ' . $body_excerpt );
+		}
+
+		if ( ! $response || is_wp_error( $response ) ) {
 			return false;
 		}
 
 		$http_code = (int) wp_remote_retrieve_response_code( $response );
-		$this->debug_log( sprintf( 'get_child_auth response code: %d', $http_code ) );
 		if ( 200 !== $http_code ) {
-			$body_excerpt = substr( (string) wp_remote_retrieve_body( $response ), 0, 500 );
-			$this->debug_log( sprintf( 'get_child_auth unexpected HTTP %d from %s', $http_code, $endpoint ) );
-			$this->debug_log( 'get_child_auth response body (excerpt): ' . $body_excerpt );
 			return false;
 		}
 
