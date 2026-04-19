@@ -112,6 +112,10 @@ class Individual {
 
 		$child_data = API::instance()->get_child_auth( (int) $website->id );
 
+		echo '<pre class="debug-mainwp-child-data">';
+		var_dump($child_data);
+		echo '</pre>';
+
 		if ( ! $child_data ) {
 			$this->debug_log( sprintf( 'render_content failed: get_child_auth returned false for site_id=%d', (int) ( $website->id ?? 0 ) ) );
 			echo '<div class="ui red message">'
