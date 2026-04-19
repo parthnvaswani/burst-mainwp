@@ -100,35 +100,47 @@ class API {
 			return false;
 		}
 
-		$endpoint = trailingslashit( $site_data->url ) . 'wp-json/burst/v1/mainwp-auth';
+		$endpoint_base = trailingslashit( $site_data->url );
+		$endpoints     = [
+			$endpoint_base . 'wp-json/burst/v1/mainwp-auth',
+			$endpoint_base . '?rest_route=/burst/v1/mainwp-auth',
+		];
 
-		$response = wp_remote_post(
-			$endpoint,
-			[
-				'headers' => [
-					'Content-Type'  => 'application/json',
-					'X-BURSTMAINWP' => '1',
-				],
-				'body'    => wp_json_encode( $body ),
-				'timeout' => 15,
-			]
-		);
+		$response = null;
 
-		if ( is_wp_error( $response ) ) {
-			$this->debug_log( 'get_child_auth WP_Error: ' . $response->get_error_message() );
+		foreach ( $endpoints as $endpoint ) {
+			$response = wp_remote_post(
+				$endpoint,
+				[
+					'headers' => [
+						'Content-Type'  => 'application/json',
+						'X-BURSTMAINWP' => '1',
+					],
+					'body'    => wp_json_encode( $body ),
+					'timeout' => 15,
+				]
+			);
+
+			if ( is_wp_error( $response ) ) {
+				continue;
+			}
+
+			if ( 200 === (int) wp_remote_retrieve_response_code( $response ) ) {
+				break;
+			}
+		}
+
+		if ( ! $response || is_wp_error( $response ) ) {
 			return false;
 		}
 
-		$http_code = (int) wp_remote_retrieve_response_code( $response );
-		if ( 200 !== $http_code ) {
-			$this->debug_log( sprintf( 'get_child_auth unexpected HTTP %d from %s', $http_code, $endpoint ) );
+		if ( 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
 			return false;
 		}
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( ! $this->is_valid_auth_response( $data ) ) {
-			$this->debug_log( 'get_child_auth: invalid or incomplete auth response.' );
 			return false;
 		}
 
@@ -230,10 +242,6 @@ class API {
 		}
 
 		if ( ! $sign_success || '' === $signature ) {
-			$msg = openssl_error_string();
-			while ( $msg ) {
-				$this->debug_log( 'OpenSSL signing error: ' . $msg );
-			}
 			return false;
 		}
 
@@ -242,17 +250,5 @@ class API {
 			'signature'  => base64_encode( $signature ),
 			'use_seclib' => $use_seclib,
 		];
-	}
-
-	/**
-	 * Write a debug message to the PHP error log, but only when WP_DEBUG is on.
-	 *
-	 * @param string $message Human-readable message.
-	 */
-	private function debug_log( string $message ): void {
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			// phpcs:ignore
-			error_log( '[Burst MainWP] ' . $message );
-		}
 	}
 }
