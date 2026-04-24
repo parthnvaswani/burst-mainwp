@@ -120,7 +120,7 @@ const FilterChip = ({
 		{/* Filter Label */}
 		<p className={clsx(
 			'font-medium',
-			{ 'text-gray-800': disabled }
+			{ 'text-text-gray': disabled }
 		)}>
 			{filter.config.label}
 		</p>
@@ -141,7 +141,7 @@ const FilterChip = ({
 
 			{/* Filter Value */}
 			<p className={clsx(
-				{ 'text-gray-800': disabled, 'text-gray': ! disabled }
+				{ 'text-text-gray': disabled, 'text-text-gray-light': ! disabled }
 			)}>
 				{safeDecodeURI( filter.displayValue )}
 			</p>
