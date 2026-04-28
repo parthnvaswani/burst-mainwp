@@ -156,12 +156,12 @@ class Individual {
 	 * Render the child connection error panel using a dedicated template.
 	 */
 	private function render_connection_error_panel( object $website ): void {
-		$site_id     = (int) ( $website->id ?? 0 );
-		$support_url = 'https://burst-statistics.com/support/';
-		$report_id   = 'burst-mainwp-support-report-' . $site_id;
-		$status_id   = 'burst-mainwp-support-copy-status-' . $site_id;
-		$button_id   = 'burst-mainwp-copy-report-' . $site_id;
-		$report      = $this->build_connection_error_report( $website );
+		$site_id                  = (int) ( $website->id ?? 0 );
+		$burst_mainwp_support_url = 'https://burst-statistics.com/support/';
+		$burst_mainwp_report_id   = 'burst-mainwp-support-report-' . $site_id;
+		$burst_mainwp_status_id   = 'burst-mainwp-support-copy-status-' . $site_id;
+		$burst_mainwp_button_id   = 'burst-mainwp-copy-report-' . $site_id;
+		$burst_mainwp_report      = $this->build_connection_error_report( $website );
 
 		$template_path = BURST_MAINWP_PATH . 'class/templates/connection-error-panel.php';
 		if ( file_exists( $template_path ) ) {

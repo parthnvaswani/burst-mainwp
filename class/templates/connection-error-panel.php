@@ -3,22 +3,22 @@
  * Child connection error panel template.
  *
  * Available variables:
- * - string $support_url
- * - string $report_id
- * - string $status_id
- * - string $button_id
- * - string $report
+ * - string $burst_mainwp_support_url
+ * - string $burst_mainwp_report_id
+ * - string $burst_mainwp_status_id
+ * - string $burst_mainwp_button_id
+ * - string $burst_mainwp_report
  *
  * @package Burst_Statistics_MainWP
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$support_url = isset( $support_url ) ? (string) $support_url : '';
-$report_id   = isset( $report_id ) ? (string) $report_id : '';
-$status_id   = isset( $status_id ) ? (string) $status_id : '';
-$button_id   = isset( $button_id ) ? (string) $button_id : '';
-$report      = isset( $report ) ? (string) $report : '';
+$burst_mainwp_support_url = isset( $burst_mainwp_support_url ) ? (string) $burst_mainwp_support_url : '';
+$burst_mainwp_report_id   = isset( $burst_mainwp_report_id ) ? (string) $burst_mainwp_report_id : '';
+$burst_mainwp_status_id   = isset( $burst_mainwp_status_id ) ? (string) $burst_mainwp_status_id : '';
+$burst_mainwp_button_id   = isset( $burst_mainwp_button_id ) ? (string) $burst_mainwp_button_id : '';
+$burst_mainwp_report      = isset( $burst_mainwp_report ) ? (string) $burst_mainwp_report : '';
 ?>
 <div class="ui negative message" role="alert" aria-live="assertive" style="padding:20px; margin: 20px;">
 	<div class="header" style="margin-bottom:10px;font-size:18px;line-height:1.3;">
@@ -40,26 +40,26 @@ $report      = isset( $report ) ? (string) $report : '';
 		</li>
 	</ul>
 	<div class="field" style="margin:0 0 14px;">
-		<label for="<?php echo esc_attr( $report_id ); ?>" style="display:block;margin-bottom:6px;font-size:14px;">
+		<label for="<?php echo esc_attr( $burst_mainwp_report_id ); ?>" style="display:block;margin-bottom:6px;font-size:14px;">
 			<strong><?php esc_html_e( 'Support report', 'burst-statistics' ); ?></strong>
 		</label>
-		<textarea id="<?php echo esc_attr( $report_id ); ?>" readonly rows="7"
+		<textarea id="<?php echo esc_attr( $burst_mainwp_report_id ); ?>" readonly rows="7"
 			style="width:100%;font-family:monospace;line-height:1.45;font-size:13px;"
-			aria-describedby="<?php echo esc_attr( $status_id ); ?>"><?php echo esc_textarea( $report ); ?></textarea>
+			aria-describedby="<?php echo esc_attr( $burst_mainwp_status_id ); ?>"><?php echo esc_textarea( $burst_mainwp_report ); ?></textarea>
 	</div>
 	<div class="ui buttons" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-		<button type="button" id="<?php echo esc_attr( $button_id ); ?>"
+		<button type="button" id="<?php echo esc_attr( $burst_mainwp_button_id ); ?>"
 			class="ui button green"><?php esc_html_e( 'Copy report', 'burst-statistics' ); ?></button>
 		<a class="ui button" target="_blank" rel="noopener noreferrer"
-			href="<?php echo esc_url( $support_url ); ?>"><?php esc_html_e( 'Contact support', 'burst-statistics' ); ?></a>
+			href="<?php echo esc_url( $burst_mainwp_support_url ); ?>"><?php esc_html_e( 'Contact support', 'burst-statistics' ); ?></a>
 	</div>
-	<p id="<?php echo esc_attr( $status_id ); ?>" role="status" aria-live="polite"
+	<p id="<?php echo esc_attr( $burst_mainwp_status_id ); ?>" role="status" aria-live="polite"
 		style="margin:10px 0 0;font-size:13px;line-height:1.4;"></p>
 	<script>
 		(function () {
-			var btn = document.getElementById(<?php echo wp_json_encode( $button_id ); ?>);
-			var report = document.getElementById(<?php echo wp_json_encode( $report_id ); ?>);
-			var status = document.getElementById(<?php echo wp_json_encode( $status_id ); ?>);
+			var btn = document.getElementById(<?php echo wp_json_encode( $burst_mainwp_button_id ); ?>);
+			var report = document.getElementById(<?php echo wp_json_encode( $burst_mainwp_report_id ); ?>);
+			var status = document.getElementById(<?php echo wp_json_encode( $burst_mainwp_status_id ); ?>);
 			if (!btn || !report || !status) {
 				return;
 			}
