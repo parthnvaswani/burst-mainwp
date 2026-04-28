@@ -69,13 +69,42 @@ add_filter( 'mainwp_getextensions', 'burst_mainwp_register_extension' );
  */
 function burst_mainwp_register_extension( array $extensions ): array {
 	$extensions[] = [
-		'plugin' => BURST_MAINWP_FILE,
-		'api'    => 'burst_mainwp_extension_api',
-		'mainwp' => true,
-		'slug'   => 'burst-mainwp-extension',
-		'name'   => 'Burst Statistics',
+		'plugin'   => BURST_MAINWP_FILE,
+		'api'      => 'burst-mainwp-extension',
+		'callback' => 'burst_mainwp_extension',
+		'mainwp'   => true,
+		'slug'     => 'burst-mainwp-extension',
+		'name'     => 'Burst Statistics',
 	];
 	return $extensions;
+}
+
+/**
+ * Render the MainWP Extensions landing page for Burst.
+ *
+ * This page intentionally keeps a short "how to use" message and points users
+ * to the per-site Burst dashboard, which is where all functionality lives.
+ */
+function burst_mainwp_extension(): void {
+	$manage_sites_url = admin_url( 'admin.php?page=managesites' );
+
+	// Render inside MainWP's standard extension page chrome.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+	do_action( 'mainwp_pageheader_extensions', BURST_MAINWP_FILE );
+
+	echo '<div class="ui segment">';
+	echo '<h2 style="color: #fff;">' . esc_html__( 'Burst Statistics', 'burst-statistics' ) . '</h2>';
+	echo '<p>' . esc_html__( 'This MainWP extension does not have a separate global settings screen. Use Burst Statistics from each child site page in MainWP.', 'burst-statistics' ) . '</p>';
+	echo '<ol>';
+	echo '<li>' . esc_html__( 'Open MainWP -> Sites.', 'burst-statistics' ) . '</li>';
+	echo '<li>' . esc_html__( 'Open any child site.', 'burst-statistics' ) . '</li>';
+	echo '<li>' . esc_html__( 'Click Burst Statistics in the site sidebar to open the full dashboard.', 'burst-statistics' ) . '</li>';
+	echo '</ol>';
+	echo '<p><a class="ui button green" href="' . esc_url( $manage_sites_url ) . '">' . esc_html__( 'Go to Sites', 'burst-statistics' ) . '</a></p>';
+	echo '</div>';
+
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+	do_action( 'mainwp_pagefooter_extensions', BURST_MAINWP_FILE );
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────

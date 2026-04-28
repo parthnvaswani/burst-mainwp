@@ -25,6 +25,13 @@ class API {
 	private static ?self $instance = null;
 
 	/**
+	 * Stores last child-auth debug data keyed by site ID.
+	 *
+	 * @var array<int,array<string,mixed>>
+	 */
+	private array $last_auth_debug = [];
+
+	/**
 	 * Singleton instance accessor.
 	 *
 	 * @return self Singleton instance of the API class.
@@ -67,6 +74,16 @@ class API {
 		) ?: null;
 	}
 
+	/**
+	 * Get the last auth debug payload for a site.
+	 *
+	 * @param int $site_id MainWP site ID.
+	 * @return array<string,mixed>
+	 */
+	public function get_last_auth_debug( int $site_id ): array {
+		return $this->last_auth_debug[ $site_id ] ?? [];
+	}
+
 	// ── Auth / Token Exchange ─────────────────────────────────────────────────
 
 	/**
@@ -86,17 +103,33 @@ class API {
 	 *         Auth payload on success, false on any failure.
 	 */
 	public function get_child_auth( int $site_id ): array|false {
+		$debug = [
+			'site_id'       => $site_id,
+			'step'          => 'bootstrap',
+			'reason'        => 'unknown',
+			'http_attempts' => [],
+		];
+
 		if ( ! class_exists( 'MainWP\Dashboard\MainWP_Connect' ) ) {
+			$debug['step']   = 'bootstrap';
+			$debug['reason'] = 'mainwp_connect_class_missing';
+			$this->set_last_auth_debug( $site_id, $debug );
 			return false;
 		}
 
-		$site_data = $this->get_site_data( $site_id );
+		$debug['step'] = 'load_site_data';
+		$site_data     = $this->get_site_data( $site_id );
 		if ( ! $site_data ) {
+			$debug['reason'] = 'site_data_not_found';
+			$this->set_last_auth_debug( $site_id, $debug );
 			return false;
 		}
 
-		$body = $this->build_signed_body( $site_data, 'burst_proxy' );
+		$debug['step'] = 'build_signed_body';
+		$body          = $this->build_signed_body( $site_data, 'burst_proxy' );
 		if ( ! $body ) {
+			$debug['reason'] = 'signed_body_generation_failed';
+			$this->set_last_auth_debug( $site_id, $debug );
 			return false;
 		}
 
@@ -108,7 +141,12 @@ class API {
 
 		$response = null;
 
+		$debug['step'] = 'request_child_auth';
 		foreach ( $endpoints as $endpoint ) {
+			$attempt = [
+				'endpoint' => $endpoint,
+			];
+
 			$response = wp_remote_post(
 				$endpoint,
 				[
@@ -122,29 +160,72 @@ class API {
 			);
 
 			if ( is_wp_error( $response ) ) {
+				$attempt['result']        = 'wp_error';
+				$attempt['code']          = $response->get_error_code();
+				$attempt['message']       = $response->get_error_message();
+				$debug['http_attempts'][] = $attempt;
 				continue;
 			}
 
-			if ( 200 === (int) wp_remote_retrieve_response_code( $response ) ) {
+			$http_code                = (int) wp_remote_retrieve_response_code( $response );
+			$attempt['result']        = 'http';
+			$attempt['http_code']     = $http_code;
+			$body_excerpt             = substr( wp_remote_retrieve_body( $response ), 0, 220 );
+			$attempt['body_excerpt']  = $body_excerpt;
+			$debug['http_attempts'][] = $attempt;
+
+			if ( 200 === $http_code ) {
 				break;
 			}
 		}
 
 		if ( is_wp_error( $response ) ) {
+			$debug['reason'] = 'all_endpoints_returned_wp_error';
+			$this->set_last_auth_debug( $site_id, $debug );
 			return false;
 		}
 
 		if ( 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
+			$debug['reason']    = 'auth_endpoint_non_200_response';
+			$debug['http_code'] = (int) wp_remote_retrieve_response_code( $response );
+			$this->set_last_auth_debug( $site_id, $debug );
 			return false;
 		}
 
-		$data = json_decode( wp_remote_retrieve_body( $response ), true );
+		$debug['step'] = 'parse_response';
+		$data          = json_decode( wp_remote_retrieve_body( $response ), true );
+		if ( ! is_array( $data ) ) {
+			$debug['reason'] = 'invalid_json_response';
+			$this->set_last_auth_debug( $site_id, $debug );
+			return false;
+		}
 
 		if ( ! $this->is_valid_auth_response( $data ) ) {
+			$missing = [];
+			foreach ( [ 'token', 'root_url', 'localization_data' ] as $required_key ) {
+				if ( empty( $data[ $required_key ] ) ) {
+					$missing[] = $required_key;
+				}
+			}
+
+			$debug['reason']       = 'invalid_auth_payload';
+			$debug['missing_keys'] = $missing;
+			$this->set_last_auth_debug( $site_id, $debug );
 			return false;
 		}
 
+		$debug['step']   = 'completed';
+		$debug['reason'] = 'success';
+		$this->set_last_auth_debug( $site_id, $debug );
+
 		return $data;
+	}
+
+	/**
+	 * Persist auth debug payload for later reporting.
+	 */
+	private function set_last_auth_debug( int $site_id, array $debug ): void {
+		$this->last_auth_debug[ $site_id ] = $debug;
 	}
 
 	// ── Private helpers ───────────────────────────────────────────────────────
