@@ -260,9 +260,12 @@ class API {
 	 */
 	private function build_signed_body( object $site_data, string $_function, array $extra = [] ): array|false {
 		$nonce            = wp_rand( 0, 9999 );
-		$sign_payload     = $_function . $nonce;
-		$signed           = $this->sign_payload( $sign_payload, $site_data );
 		$dashboard_origin = $this->get_dashboard_origin();
+		$sign_payload     = $_function . '|' . $nonce . '|' . $site_data->adminname;
+		if ( '' !== $dashboard_origin ) {
+			$sign_payload .= '|' . $dashboard_origin;
+		}
+		$signed = $this->sign_payload( $sign_payload, $site_data );
 
 		if ( ! $signed ) {
 			return false;
