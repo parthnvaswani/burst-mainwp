@@ -80,7 +80,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
 					{label} {children}{' '}
 					{recommended && (
 						<span className="text-xs font-semibold">
-							({__( 'Recommended', 'burst-statistics' )})
+							({__( 'Recommended', 'burst-mainwp' )})
 						</span>
 					)}
 				</label>

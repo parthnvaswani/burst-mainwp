@@ -13,32 +13,32 @@ const GhostFunnelChart = (): JSX.Element => {
 		{
 			id: 'step_sent',
 			value: 66326,
-			label: __( 'Sent', 'burst-statistics' )
+			label: __( 'Sent', 'burst-mainwp' )
 		},
 		{
 			id: 'step_viewed',
 			value: 62516,
-			label: __( 'Viewed', 'burst-statistics' )
+			label: __( 'Viewed', 'burst-mainwp' )
 		},
 		{
 			id: 'step_clicked',
 			value: 40538,
-			label: __( 'Clicked', 'burst-statistics' )
+			label: __( 'Clicked', 'burst-mainwp' )
 		},
 		{
 			id: 'step_add_to_cart',
 			value: 25892,
-			label: __( 'Add To Cart', 'burst-statistics' )
+			label: __( 'Add To Cart', 'burst-mainwp' )
 		},
 		{
 			id: 'step_purchased',
 			value: 17258,
-			label: __( 'Purchased', 'burst-statistics' )
+			label: __( 'Purchased', 'burst-mainwp' )
 		}
 	];
 
 	const blockHeadingProps = {
-		title: __( 'Funnel', 'burst-statistics' )
+		title: __( 'Funnel', 'burst-mainwp' )
 	};
 
 	const blockContentProps = {

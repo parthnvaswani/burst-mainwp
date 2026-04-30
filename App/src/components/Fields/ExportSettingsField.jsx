@@ -46,7 +46,7 @@ const ExportSettingsField = forwardRef(
 		 */
 		const handleExport = () => {
 			if ( ! settings || 0 === settings.length ) {
-				toast.error( __( 'No settings available to export.', 'burst-statistics' ) );
+				toast.error( __( 'No settings available to export.', 'burst-mainwp' ) );
 				return;
 			}
 
@@ -87,10 +87,10 @@ const ExportSettingsField = forwardRef(
 				document.body.removeChild( link );
 				URL.revokeObjectURL( url );
 
-				toast.success( __( 'Settings exported successfully!', 'burst-statistics' ) );
+				toast.success( __( 'Settings exported successfully!', 'burst-mainwp' ) );
 			} catch ( error ) {
 				console.error( 'Export error:', error );
-				toast.error( __( 'Failed to export settings.', 'burst-statistics' ) );
+				toast.error( __( 'Failed to export settings.', 'burst-mainwp' ) );
 			} finally {
 				setIsExporting( false );
 			}
@@ -114,13 +114,13 @@ const ExportSettingsField = forwardRef(
 					onClick={handleExport}
 					disabled={props.disabled || isExporting || ! settings}
 					btnVariant="tertiary"
-					ariaLabel={setting?.button_text || __( 'Download settings file', 'burst-statistics' )}
+					ariaLabel={setting?.button_text || __( 'Download settings file', 'burst-mainwp' )}
 				>
 					<span className="flex items-center gap-2">
 						<Icon name={isExporting ? 'loading' : 'download'} color="black" />
 						{isExporting ?
-							__( 'Exporting...', 'burst-statistics' ) :
-							( setting?.button_text || __( 'Download settings file', 'burst-statistics' ) )}
+							__( 'Exporting...', 'burst-mainwp' ) :
+							( setting?.button_text || __( 'Download settings file', 'burst-mainwp' ) )}
 					</span>
 				</ButtonInput>
 			</FieldWrapper>

@@ -146,10 +146,10 @@ const FilterModal: React.FC<FilterModalProps> = ({
 					className="w-full"
 					ariaLabel={__(
 						'Reset all active filters to default settings',
-						'burst-statistics'
+						'burst-mainwp'
 					)}
 				>
-					{__( 'Reset all filters', 'burst-statistics' )}
+					{__( 'Reset all filters', 'burst-mainwp' )}
 				</ButtonInput>
 			);
 		} else if ( 'setup' === currentStep ) {
@@ -164,12 +164,12 @@ const FilterModal: React.FC<FilterModalProps> = ({
 							selectedConfig ?
 								__(
 										'Apply %s filter',
-										'burst-statistics'
+										'burst-mainwp'
 									).replace( '%s', selectedConfig.label ) :
-								__( 'Apply filter', 'burst-statistics' )
+								__( 'Apply filter', 'burst-mainwp' )
 						}
 					>
-						{__( 'Apply Filter', 'burst-statistics' )}
+						{__( 'Apply Filter', 'burst-mainwp' )}
 					</ButtonInput>
 					<ButtonInput
 						onClick={handleApplyAndAddMoreClick}
@@ -180,15 +180,15 @@ const FilterModal: React.FC<FilterModalProps> = ({
 							selectedConfig ?
 								__(
 										'Apply %s filter and continue adding more filters',
-										'burst-statistics'
+										'burst-mainwp'
 									).replace( '%s', selectedConfig.label ) :
 								__(
 										'Apply filter and add more',
-										'burst-statistics'
+										'burst-mainwp'
 									)
 						}
 					>
-						{__( 'Apply & Add More', 'burst-statistics' )}
+						{__( 'Apply & Add More', 'burst-mainwp' )}
 					</ButtonInput>
 				</div>
 			);
@@ -198,19 +198,19 @@ const FilterModal: React.FC<FilterModalProps> = ({
 
 	const getTitle = (): string => {
 		if ( 'selection' === currentStep ) {
-			return __( 'Select a filter', 'burst-statistics' );
+			return __( 'Select a filter', 'burst-mainwp' );
 		}
-		return __( 'Setup Filter', 'burst-statistics' );
+		return __( 'Setup Filter', 'burst-mainwp' );
 	};
 
 	const getSubtitle = (): string => {
 		if ( 'selection' === currentStep ) {
 			return __(
 				'Choose a filter to apply to your analytics data',
-				'burst-statistics'
+				'burst-mainwp'
 			);
 		}
-		return __( 'Setup filter', 'burst-statistics' );
+		return __( 'Setup filter', 'burst-mainwp' );
 	};
 
 	const getFilterDescription = (): string => {
@@ -223,18 +223,18 @@ const FilterModal: React.FC<FilterModalProps> = ({
 			return selectedConfig.options ?
 				__(
 						'Start typing to search or select from available options',
-						'burst-statistics'
+						'burst-mainwp'
 					) :
 				__(
 						'Enter the value you want to filter by',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 		} else if ( 'int' === selectedConfig.type ) {
-			return __( 'Set the range for this filter', 'burst-statistics' );
+			return __( 'Set the range for this filter', 'burst-mainwp' );
 		} else if ( 'boolean' === selectedConfig.type ) {
 			return __(
 				'Select the option you want to filter by',
-				'burst-statistics'
+				'burst-mainwp'
 			);
 		}
 		return '';
@@ -253,7 +253,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
 					<button
 						onClick={handleBack}
 						className="flex items-center space-x-2 text-sm text-text-gray-light hover:text-text-gray focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded transition-all duration-200"
-						aria-label={__( 'Back to filters', 'burst-statistics' )}
+						aria-label={__( 'Back to filters', 'burst-mainwp' )}
 						type="button"
 					>
 						<Icon
@@ -261,7 +261,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
 							size={16}
 							aria-hidden="true"
 						/>
-						<span>{__( 'Back to filters', 'burst-statistics' )}</span>
+						<span>{__( 'Back to filters', 'burst-mainwp' )}</span>
 					</button>
 				</div>
 

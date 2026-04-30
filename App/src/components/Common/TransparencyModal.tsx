@@ -26,10 +26,10 @@ const TransparencyModal = () => {
 			{/* Section A: What is tracked */}
 			<div>
                 <p className="text-text-gray mb-3">
-                    {__( 'At Burst we don\'t believe in selling your data. We believe in privacy and transparency. That\'s why we\'re open about what data is tracked and how it\'s used.', 'burst-statistics' )}
+                    {__( 'At Burst we don\'t believe in selling your data. We believe in privacy and transparency. That\'s why we\'re open about what data is tracked and how it\'s used.', 'burst-mainwp' )}
                 </p>
 				<h3 className="text-lg font-semibold text-text-gray mb-3">
-					{__( 'What data is tracked on this website?', 'burst-statistics' )}
+					{__( 'What data is tracked on this website?', 'burst-mainwp' )}
 				</h3>
 				<ul className="flex flex-col gap-2">
 					<li className="flex items-start gap-2">
@@ -40,7 +40,7 @@ const TransparencyModal = () => {
 							className="shrink-0 mt-0.5"
 						/>
 						<span className="text-text-gray">
-							{__( 'Device & browser', 'burst-statistics' )}
+							{__( 'Device & browser', 'burst-mainwp' )}
 						</span>
 					</li>
 					<li className="flex items-start gap-2">
@@ -51,7 +51,7 @@ const TransparencyModal = () => {
 							className="shrink-0 mt-0.5"
 						/>
 						<span className="text-text-gray">
-							{__( 'Time of visit', 'burst-statistics' )}
+							{__( 'Time of visit', 'burst-mainwp' )}
 						</span>
 					</li>
 					<li className="flex items-start gap-2">
@@ -62,7 +62,7 @@ const TransparencyModal = () => {
 							className="shrink-0 mt-0.5"
 						/>
 						<span className="text-text-gray">
-							{__( 'Page behavior & clicks', 'burst-statistics' )}
+							{__( 'Page behavior & clicks', 'burst-mainwp' )}
 						</span>
 					</li>
 				</ul>
@@ -71,7 +71,7 @@ const TransparencyModal = () => {
 			{/* Section B: Data Storage */}
 			<div>
 				<h3 className="text-lg font-semibold text-text-gray mb-3">
-					{__( 'Where is this data stored?', 'burst-statistics' )}
+					{__( 'Where is this data stored?', 'burst-mainwp' )}
 				</h3>
 				<ul className="flex flex-col gap-2">
 					<li className="flex items-start gap-2 opacity-50">
@@ -82,7 +82,7 @@ const TransparencyModal = () => {
 							className="shrink-0 mt-0.5"
 						/>
 						<span className="text-text-gray">
-							{__( 'Third party servers: No.', 'burst-statistics' )}
+							{__( 'Third party servers: No.', 'burst-mainwp' )}
 						</span>
 					</li>
 					<li className="flex items-start gap-2 opacity-50">
@@ -93,7 +93,7 @@ const TransparencyModal = () => {
 							className="shrink-0 mt-0.5"
 						/>
 						<span className="text-text-gray">
-							{__( 'Burst Statistics servers: No.', 'burst-statistics' )}
+							{__( 'Burst Statistics servers: No.', 'burst-mainwp' )}
 						</span>
 					</li>
 					<li className="flex items-start gap-2">
@@ -105,10 +105,10 @@ const TransparencyModal = () => {
 						/>
 						<div className="flex flex-col">
 							<span className="text-text-gray font-semibold">
-								{__( 'Stored locally: Yes.', 'burst-statistics' )}
+								{__( 'Stored locally: Yes.', 'burst-mainwp' )}
 							</span>
 							<span className="text-sm text-text-gray-light mt-1">
-								{__( 'Only the owner of this website can see, manage and share this data. No third parties have access to the data.', 'burst-statistics' )}
+								{__( 'Only the owner of this website can see, manage and share this data. No third parties have access to the data.', 'burst-mainwp' )}
 							</span>
 						</div>
 					</li>
@@ -118,7 +118,7 @@ const TransparencyModal = () => {
 			{/* Section C: Footer / CTA */}
 			<div className="bg-primary-100 border border-primary/20 rounded-lg p-4">
 				<p className="text-text-gray mb-3">
-					{__( 'Most analytics tools sell your data or store it on their cloud. Burst Statistics keeps it right here.', 'burst-statistics' )} <b>{__( 'We sell the tools for data collection, not the data itself.', 'burst-statistics' )}</b>
+					{__( 'Most analytics tools sell your data or store it on their cloud. Burst Statistics keeps it right here.', 'burst-mainwp' )} <b>{__( 'We sell the tools for data collection, not the data itself.', 'burst-mainwp' )}</b>
 				</p>
 				<a
 					href={burst_get_website_url( '', {
@@ -135,7 +135,7 @@ const TransparencyModal = () => {
 						size="md"
 						className="w-full"
 					>
-						{__( 'Discover Burst Statistics', 'burst-statistics' )}
+						{__( 'Discover Burst Statistics', 'burst-mainwp' )}
 					</ButtonInput>
 				</a>
 			</div>
@@ -150,12 +150,12 @@ const TransparencyModal = () => {
 			>
 				<Icon name="help" color="gray" size={16} />
 				<span className="font-medium">
-					{__( 'See data collection details', 'burst-statistics' )}
+					{__( 'See data collection details', 'burst-mainwp' )}
 				</span>
 			</button>
 
 			<Modal
-				title={__( 'Transparency report', 'burst-statistics' )}
+				title={__( 'Transparency report', 'burst-mainwp' )}
 				content={modalContent}
 				isOpen={isOpen}
 				onClose={handleClose}

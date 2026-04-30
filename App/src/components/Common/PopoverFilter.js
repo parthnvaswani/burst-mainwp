@@ -131,7 +131,7 @@ const PopoverFilter = ({
 				size="sm"
 				className="flex-1"
 			>
-				{__( 'Apply', 'burst-statistics' )}
+				{__( 'Apply', 'burst-mainwp' )}
 			</ButtonInput>
 			<ButtonInput
 				onClick={() => resetToDefaults()}
@@ -139,7 +139,7 @@ const PopoverFilter = ({
 				size="sm"
 				className="flex-1"
 			>
-				{__( 'Reset to defaults', 'burst-statistics' )}
+				{__( 'Reset to defaults', 'burst-mainwp' )}
 			</ButtonInput>
 		</>
 	);
@@ -149,8 +149,8 @@ const PopoverFilter = ({
 			setIsOpen={openOrClosePopover}
 			title={
 				'single' === selectionMode ?
-					__( 'Select metric', 'burst-statistics' ) :
-					__( 'Select metrics', 'burst-statistics' )
+					__( 'Select metric', 'burst-mainwp' ) :
+					__( 'Select metrics', 'burst-mainwp' )
 			}
 			footer={footer}
 		>
@@ -190,9 +190,9 @@ const PopoverFilter = ({
 					// Define category order and labels.
 					const categoryOrder = [ 'traffic', 'engagement', 'conversions' ];
 					const categoryLabels = {
-						traffic: __( 'Traffic', 'burst-statistics' ),
-						engagement: __( 'Engagement', 'burst-statistics' ),
-						conversions: __( 'Conversions', 'burst-statistics' )
+						traffic: __( 'Traffic', 'burst-mainwp' ),
+						engagement: __( 'Engagement', 'burst-mainwp' ),
+						conversions: __( 'Conversions', 'burst-mainwp' )
 					};
 
 					// Render function for a single option.
@@ -207,7 +207,7 @@ const PopoverFilter = ({
 								checked={pendingMetrics.includes( value )}
 								aria-label={__(
 									'Change metrics',
-									'burst-statistics'
+									'burst-mainwp'
 								)}
 								disabled={
 									true === options[value].disabled ||

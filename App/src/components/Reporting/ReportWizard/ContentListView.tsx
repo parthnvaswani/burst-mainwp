@@ -42,7 +42,7 @@ export const ContentListView = () => {
 					<Icon name="file-alt" size={24} className="text-text-gray-light" />
 				</div>
 				<p className="text-text-gray-light text-center text-sm">
-					{__( 'No content selected yet. Add content blocks to get started.', 'burst-statistics' )}
+					{__( 'No content selected yet. Add content blocks to get started.', 'burst-mainwp' )}
 				</p>
 			</div>
 		);
@@ -103,7 +103,7 @@ export const ContentListView = () => {
 									}
 								}}
 								aria-pressed={isSelected}
-								aria-label={__( 'Select block', 'burst-statistics' )}
+								aria-label={__( 'Select block', 'burst-mainwp' )}
 							>
 								{/* Drag handle visual indicator. */}
 								<div className="flex items-center gap-1 opacity-30 group-hover:opacity-60 transition-colors touch-none">
@@ -124,7 +124,7 @@ export const ContentListView = () => {
 									</span>
 									{( block.comment_title || block.comment_text ) && (
 										<span className="text-xs text-text-gray-light italic" title={block.comment_text}>
-											{__( '(has comment)', 'burst-statistics' )}
+											{__( '(has comment)', 'burst-mainwp' )}
 										</span>
 									)}
 								</div>
@@ -137,8 +137,8 @@ export const ContentListView = () => {
 										removeContent( index );
 									}}
 									className="p-2 rounded-md hover:bg-red-50 text-text-gray-light hover:text-red-600 transition-all opacity-0 group-hover:opacity-100 focus:ring-2 focus:ring-red-500 focus:ring-inset focus:opacity-100"
-									aria-label={__( 'Remove', 'burst-statistics' )}
-									title={__( 'Remove', 'burst-statistics' )}
+									aria-label={__( 'Remove', 'burst-mainwp' )}
+									title={__( 'Remove', 'burst-mainwp' )}
 								>
 									<Icon name="trash" size={14} />
 								</button>
@@ -152,8 +152,8 @@ export const ContentListView = () => {
 			<div className="mt-6 pt-4 border-t border-gray-200">
 				<p className="text-xs text-text-gray-light text-center">
 					{content.length} {1 === content.length ?
-						__( 'content block', 'burst-statistics' ) :
-						__( 'content blocks', 'burst-statistics' )}
+						__( 'content block', 'burst-mainwp' ) :
+						__( 'content blocks', 'burst-mainwp' )}
 				</p>
 			</div>
 		</div>

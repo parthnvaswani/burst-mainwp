@@ -15,21 +15,21 @@ const InsightsHeader = ({ selectedMetrics, filters }) => {
 
 	const insightsOptions = {
 		pageviews: {
-			label: __( 'Pageviews', 'burst-statistics' ),
+			label: __( 'Pageviews', 'burst-mainwp' ),
 			default: true
 		},
 		visitors: {
-			label: __( 'Visitors', 'burst-statistics' ),
+			label: __( 'Visitors', 'burst-mainwp' ),
 			default: true
 		},
 		sessions: {
-			label: __( 'Sessions', 'burst-statistics' )
+			label: __( 'Sessions', 'burst-mainwp' )
 		},
 		bounces: {
-			label: __( 'Bounces', 'burst-statistics' )
+			label: __( 'Bounces', 'burst-mainwp' )
 		},
 		conversions: {
-			label: __( 'Conversions', 'burst-statistics' ),
+			label: __( 'Conversions', 'burst-mainwp' ),
 			default: 0 < filters.goal_id
 		}
 	};

@@ -25,12 +25,12 @@ const TaskElement = ( props ) => {
 					className="text-blue underline cursor-pointer"
 				>
 					{'sale' === task.icon &&
-						__( 'Get 40% Off', 'burst-statistics' )}
+						__( 'Get 40% Off', 'burst-mainwp' )}
 					{'offer' === task.icon &&
-						__( 'Get 3 months free!', 'burst-statistics' )}
+						__( 'Get 3 months free!', 'burst-mainwp' )}
 					{'offer' !== task.icon &&
 						'sale' !== task.icon &&
-						__( 'More info', 'burst-statistics' )}
+						__( 'More info', 'burst-mainwp' )}
 				</a>
 			)}
 			{task.fix && (
@@ -38,7 +38,7 @@ const TaskElement = ( props ) => {
 					className="text-blue underline cursor-pointer hover:text-blue-800 hover:no-underline leading-5"
 					onClick={() => fixTask( task.id )}
 				>
-					{task.fix.startsWith( 'burst_option_' ) ? __( 'Enable', 'burst-statistics' ) : __( 'Fix', 'burst-statistics' )}
+					{task.fix.startsWith( 'burst_option_' ) ? __( 'Enable', 'burst-mainwp' ) : __( 'Fix', 'burst-mainwp' )}
 				</span>
 			)}
 			{task.plusone && (

@@ -35,14 +35,14 @@ const SettingsNotices = ({ settingsGroup }) => {
 	const openCount = openStates.filter( ( isOpen ) => isOpen ).length;
 	const toggleButtonText =
 		openCount > settingsWithNotices.length / 2 ?
-			__( 'Collapse all', 'burst-statistics' ) :
-			__( 'Expand all', 'burst-statistics' );
+			__( 'Collapse all', 'burst-mainwp' ) :
+			__( 'Expand all', 'burst-mainwp' );
 
 	return (
 		<>
 			<div className="flex w-full justify-between">
 				<h2 className="py-4 text-base font-bold">
-					{__( 'Notifications', 'burst-statistics' )}
+					{__( 'Notifications', 'burst-mainwp' )}
 				</h2>
 				<button
 					className="cursor-pointer text-sm text-text-gray underline"
@@ -71,7 +71,7 @@ const SettingsNotices = ({ settingsGroup }) => {
 									to={setting.notice.url}
 									from={'/'}
 								>
-									{__( 'Learn more', 'burst-statistics' )}
+									{__( 'Learn more', 'burst-mainwp' )}
 								</Link>
 							)}
 						</div>

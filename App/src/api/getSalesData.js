@@ -77,19 +77,19 @@ const transformSalesData = ( data ) => {
 	Object.entries( data ).forEach( ([ key, metric ]) => {
 
 		// Set default subtitle based on metric type.
-		let defaultSubtitle = __( 'No data available', 'burst-statistics' );
+		let defaultSubtitle = __( 'No data available', 'burst-mainwp' );
 		switch ( key ) {
 			case 'conversion-rate':
-				defaultSubtitle = __( 'No conversion data available', 'burst-statistics' );
+				defaultSubtitle = __( 'No conversion data available', 'burst-mainwp' );
 				break;
 			case 'abandonment-rate':
-				defaultSubtitle = __( 'No cart data available', 'burst-statistics' );
+				defaultSubtitle = __( 'No cart data available', 'burst-mainwp' );
 				break;
 			case 'average-order':
-				defaultSubtitle = __( 'No order data available', 'burst-statistics' );
+				defaultSubtitle = __( 'No order data available', 'burst-mainwp' );
 				break;
 			case 'revenue':
-				defaultSubtitle = __( 'No revenue data available', 'burst-statistics' );
+				defaultSubtitle = __( 'No revenue data available', 'burst-mainwp' );
 				break;
 		}
 
@@ -181,7 +181,7 @@ const transformSalesData = ( data ) => {
 				if ( ! current ) {
 					transformed[key].subtitle = __(
 						'No conversion data available',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 					break;
 				}
@@ -202,7 +202,7 @@ const transformSalesData = ( data ) => {
 						// Everyone converts
 						transformed[key].subtitle = __(
 							'All visitors converted',
-							'burst-statistics'
+							'burst-mainwp'
 						);
 					} else if ( 5 >= roundedRatio ) {
 
@@ -221,7 +221,7 @@ const transformSalesData = ( data ) => {
 							/* translators: 1: converted visitors, 2: total visitors */
 							__(
 								'%1$d of %2$d visitors convert',
-								'burst-statistics'
+								'burst-mainwp'
 							),
 							simplifiedConverted,
 							simplifiedVisitors
@@ -236,7 +236,7 @@ const transformSalesData = ( data ) => {
 								'1 in %d visitor converts',
 								'1 in %d visitors convert',
 								roundedRatio,
-								'burst-statistics'
+								'burst-mainwp'
 							),
 							roundedRatio
 						);
@@ -246,14 +246,14 @@ const transformSalesData = ( data ) => {
 					// Visitors but no conversions.
 					transformed[key].subtitle = __(
 						'No conversions yet',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 				} else {
 
 					// No visitors.
 					transformed[key].subtitle = __(
 						'No visitors in this period',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 				}
 
@@ -266,7 +266,7 @@ const transformSalesData = ( data ) => {
 				if ( ! current ) {
 					transformed[key].subtitle = __(
 						'No cart data available',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 					break;
 				}
@@ -282,14 +282,14 @@ const transformSalesData = ( data ) => {
 							'%d cart was abandoned',
 							'%d carts were abandoned',
 							totalAbandoned,
-							'burst-statistics'
+							'burst-mainwp'
 						),
 						totalAbandoned
 					);
 				} else {
 					transformed[key].subtitle = __(
 						'No carts were abandoned',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 				}
 
@@ -303,7 +303,7 @@ const transformSalesData = ( data ) => {
 				if ( ! current ) {
 					transformed[key].subtitle = __(
 						'No order data available',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 					break;
 				}
@@ -324,7 +324,7 @@ const transformSalesData = ( data ) => {
 
 								// translators: 1: previous average order value.
 								'Up from %s last period',
-								'burst-statistics'
+								'burst-mainwp'
 							),
 							formatCurrencyCompact( currency, previous.average_order_value )
 						);
@@ -337,14 +337,14 @@ const transformSalesData = ( data ) => {
 
 								// translators: 1: previous average order value.
 								'Down from %s last period',
-								'burst-statistics'
+								'burst-mainwp'
 							),
 							formatCurrencyCompact( currency, previous.average_order_value )
 						);
 					} else {
 						transformed[key].subtitle = __(
 							'No change from last period',
-							'burst-statistics'
+							'burst-mainwp'
 						);
 					}
 				} else {
@@ -352,7 +352,7 @@ const transformSalesData = ( data ) => {
 					// No previous data to compare.
 					transformed[key].subtitle = __(
 						'No previous period data',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 				}
 				break;
@@ -364,7 +364,7 @@ const transformSalesData = ( data ) => {
 				if ( ! current ) {
 					transformed[key].subtitle = __(
 						'No revenue data available',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 					break;
 				}
@@ -384,14 +384,14 @@ const transformSalesData = ( data ) => {
 							'%d successful order',
 							'%d successful orders',
 							totalOrders,
-							'burst-statistics'
+							'burst-mainwp'
 						),
 						totalOrders
 					);
 				} else {
 					transformed[key].subtitle = __(
 						'No orders in this period',
-						'burst-statistics'
+						'burst-mainwp'
 					);
 				}
 				break;

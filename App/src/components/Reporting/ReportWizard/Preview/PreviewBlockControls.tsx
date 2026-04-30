@@ -69,7 +69,7 @@ export const PreviewBlockControls: React.FC<PreviewBlockControlsProps> = ({
                 }
             }}
             aria-pressed={isSelected}
-            aria-label={__( 'Select block to edit settings', 'burst-statistics' )}
+            aria-label={__( 'Select block to edit settings', 'burst-mainwp' )}
         >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-3 mx-auto">
                 <div className="md:col-span-7">

@@ -50,7 +50,7 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 
 	const totalBlocks = contents.length;
 	const blockPosition = reportBlockIndex + 1;
-	const blockLabel = blockConfig?.label || block?.id || __( 'Block', 'burst-statistics' );
+	const blockLabel = blockConfig?.label || block?.id || __( 'Block', 'burst-mainwp' );
 
 	/**
 	 * Handle block deletion and close sidebar.
@@ -96,7 +96,7 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 					<span className="font-semibold text-sm text-text-gray">{blockLabel}</span>
 				</div>
 				<span className="text-xs text-text-gray-light">
-					{__( 'Block', 'burst-statistics' )} {blockPosition} {__( 'of', 'burst-statistics' )} {totalBlocks}
+					{__( 'Block', 'burst-mainwp' )} {blockPosition} {__( 'of', 'burst-mainwp' )} {totalBlocks}
 				</span>
 			</div>
 
@@ -106,11 +106,11 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 				{/* Date Range Section. */}
 				<div className="flex flex-col gap-3">
 					<h4 className="text-xs font-semibold text-text-gray-light uppercase tracking-wide">
-						{__( 'Date Range', 'burst-statistics' )}
+						{__( 'Date Range', 'burst-mainwp' )}
 					</h4>
 					<div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
 						<label className="text-sm text-text-gray">
-							{__( 'Custom date range', 'burst-statistics' )}
+							{__( 'Custom date range', 'burst-mainwp' )}
 						</label>
 						<SwitchInput
 							onChange={() => toggleBlockDateRangeEnabled( reportBlockIndex )}
@@ -129,7 +129,7 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 					)}
 					{! blockDateRangeEnabled( reportBlockIndex ) && (
 						<p className="text-xs text-text-gray-light">
-							{__( 'Using report default date range.', 'burst-statistics' )}
+							{__( 'Using report default date range.', 'burst-mainwp' )}
 						</p>
 					)}
 				</div>
@@ -137,7 +137,7 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 				{/* Filters Section. */}
 				<div className="flex flex-col gap-3">
 					<h4 className="text-xs font-semibold text-text-gray-light uppercase tracking-wide">
-						{__( 'Filters', 'burst-statistics' )}
+						{__( 'Filters', 'burst-mainwp' )}
 					</h4>
 					<div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
 						<PageFilter reportBlockIndex={reportBlockIndex} smallLabels={true} />
@@ -147,24 +147,24 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 				{/* Comment Section. */}
 				<div className="flex flex-col gap-3">
 					<h4 className="text-xs font-semibold text-text-gray-light uppercase tracking-wide">
-						{__( 'Comment', 'burst-statistics' )}
+						{__( 'Comment', 'burst-mainwp' )}
 					</h4>
 					<div className="flex flex-col gap-2">
 						<TextInput
 							value={commentTitle}
 							onChange={( e ) => updateCommentTitle( reportBlockIndex, e.target.value )}
-							placeholder={__( 'Comment title (optional)', 'burst-statistics' )}
+							placeholder={__( 'Comment title (optional)', 'burst-mainwp' )}
 							className="text-sm"
 						/>
 						<textarea
 							value={commentText}
 							onChange={( e ) => updateCommentText( reportBlockIndex, e.target.value )}
-							placeholder={__( 'Add your insights or comments about this data...', 'burst-statistics' )}
+							placeholder={__( 'Add your insights or comments about this data...', 'burst-mainwp' )}
 							className="w-full min-h-[80px] p-2 text-sm text-text-gray-light border border-gray-200 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y"
 							rows={3}
 						/>
 						<p className="text-xs text-text-gray-light">
-							{__( 'This comment will appear next to the block in the report.', 'burst-statistics' )}
+							{__( 'This comment will appear next to the block in the report.', 'burst-mainwp' )}
 						</p>
 					</div>
 				</div>
@@ -179,8 +179,8 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 							type="button"
 							onClick={() => moveContentUp( reportBlockIndex )}
 							className="p-2 rounded-md hover:bg-gray-200 text-text-gray-light hover:text-text-gray transition-all focus:ring-2 focus:ring-gray-400 focus:ring-inset"
-							aria-label={__( 'Move block up', 'burst-statistics' )}
-							title={__( 'Move block up', 'burst-statistics' )}
+							aria-label={__( 'Move block up', 'burst-mainwp' )}
+							title={__( 'Move block up', 'burst-mainwp' )}
 						>
 							<Icon name="chevron-up" size={16} />
 						</button>
@@ -188,8 +188,8 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 							type="button"
 							onClick={() => moveContentDown( reportBlockIndex )}
 							className="p-2 rounded-md hover:bg-gray-200 text-text-gray-light hover:text-text-gray transition-all focus:ring-2 focus:ring-gray-400 focus:ring-inset"
-							aria-label={__( 'Move block down', 'burst-statistics' )}
-							title={__( 'Move block down', 'burst-statistics' )}
+							aria-label={__( 'Move block down', 'burst-mainwp' )}
+							title={__( 'Move block down', 'burst-mainwp' )}
 						>
 							<Icon name="chevron-down" size={16} />
 						</button>
@@ -200,10 +200,10 @@ export const BlockSettingsSidebar: React.FC<BlockSettingsSidebarProps> = ({ repo
 						type="button"
 						onClick={handleDelete}
 						className={'burst-delete-story-block-' + block.id + ' flex items-center gap-1.5 px-3 py-2 rounded-md text-sm text-red-600 hover:bg-red-50 hover:text-red-700 transition-all focus:ring-2 focus:ring-red-500 focus:ring-inset'}
-						aria-label={__( 'Delete block', 'burst-statistics' )}
+						aria-label={__( 'Delete block', 'burst-mainwp' )}
 					>
 						<Icon name="trash" size={14} />
-						<span>{__( 'Delete', 'burst-statistics' )}</span>
+						<span>{__( 'Delete', 'burst-mainwp' )}</span>
 					</button>
 				</div>
 			</div>

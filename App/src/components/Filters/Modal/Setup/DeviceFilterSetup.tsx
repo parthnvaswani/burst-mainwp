@@ -90,8 +90,8 @@ const DeviceFilterSetup: React.FC<DeviceFilterSetupProps> = ({
 	const getAccessibleDescription = ( device: DeviceOption ): string => {
 		const baseDescription = `${device.title} device filter`;
 		const selectionState = isSelected( device.id ) ?
-			__( 'selected', 'burst-statistics' ) :
-			__( 'not selected', 'burst-statistics' );
+			__( 'selected', 'burst-mainwp' ) :
+			__( 'not selected', 'burst-mainwp' );
 		return `${baseDescription}, ${selectionState}`;
 	};
 
@@ -105,7 +105,7 @@ const DeviceFilterSetup: React.FC<DeviceFilterSetupProps> = ({
 			<div
 				className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-items-center"
 				role="group"
-				aria-label={__( 'Device selection options', 'burst-statistics' )}
+				aria-label={__( 'Device selection options', 'burst-mainwp' )}
 			>
 				{deviceOptions.map( ( device: DeviceOption ) => {
 					const selected = isSelected( device.id );

@@ -18,7 +18,7 @@ const DEFAULT_PROJECTION = {
 
 export const metricOptions = {
 	visitors: {
-		label: __( 'Visitors', 'burst-statistics' ),
+		label: __( 'Visitors', 'burst-mainwp' ),
 		recommendedClassification: 'natural-breaks',
 		default: true,
 		colorScheme: 'greens',
@@ -28,7 +28,7 @@ export const metricOptions = {
 		suffix: ''
 	},
 	sessions: {
-		label: __( 'Sessions', 'burst-statistics' ),
+		label: __( 'Sessions', 'burst-mainwp' ),
 		recommendedClassification: 'natural-breaks',
 		colorScheme: 'greens',
 		isPercentage: false,
@@ -37,7 +37,7 @@ export const metricOptions = {
 		suffix: ''
 	},
 	bounce_rate: {
-		label: __( 'Bounce Rate', 'burst-statistics' ),
+		label: __( 'Bounce Rate', 'burst-mainwp' ),
 		recommendedClassification: 'equal-interval',
 		colorScheme: 'blueRedDiverging',
 		isPercentage: true,
@@ -46,7 +46,7 @@ export const metricOptions = {
 		suffix: '%'
 	},
 	avg_session_duration: {
-		label: __( 'Avg. Session Duration', 'burst-statistics' ),
+		label: __( 'Avg. Session Duration', 'burst-mainwp' ),
 		recommendedClassification: 'standard-deviation',
 		colorScheme: 'blueRedDiverging',
 		isPercentage: false,
@@ -56,7 +56,7 @@ export const metricOptions = {
 		suffix: 's'
 	},
 	conversion_rate: {
-		label: __( 'Conversion Rate', 'burst-statistics' ),
+		label: __( 'Conversion Rate', 'burst-mainwp' ),
 		recommendedClassification: 'natural-breaks',
 		colorScheme: 'greens',
 		isPercentage: true,
@@ -68,32 +68,32 @@ export const metricOptions = {
 
 export const classificationOptions = {
 	'natural-breaks': {
-		label: __( 'Natural Breaks (Jenks)', 'burst-statistics' ),
+		label: __( 'Natural Breaks (Jenks)', 'burst-mainwp' ),
 		description: __(
 			'Finds patterns in the data to create categories with minimal variation within groups. Works well for all metrics, especially Pageviews and Conversion Rate.',
-			'burst-statistics'
+			'burst-mainwp'
 		)
 	},
 
 	'equal-interval': {
-		label: __( 'Equal Interval', 'burst-statistics' ),
+		label: __( 'Equal Interval', 'burst-mainwp' ),
 		description: __(
 			'Splits the data range into equal-sized intervals. Ideal for percentage-based metrics like Bounce Rate or Conversion Rate.',
-			'burst-statistics'
+			'burst-mainwp'
 		)
 	},
 	'standard-deviation': {
-		label: __( 'Standard Deviation', 'burst-statistics' ),
+		label: __( 'Standard Deviation', 'burst-mainwp' ),
 		description: __(
 			'Groups data based on how far values deviate from the average. Highlights outliers in metrics like Bounce Rate or Avg. Session Duration.',
-			'burst-statistics'
+			'burst-mainwp'
 		)
 	},
 	quantile: {
-		label: __( 'Quantile', 'burst-statistics' ),
+		label: __( 'Quantile', 'burst-mainwp' ),
 		description: __(
 			'Divides data into equal-sized groups, ensuring each category has the same number of regions. Best for evenly distributed metrics like Pageviews or Visitors.',
-			'burst-statistics'
+			'burst-mainwp'
 		)
 	}
 };

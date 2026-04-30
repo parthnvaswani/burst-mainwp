@@ -96,7 +96,7 @@ const RangeSliderInput = forwardRef<HTMLDivElement, RangeSliderInputProps>(
 
 						<Slider.Thumb
 							className="block w-5 h-5 bg-white border-2 border-primary rounded-full shadow-md hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-							aria-label={__( 'Minimum value', 'burst-statistics' )}
+							aria-label={__( 'Minimum value', 'burst-mainwp' )}
 						/>
 
 						{( ! allowSingleValue ||
@@ -105,7 +105,7 @@ const RangeSliderInput = forwardRef<HTMLDivElement, RangeSliderInputProps>(
 								className="block w-5 h-5 bg-white border-2 border-primary rounded-full shadow-md hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
 								aria-label={__(
 									'Maximum value',
-									'burst-statistics'
+									'burst-mainwp'
 								)}
 							/>
 						)}

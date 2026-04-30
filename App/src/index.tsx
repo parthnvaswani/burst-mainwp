@@ -227,7 +227,7 @@ const AppShell = () => {
 
 // Initialize the React app immediately
 const initApp = () => {
-	const container = document.getElementById( 'burst-statistics' );
+	const container = document.getElementById( 'burst-mainwp' );
 	if ( ! container ) {
 		return;
 	}

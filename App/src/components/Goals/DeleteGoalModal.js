@@ -8,16 +8,16 @@ import IconButton from '../Inputs/IconButton';
 
 const Content = ({ goal }) => (
 	<>
-		{__( 'Are you sure you want to delete this goal?', 'burst-statistics' ) +
+		{__( 'Are you sure you want to delete this goal?', 'burst-mainwp' ) +
 			' ' +
-			__( 'This action cannot be undone.', 'burst-statistics' )}
+			__( 'This action cannot be undone.', 'burst-mainwp' )}
 		<br />
 		<br />
-		<strong>{__( 'Goal name', 'burst-statistics' )}:</strong> {goal.name}
+		<strong>{__( 'Goal name', 'burst-mainwp' )}:</strong> {goal.name}
 		<br />
-		<strong>{__( 'Status', 'burst-statistics' )}:</strong> {goal.status}
+		<strong>{__( 'Status', 'burst-mainwp' )}:</strong> {goal.status}
 		<br />
-		<strong>{__( 'Date created', 'burst-statistics' )}:</strong>{' '}
+		<strong>{__( 'Date created', 'burst-mainwp' )}:</strong>{' '}
 		{formatUnixToDate( goal.dateCreated )}
 	</>
 );
@@ -27,12 +27,12 @@ const Footer = ({ deleteGoal, onClose, isDisabled }) => {
 		<>
 			<Close asChild aria-label="Close">
 			<ButtonInput btnVariant={'tertiary'} onClick={onClose}>
-				{__( 'Cancel', 'burst-statistics' )}
+				{__( 'Cancel', 'burst-mainwp' )}
 			</ButtonInput>
 
 			</Close>
 			<ButtonInput btnVariant={'secondary'} onClick={deleteGoal} disabled={isDisabled}>
-				{__( 'Delete goal', 'burst-statistics' )}
+				{__( 'Delete goal', 'burst-mainwp' )}
 			</ButtonInput>
 		</>
 	);
@@ -61,7 +61,7 @@ const DeleteGoalModal = ({ goal, deleteGoal }) => {
 			<Modal
 				isOpen={isOpen}
 				onClose={handleClose}
-				title={__( 'Delete goal', 'burst-statistics' )}
+				title={__( 'Delete goal', 'burst-mainwp' )}
 				content={<Content goal={goal} />}
 				footer={
 					<Footer
@@ -75,7 +75,7 @@ const DeleteGoalModal = ({ goal, deleteGoal }) => {
 				icon={'trash'}
 				size={'md'}
 				onClick={( e ) => handleOpen( e )}
-				ariaLabel={__( 'Delete goal', 'burst-statistics' )}
+				ariaLabel={__( 'Delete goal', 'burst-mainwp' )}
 				variant={'solid'}
 				disabled={isDisabled}
 			/>

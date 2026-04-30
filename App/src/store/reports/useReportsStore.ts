@@ -104,14 +104,14 @@ export const useReportsStore = create<ReportsStore>( ( set, get ) => ({
 
 			if ( ! response.share_token || ! response.share_url ) {
 				toast.error(
-					__( 'Failed to generate share link', 'burst-statistics' )
+					__( 'Failed to generate share link', 'burst-mainwp' )
 				);
 				return '';
 			}
 			shareUrl = response.share_url;
 		} catch ( error ) {
 			console.error( 'Failed to generate share link:', error );
-			toast.error( __( 'Failed to generate share link', 'burst-statistics' ) );
+			toast.error( __( 'Failed to generate share link', 'burst-mainwp' ) );
 		} finally {
 			get().setIsGenerating( false );
 		}
@@ -270,7 +270,7 @@ export const useReportsStore = create<ReportsStore>( ( set, get ) => ({
 		}
 
 		// Generate duplicate name with incremental numbering (Copy, Copy 2, Copy 3, etc.).
-		const copyText = __( 'Copy', 'burst-statistics' );
+		const copyText = __( 'Copy', 'burst-mainwp' );
 		const copySuffix = `(${copyText})`;
 
 		// Check if the name already ends with (Copy).

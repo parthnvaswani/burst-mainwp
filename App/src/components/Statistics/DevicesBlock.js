@@ -44,10 +44,10 @@ const DevicesBlock = ( props ) => {
 	// Memoize device names
 	const deviceNames = useMemo(
 		() => ({
-			desktop: __( 'Desktop', 'burst-statistics' ),
-			tablet: __( 'Tablet', 'burst-statistics' ),
-			mobile: __( 'Mobile', 'burst-statistics' ),
-			other: __( 'Other', 'burst-statistics' )
+			desktop: __( 'Desktop', 'burst-mainwp' ),
+			tablet: __( 'Tablet', 'burst-mainwp' ),
+			mobile: __( 'Mobile', 'burst-mainwp' ),
+			other: __( 'Other', 'burst-mainwp' )
 		}),
 		[]
 	);
@@ -119,7 +119,7 @@ const DevicesBlock = ( props ) => {
 	const deviceKeys = useMemo( () => Object.keys( data ), [ data ]);
 	return (
 		<Block className="row-span-1 lg:col-span-6 xl:col-span-3">
-			<BlockHeading title={__( 'Devices', 'burst-statistics' )} isReport={isReport} reportBlockIndex={index} isLoading={isLoading} />
+			<BlockHeading title={__( 'Devices', 'burst-mainwp' )} isReport={isReport} reportBlockIndex={index} isLoading={isLoading} />
 			<BlockContent>
 				{deviceKeys.map( ( key ) => (
 					<DeviceItem

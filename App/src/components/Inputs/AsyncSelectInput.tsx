@@ -72,7 +72,7 @@ const AsyncSelectInput = forwardRef<HTMLInputElement, AsyncSelectInputProps>(
 			isSearchable = true,
 			name,
 			disabled = false,
-			placeholder = __( 'Select an option...', 'burst-statistics' ),
+			placeholder = __( 'Select an option...', 'burst-mainwp' ),
 			insideModal = false,
 			maxSelections = 1,
 			showRemoveButton = true,

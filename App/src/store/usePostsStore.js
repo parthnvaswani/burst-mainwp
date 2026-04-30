@@ -75,7 +75,7 @@ const usePostsStore = create( ( set, get ) => ({
 			post_title:
 				0 < post.post_title.length ?
 					post.post_title :
-					__( 'Untitled', 'burst-statistics' ),
+					__( 'Untitled', 'burst-mainwp' ),
 			pageviews: post.pageviews
 		}) );
 

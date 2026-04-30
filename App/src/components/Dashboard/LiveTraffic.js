@@ -19,14 +19,14 @@ import { OverflowTooltip } from '@/components/Common/OverflowTooltip';
  */
 const parseUTMSource = ( url ) => {
 	if ( ! url ) {
-		return __( 'Direct', 'burst-statistics' );
+		return __( 'Direct', 'burst-mainwp' );
 	}
 
 	try {
 		const uri = safeDecodeURI( url );
 		return uri.replace( /^www\./, '' );
 	} catch ( e ) { // eslint-disable-line @typescript-eslint/no-unused-vars
-		return __( 'Direct', 'burst-statistics' );
+		return __( 'Direct', 'burst-mainwp' );
 	}
 };
 
@@ -53,7 +53,7 @@ const TimeAgo = memo( ({ timestamp }) => {
 						'%s second ago',
 						'%s seconds ago',
 						diff,
-						'burst-statistics'
+						'burst-mainwp'
 					).replace( '%s', diff )
 				);
 			} else {
@@ -63,7 +63,7 @@ const TimeAgo = memo( ({ timestamp }) => {
 						'%s minute ago',
 						'%s minutes ago',
 						minutes,
-						'burst-statistics'
+						'burst-mainwp'
 					).replace( '%s', minutes )
 				);
 			}
@@ -123,13 +123,13 @@ const getTooltipContent = ( uid, colorClass, entry, exit, live, checkout ) => {
 	let iconDescription = '';
 
 	if ( checkout ) {
-		iconDescription = __( 'User is checking out', 'burst-statistics' );
+		iconDescription = __( 'User is checking out', 'burst-mainwp' );
 	} else if ( entry ) {
-		iconDescription = __( 'User just entered the site', 'burst-statistics' );
+		iconDescription = __( 'User just entered the site', 'burst-mainwp' );
 	} else if ( exit ) {
-		iconDescription = __( 'User just left the site', 'burst-statistics' );
+		iconDescription = __( 'User just left the site', 'burst-mainwp' );
 	} else {
-		iconDescription = __( 'User is actively browsing', 'burst-statistics' );
+		iconDescription = __( 'User is actively browsing', 'burst-mainwp' );
 	}
 
 	return (
@@ -139,7 +139,7 @@ const getTooltipContent = ( uid, colorClass, entry, exit, live, checkout ) => {
 			<div className="flex flex-col gap-1 text-text-gray-light">
 				<div className="flex items-center gap-2">
 					<span className="font-medium text-text-gray">
-						{__( 'User ID:', 'burst-statistics' )}
+						{__( 'User ID:', 'burst-mainwp' )}
 					</span>
 					<code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs font-mono text-text-gray">
 						{uid}
@@ -246,7 +246,7 @@ const LiveTraffic = () => {
 	if ( liveTrafficQuery.isLoading ) {
 		return (
 			<div className="w-full">
-				<div>{__( 'Loading…', 'burst-statistics' )}</div>
+				<div>{__( 'Loading…', 'burst-mainwp' )}</div>
 			</div>
 		);
 	}
@@ -280,14 +280,14 @@ const LiveTraffic = () => {
 						<p className="font-semibold text-text-gray mb-2">
 							{__(
 								'No live visitors right now',
-								'burst-statistics'
+								'burst-mainwp'
 							)}
 						</p>
 
 						<p className="text-text-gray">
 							{__(
 								'When someone visits your site, you’ll see them here instantly.',
-								'burst-statistics'
+								'burst-mainwp'
 							)}
 						</p>
 					</div>

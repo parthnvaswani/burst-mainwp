@@ -33,7 +33,7 @@ const DateRangeTrigger = ({ range, display, isOpen, setIsOpen, disabled }) => (
 		className={`burst-date-button flex min-w-[200px] items-center gap-2 rounded-md border px-3 py-2 shadow-sm transition-all duration-200 ${
 			disabled ?
 				'cursor-not-allowed border-gray-200 bg-gray-100 text-text-gray opacity-60' :
-				'border-gray-300 bg-white hover:bg-gray-50 hover:[box-shadow:0_0_0_3px_rgba(0,0,0,0.05)]'
+				'border-gray-300 bg-white hover:bg-gray-50 hover:shadow-ringSubtle'
 		}`}
 		onClick={() => ! disabled && setIsOpen( ! isOpen )}
 		disabled={disabled}
@@ -148,7 +148,7 @@ const DateRange = () => {
 							align="end"
 							sideOffset={10}
 							arrowPadding={10}
-							id="burst-statistics"
+							id="burst-mainwp"
 						>
 							<span className="absolute right-4 mt-1 h-4 w-4 -translate-y-2 rotate-45 transform bg-green-50" />
 

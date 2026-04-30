@@ -55,13 +55,13 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 
 	const config = {
 		pages: {
-			label: __( 'Pages', 'burst-statistics' ),
+			label: __( 'Pages', 'burst-mainwp' ),
 			searchable: true,
 			defaultColumns: [ 'page_url', 'pageviews', 'visitors', 'bounce_rate' ],
 			columnsOptions: {
 				...( filterByDomain && {
 					host: {
-						label: __( 'Domain', 'burst-statistics' ),
+						label: __( 'Domain', 'burst-mainwp' ),
 						default: false,
 						format: 'url',
 						align: 'left',
@@ -69,64 +69,64 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 					}
 				}),
 				page_url: {
-					label: __( 'Page', 'burst-statistics' ),
+					label: __( 'Page', 'burst-mainwp' ),
 					default: true,
 					format: 'url',
 					align: 'left',
 					group_by: true
 				},
 				pageviews: {
-					label: __( 'Pageviews', 'burst-statistics' ),
+					label: __( 'Pageviews', 'burst-mainwp' ),
 					category: 'traffic',
 					align: 'right'
 				},
 				visitors: {
-					label: __( 'Visitors', 'burst-statistics' ),
+					label: __( 'Visitors', 'burst-mainwp' ),
 					category: 'traffic',
 					pro: false,
 					align: 'right'
 				},
 				sessions: {
-					label: __( 'Sessions', 'burst-statistics' ),
+					label: __( 'Sessions', 'burst-mainwp' ),
 					category: 'traffic',
 					pro: true,
 					align: 'right'
 				},
 				bounce_rate: {
-					label: __( 'Bounce rate', 'burst-statistics' ),
+					label: __( 'Bounce rate', 'burst-mainwp' ),
 					category: 'engagement',
 					format: 'percentage',
 					pro: false,
 					align: 'right'
 				},
 				avg_time_on_page: {
-					label: __( 'Avg. time on page', 'burst-statistics' ),
+					label: __( 'Avg. time on page', 'burst-mainwp' ),
 					category: 'engagement',
 					pro: true,
 					format: 'time',
 					align: 'right'
 				},
 				entrances: {
-					label: __( 'Entrances', 'burst-statistics' ),
+					label: __( 'Entrances', 'burst-mainwp' ),
 					category: 'engagement',
 					pro: true,
 					align: 'right'
 				},
 				exit_rate: {
-					label: __( 'Exit rate', 'burst-statistics' ),
+					label: __( 'Exit rate', 'burst-mainwp' ),
 					category: 'engagement',
 					pro: true,
 					format: 'percentage',
 					align: 'right'
 				},
 				conversions: {
-					label: __( 'Goal completions', 'burst-statistics' ),
+					label: __( 'Goal completions', 'burst-mainwp' ),
 					category: 'conversions',
 					pro: true,
 					align: 'right'
 				},
 				conversion_rate: {
-					label: __( 'Goal conv. rate', 'burst-statistics' ),
+					label: __( 'Goal conv. rate', 'burst-mainwp' ),
 					category: 'conversions',
 					format: 'percentage',
 					pro: true,
@@ -134,28 +134,28 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 				},
 				...( shouldLoadEcommerce && {
 					sales: {
-						label: __( 'Sales', 'burst-statistics' ),
+						label: __( 'Sales', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'integer',
 						align: 'right'
 					},
 					revenue: {
-						label: __( 'Revenue', 'burst-statistics' ),
+						label: __( 'Revenue', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
 						align: 'right'
 					},
 					sales_conversion_rate: {
-						label: __( 'Sales conv. rate', 'burst-statistics' ),
+						label: __( 'Sales conv. rate', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'percentage',
 						align: 'right'
 					},
 					page_value: {
-						label: __( 'Page value', 'burst-statistics' ),
+						label: __( 'Page value', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
@@ -165,60 +165,60 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 			}
 		},
 		referrers: {
-			label: __( 'Referrers', 'burst-statistics' ),
+			label: __( 'Referrers', 'burst-mainwp' ),
 			searchable: true,
 			defaultColumns: [
 				'referrer', 'visitors', 'bounce_rate', ...( shouldLoadEcommerce ? [ 'sales', 'revenue' ] : [ 'conversions' ]) ],
 			columnsOptions: {
 				referrer: {
-					label: __( 'Referrer', 'burst-statistics' ),
+					label: __( 'Referrer', 'burst-mainwp' ),
 					default: true,
 					format: 'referrer',
 					align: 'left',
 					group_by: true
 				},
 				visitors: {
-					label: __( 'Visitors', 'burst-statistics' ),
+					label: __( 'Visitors', 'burst-mainwp' ),
 					category: 'traffic',
 					pro: true,
 					align: 'right'
 				},
 				sessions: {
-					label: __( 'Sessions', 'burst-statistics' ),
+					label: __( 'Sessions', 'burst-mainwp' ),
 					category: 'traffic',
 					pro: true,
 					align: 'right'
 				},
 				bounce_rate: {
-					label: __( 'Bounce rate', 'burst-statistics' ),
+					label: __( 'Bounce rate', 'burst-mainwp' ),
 					category: 'engagement',
 					format: 'percentage',
 					pro: true,
 					align: 'right'
 				},
 				conversions: {
-					label: __( 'Goal completions', 'burst-statistics' ),
+					label: __( 'Goal completions', 'burst-mainwp' ),
 					category: 'conversions',
 					pro: true,
 					align: 'right'
 				},
 				...( shouldLoadEcommerce && {
 					sales: {
-						label: __( 'Sales', 'burst-statistics' ),
+						label: __( 'Sales', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'integer',
 						align: 'right'
 					},
 					revenue: {
-						label: __( 'Revenue', 'burst-statistics' ),
+						label: __( 'Revenue', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
 						align: 'right'
 					},
 					page_value: {
-						label: __( 'Page value', 'burst-statistics' ),
+						label: __( 'Page value', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
@@ -228,7 +228,7 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 			}
 		},
 		countries: {
-			label: __( 'Locations', 'burst-statistics' ),
+			label: __( 'Locations', 'burst-mainwp' ),
 			pro: true,
 			searchable: true,
 			defaultColumns: [
@@ -238,79 +238,79 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 			],
 			columnsOptions: {
 				country_code: {
-					label: __( 'Country', 'burst-statistics' ),
+					label: __( 'Country', 'burst-mainwp' ),
 					default: true,
 					format: 'country',
 					align: 'left',
 					group_by: true
 				},
 				state: {
-					label: __( 'State', 'burst-statistics' ),
+					label: __( 'State', 'burst-mainwp' ),
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				city: {
-					label: __( 'City', 'burst-statistics' ),
+					label: __( 'City', 'burst-mainwp' ),
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				continent: {
-					label: __( 'Continent', 'burst-statistics' ),
+					label: __( 'Continent', 'burst-mainwp' ),
 					format: 'continent',
 					align: 'left',
 					group_by: true
 				},
 				visitors: {
-					label: __( 'Visitors', 'burst-statistics' ),
+					label: __( 'Visitors', 'burst-mainwp' ),
 					category: 'traffic',
 					pro: true,
 					align: 'right'
 				},
 				sessions: {
-					label: __( 'Sessions', 'burst-statistics' ),
+					label: __( 'Sessions', 'burst-mainwp' ),
 					category: 'traffic',
 					pro: true,
 					align: 'right'
 				},
 				bounce_rate: {
-					label: __( 'Bounce rate', 'burst-statistics' ),
+					label: __( 'Bounce rate', 'burst-mainwp' ),
 					category: 'engagement',
 					format: 'percentage',
 					pro: true,
 					align: 'right'
 				},
 				conversions: {
-					label: __( 'Goal completions', 'burst-statistics' ),
+					label: __( 'Goal completions', 'burst-mainwp' ),
 					category: 'conversions',
 					pro: true,
 					align: 'right'
 				},
 				...( shouldLoadEcommerce && {
 					sales: {
-						label: __( 'Sales', 'burst-statistics' ),
+						label: __( 'Sales', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'integer',
 						align: 'right'
 					},
 					revenue: {
-						label: __( 'Revenue', 'burst-statistics' ),
+						label: __( 'Revenue', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
 						align: 'right'
 					},
 					sales_conversion_rate: {
-						label: __( 'Sales conv. rate', 'burst-statistics' ),
+						label: __( 'Sales conv. rate', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'percentage',
 						align: 'right'
 					},
 					avg_order_value: {
-						label: __( 'Avg. order value', 'burst-statistics' ),
+						label: __( 'Avg. order value', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
@@ -320,7 +320,7 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 			}
 		},
 		campaigns: {
-			label: __( 'Campaigns', 'burst-statistics' ),
+			label: __( 'Campaigns', 'burst-mainwp' ),
 			pro: true,
 			searchable: true,
 			defaultColumns: [
@@ -330,57 +330,57 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 			],
 			columnsOptions: {
 				campaign: {
-					label: __( 'Campaign', 'burst-statistics' ),
+					label: __( 'Campaign', 'burst-mainwp' ),
 					default: true,
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				source: {
-					label: __( 'Source', 'burst-statistics' ),
+					label: __( 'Source', 'burst-mainwp' ),
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				medium: {
-					label: __( 'Medium', 'burst-statistics' ),
+					label: __( 'Medium', 'burst-mainwp' ),
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				term: {
-					label: __( 'Term', 'burst-statistics' ),
+					label: __( 'Term', 'burst-mainwp' ),
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				content: {
-					label: __( 'Content', 'burst-statistics' ),
+					label: __( 'Content', 'burst-mainwp' ),
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				visitors: {
-					label: __( 'Visitors', 'burst-statistics' ),
+					label: __( 'Visitors', 'burst-mainwp' ),
 					category: 'traffic',
 					pro: true,
 					align: 'right'
 				},
 				bounce_rate: {
-					label: __( 'Bounce rate', 'burst-statistics' ),
+					label: __( 'Bounce rate', 'burst-mainwp' ),
 					category: 'engagement',
 					format: 'percentage',
 					pro: true,
 					align: 'right'
 				},
 				conversions: {
-					label: __( 'Goal completions', 'burst-statistics' ),
+					label: __( 'Goal completions', 'burst-mainwp' ),
 					category: 'conversions',
 					pro: true,
 					align: 'right'
 				},
 				conversion_rate: {
-					label: __( 'Goal conv. rate', 'burst-statistics' ),
+					label: __( 'Goal conv. rate', 'burst-mainwp' ),
 					category: 'conversions',
 					format: 'percentage',
 					pro: true,
@@ -388,28 +388,28 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 				},
 				...( shouldLoadEcommerce && {
 					sales: {
-						label: __( 'Sales', 'burst-statistics' ),
+						label: __( 'Sales', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'integer',
 						align: 'right'
 					},
 					revenue: {
-						label: __( 'Revenue', 'burst-statistics' ),
+						label: __( 'Revenue', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
 						align: 'right'
 					},
 					sales_conversion_rate: {
-						label: __( 'Sales conv. rate', 'burst-statistics' ),
+						label: __( 'Sales conv. rate', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'percentage',
 						align: 'right'
 					},
 					page_value: {
-						label: __( 'Page value', 'burst-statistics' ),
+						label: __( 'Page value', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
@@ -419,60 +419,60 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 			}
 		},
 		parameters: {
-			label: __( 'Parameters', 'burst-statistics' ),
+			label: __( 'Parameters', 'burst-mainwp' ),
 			searchable: true,
 			pro: true,
 			defaultColumns: [ 'parameter', 'visitors' ],
 			columnsOptions: {
 				parameter: {
-					label: __( 'Parameter', 'burst-statistics' ),
+					label: __( 'Parameter', 'burst-mainwp' ),
 					default: true,
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				parameters: {
-					label: __( 'Parameters', 'burst-statistics' ),
+					label: __( 'Parameters', 'burst-mainwp' ),
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				visitors: {
-					label: __( 'Visitors', 'burst-statistics' ),
+					label: __( 'Visitors', 'burst-mainwp' ),
 					category: 'traffic',
 					pro: true,
 					align: 'right'
 				},
 				bounce_rate: {
-					label: __( 'Bounce rate', 'burst-statistics' ),
+					label: __( 'Bounce rate', 'burst-mainwp' ),
 					category: 'engagement',
 					format: 'percentage',
 					pro: true,
 					align: 'right'
 				},
 				conversions: {
-					label: __( 'Goal completions', 'burst-statistics' ),
+					label: __( 'Goal completions', 'burst-mainwp' ),
 					category: 'conversions',
 					pro: true,
 					align: 'right'
 				},
 				...( shouldLoadEcommerce && {
 					sales: {
-						label: __( 'Sales', 'burst-statistics' ),
+						label: __( 'Sales', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'integer',
 						align: 'right'
 					},
 					revenue: {
-						label: __( 'Revenue', 'burst-statistics' ),
+						label: __( 'Revenue', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'currency',
 						align: 'right'
 					},
 					sales_conversion_rate: {
-						label: __( 'Sales conv. rate', 'burst-statistics' ),
+						label: __( 'Sales conv. rate', 'burst-mainwp' ),
 						category: 'conversions',
 						pro: true,
 						format: 'percentage',
@@ -482,34 +482,34 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 			}
 		},
 		ghost: {
-			label: __( 'Dummy', 'burst-statistics' ),
+			label: __( 'Dummy', 'burst-mainwp' ),
 			searchable: true,
 			defaultColumns: [ 'pageviews' ],
 			columnsOptions: {
 				pageviews: {
-					label: __( 'Pageviews', 'burst-statistics' ),
+					label: __( 'Pageviews', 'burst-mainwp' ),
 					align: 'right'
 				},
 				visitors: {
-					label: __( 'Visitors', 'burst-statistics' ),
+					label: __( 'Visitors', 'burst-mainwp' ),
 					pro: true,
 					align: 'right'
 				},
 				sessions: {
-					label: __( 'Sessions', 'burst-statistics' ),
+					label: __( 'Sessions', 'burst-mainwp' ),
 					pro: true,
 					align: 'right'
 				}
 			}
 		},
 		products: {
-			label: __( 'Products', 'burst-statistics' ),
+			label: __( 'Products', 'burst-mainwp' ),
 			pro: true,
 			searchable: true,
 			defaultColumns: [ 'product', 'sales', 'revenue' ],
 			columnsOptions: {
 				product: {
-					label: __( 'Product', 'burst-statistics' ),
+					label: __( 'Product', 'burst-mainwp' ),
 					default: true,
 					format: 'text',
 					align: 'left',
@@ -518,30 +518,30 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 
 				// TODO: Enable when product page view tracking is implemented.
 				// product_views: {
-				// 	label: __( 'Views', 'burst-statistics' ),
+				// 	label: __( 'Views', 'burst-mainwp' ),
 				// 	pro: true,
 				// 	align: 'right'
 				// },
 				adds_to_cart: {
-					label: __( 'Adds to cart', 'burst-statistics' ),
+					label: __( 'Adds to cart', 'burst-mainwp' ),
 					pro: true,
 					align: 'right'
 				},
 
 				// TODO: Enable when product page view tracking is implemented.
 				// cart_to_view_rate: {
-				// 	label: __( 'Cart-to-view rate', 'burst-statistics' ),
+				// 	label: __( 'Cart-to-view rate', 'burst-mainwp' ),
 				// 	pro: true,
 				// 	format: 'percentage',
 				// 	align: 'right'
 				// },
 				sales: {
-					label: __( 'Sales', 'burst-statistics' ),
+					label: __( 'Sales', 'burst-mainwp' ),
 					pro: true,
 					align: 'right'
 				},
 				revenue: {
-					label: __( 'Revenue', 'burst-statistics' ),
+					label: __( 'Revenue', 'burst-mainwp' ),
 					pro: true,
 					format: 'currency',
 					align: 'right'
@@ -549,7 +549,7 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 
 				// TODO: Enable when product page view tracking is implemented.
 				// purchase_to_view_rate: {
-				// 	label: __( 'Purchase-to-view rate', 'burst-statistics' ),
+				// 	label: __( 'Purchase-to-view rate', 'burst-mainwp' ),
 				// 	pro: true,
 				// 	format: 'percentage',
 				// 	align: 'right'
@@ -557,41 +557,41 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 			}
 		},
 		subscription_products: {
-			label: __( 'Plan performance', 'burst-statistics' ),
+			label: __( 'Plan performance', 'burst-mainwp' ),
 			pro: true,
 			searchable: true,
 			defaultColumns: [ 'plan', 'active_subscribers' ],
 			columnsOptions: {
 				plan: {
-					label: __( 'Plan', 'burst-statistics' ),
+					label: __( 'Plan', 'burst-mainwp' ),
 					default: true,
 					format: 'text',
 					align: 'left',
 					group_by: true
 				},
 				active_subscribers: {
-					label: __( 'Active subs', 'burst-statistics' ),
+					label: __( 'Active subs', 'burst-mainwp' ),
 					pro: true,
 					align: 'right'
 				},
 				canceled_subscribers: {
-					label: __( 'Canceled subs', 'burst-statistics' ),
+					label: __( 'Canceled subs', 'burst-mainwp' ),
 					pro: true,
 					align: 'right'
 				},
 			trialling_subscribers: {
-				label: __( 'Trialling subs', 'burst-statistics' ),
+				label: __( 'Trialling subs', 'burst-mainwp' ),
 				pro: true,
 				align: 'right'
 			},
 			monthly_recurring_revenue: {
-				label: __( 'MRR', 'burst-statistics' ),
+				label: __( 'MRR', 'burst-mainwp' ),
 				pro: true,
 				format: 'currency',
 				align: 'right'
 			},
 			product_churn_value: {
-				label: __( 'Product churn value', 'burst-statistics' ),
+				label: __( 'Product churn value', 'burst-mainwp' ),
 				pro: true,
 				format: 'percentage',
 				align: 'right'
@@ -924,10 +924,10 @@ const DataTableBlock = ( /** @type {BlockComponentProps} */ props ) => {
 				paginationPerPage: 10,
 				paginationComponentOptions: {
 					rowsPerPageText: '',
-					rangeSeparatorText: __( 'of', 'burst-statistics' ),
+					rangeSeparatorText: __( 'of', 'burst-mainwp' ),
 					noRowsPerPage: false,
 					selectAllRowsItem: true,
-					selectAllRowsItemText: __( 'All', 'burst-statistics' )
+					selectAllRowsItemText: __( 'All', 'burst-mainwp' )
 				},
 				noDataComponent: (
 					<EmptyDataTable

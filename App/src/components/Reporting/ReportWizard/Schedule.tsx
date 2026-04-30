@@ -49,12 +49,12 @@ export const Schedule = () => {
 
     options.yes = {
         type: 'yes',
-        label: __( 'Yes', 'burst-statistics' )
+        label: __( 'Yes', 'burst-mainwp' )
     };
 
     options.no = {
         type: 'no',
-        label: __( 'No', 'burst-statistics' )
+        label: __( 'No', 'burst-mainwp' )
     };
 
     const parsedDateRangeValue = useMemo( () => {
@@ -64,7 +64,7 @@ export const Schedule = () => {
     return (
         <>
             <FieldWrapper
-                label={__( 'Create a recurring scheduled report?', 'burst-statistics' )}
+                label={__( 'Create a recurring scheduled report?', 'burst-mainwp' )}
                 inputId="report-scheduled"
                 context={''}
             >
@@ -75,7 +75,7 @@ export const Schedule = () => {
 
             {! scheduled && (
                 <FieldWrapper
-                    label={__( 'What date range do you want to report on?', 'burst-statistics' )}
+                    label={__( 'What date range do you want to report on?', 'burst-mainwp' )}
                     inputId="report-date-range"
                     context={''}
                 >
@@ -96,13 +96,13 @@ export const Schedule = () => {
 
             {scheduled && (
                 <FieldWrapper
-                    label={__( 'Frequency', 'burst-statistics' )}
+                    label={__( 'Frequency', 'burst-mainwp' )}
                     inputId="report-schedule"
                     context={''}
                 >
                     <div className="flex flex-wrap items-center gap-3 text-sm">
 						<span className="text-base font-semibold">
-							{__( 'Deliver', 'burst-statistics' )}
+							{__( 'Deliver', 'burst-mainwp' )}
 						</span>
 
                         <SelectInput
@@ -127,7 +127,7 @@ export const Schedule = () => {
                         {
                             ( 'monthly' === frequency || 'weekly' === frequency ) && (
                                 <span className="text-base font-semibold">
-									{__( 'on every', 'burst-statistics' )}
+									{__( 'on every', 'burst-mainwp' )}
 								</span>
                             )
                         }
@@ -157,7 +157,7 @@ export const Schedule = () => {
                         }
 
                         <span className="text-base font-semibold">
-							{__( 'at', 'burst-statistics' )}
+							{__( 'at', 'burst-mainwp' )}
 						</span>
 
                         <SelectInput

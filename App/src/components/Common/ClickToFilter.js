@@ -122,13 +122,13 @@ const ClickToFilter = ({
 	// Memoize tooltip content for filter icon
 	const filterTooltip = useMemo( () => {
 		return label ?
-			`${__( 'Click to filter by:', 'burst-statistics' )} ${label}` :
-			__( 'Click to filter', 'burst-statistics' );
+			`${__( 'Click to filter by:', 'burst-mainwp' )} ${label}` :
+			__( 'Click to filter', 'burst-mainwp' );
 	}, [ label ]);
 
 	// Memoize tooltip content for external link icon
 	const externalLinkTooltip = useMemo( () => {
-		return __( 'Open in new tab', 'burst-statistics' );
+		return __( 'Open in new tab', 'burst-mainwp' );
 	}, []);
 
 	// Handle date range updates
@@ -181,11 +181,11 @@ const ClickToFilter = ({
 				setFilters( 'page_url', goal.goal_specific_page );
 				setFilters( 'goal_id', goalId );
 				toast.info(
-					__( 'Filtering by goal & goal specific page', 'burst-statistics' )
+					__( 'Filtering by goal & goal specific page', 'burst-mainwp' )
 				);
 			} else {
 				setFilters( 'goal_id', goalId );
-				toast.info( __( 'Filtering by goal', 'burst-statistics' ) );
+				toast.info( __( 'Filtering by goal', 'burst-mainwp' ) );
 			}
 
 			// Add conversions metric if not already present

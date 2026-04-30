@@ -78,7 +78,7 @@ const FunnelChartSection: React.FC<BlockComponentProps> = ( props ) => {
 	const data = funnelQuery.data ?? placeholderFunnelData;
 
 	const blockHeadingProps = {
-		title: __( 'Funnel', 'burst-statistics' ),
+		title: __( 'Funnel', 'burst-mainwp' ),
 		isReport: props.isReport,
 		reportBlockIndex: index,
 		isLoading: funnelQuery.isFetching,

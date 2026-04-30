@@ -15,7 +15,7 @@ export default function ThemeToggleButton() {
 			onClick={handleToggle}
 			role="switch"
 			aria-checked={isDarkTheme}
-			aria-label={__( 'Toggle dark theme', 'burst-statistics' )}
+			aria-label={__( 'Toggle dark theme', 'burst-mainwp' )}
 			className={`relative inline-flex h-6 w-11 items-center rounded-full border transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${
 				isDarkTheme ?
 					'bg-primary border-primary' :
@@ -23,8 +23,8 @@ export default function ThemeToggleButton() {
 			}`}
 			title={
 				isDarkTheme ?
-					__( 'Switch to light mode', 'burst-statistics' ) :
-					__( 'Switch to dark mode', 'burst-statistics' )
+					__( 'Switch to light mode', 'burst-mainwp' ) :
+					__( 'Switch to dark mode', 'burst-mainwp' )
 			}
 		>
 			<span

@@ -198,7 +198,7 @@ const WorldMap = ( props ) => {
 			return (
 				feature.properties?.name_en ||
 				feature.properties?.iso_a2 ||
-				__( 'Unknown', 'burst-statistics' )
+				__( 'Unknown', 'burst-mainwp' )
 			);
 		};
 	}, []);
@@ -293,7 +293,7 @@ const WorldMap = ( props ) => {
 						{sprintf(
 
 							/* translators: %s: Error message */
-							__( 'Error: %s', 'burst-statistics' ),
+							__( 'Error: %s', 'burst-mainwp' ),
 							String( displayError )
 						)}
 					</p>
@@ -305,7 +305,7 @@ const WorldMap = ( props ) => {
 	if ( isGeoSimpleLoading ) {
 		return (
 			<div className="p-4 text-text-gray">
-				{__( 'Loading map data…', 'burst-statistics' )}
+				{__( 'Loading map data…', 'burst-mainwp' )}
 			</div>
 		);
 	}
@@ -313,7 +313,7 @@ const WorldMap = ( props ) => {
 	if ( ! selectedMetric ) {
 		return (
 			<div className="p-4 text-text-gray">
-				{__( 'No metrics available for display.', 'burst-statistics' )}
+				{__( 'No metrics available for display.', 'burst-mainwp' )}
 			</div>
 		);
 	}
@@ -408,7 +408,7 @@ const WorldMap = ( props ) => {
 								{
 									on: 'hover',
 									style: {
-										itemTextColor: '#000000',
+										itemTextColor: 'var(--color-text-black)',
 										itemOpacity: 1
 									}
 								}

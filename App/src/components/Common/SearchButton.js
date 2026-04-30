@@ -15,7 +15,7 @@ import Icon from '@/utils/Icon';
 const SearchButton = ({
 	value = '',
 	onChange,
-	placeholder = __( 'Search', 'burst-statistics' ),
+	placeholder = __( 'Search', 'burst-mainwp' ),
 	className = ''
 }) => {
 	const [ isSearchOpen, setIsSearchOpen ] = useState( false );
@@ -107,7 +107,7 @@ const SearchButton = ({
 							onClick={handleClearSearch}
 							onMouseDown={( e ) => e.preventDefault()} // Prevent input blur
 							tabIndex={-1}
-							aria-label={__( 'Clear search', 'burst-statistics' )}
+							aria-label={__( 'Clear search', 'burst-mainwp' )}
 						>
 							<Icon name="times" size={16} />
 						</button>

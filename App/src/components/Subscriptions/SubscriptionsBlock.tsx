@@ -45,7 +45,7 @@ interface SubscriptionData {
  */
 const PLACEHOLDER_DATA: SubscriptionData = {
 	monthly_recurring_revenue: {
-		title: __( 'Monthly Recurring Revenue', 'burst-statistics' ),
+		title: __( 'Monthly Recurring Revenue', 'burst-mainwp' ),
 		value: '-',
 		exactValue: null,
 		subtitle: '-',
@@ -55,7 +55,7 @@ const PLACEHOLDER_DATA: SubscriptionData = {
 		tooltipText: null
 	},
 	active_subscriptions: {
-		title: __( 'Active Subscriptions', 'burst-statistics' ),
+		title: __( 'Active Subscriptions', 'burst-mainwp' ),
 		value: '-',
 		exactValue: null,
 		subtitle: '-',
@@ -65,7 +65,7 @@ const PLACEHOLDER_DATA: SubscriptionData = {
 		tooltipText: null
 	},
 	canceled_subscriptions: {
-		title: __( 'Canceled Subscriptions', 'burst-statistics' ),
+		title: __( 'Canceled Subscriptions', 'burst-mainwp' ),
 		value: '-',
 		exactValue: null,
 		subtitle: '-',
@@ -75,7 +75,7 @@ const PLACEHOLDER_DATA: SubscriptionData = {
 		tooltipText: null
 	},
 	revenue_churn: {
-		title: __( 'Revenue Churn', 'burst-statistics' ),
+		title: __( 'Revenue Churn', 'burst-mainwp' ),
 		value: '-',
 		exactValue: null,
 		subtitle: '-',
@@ -85,7 +85,7 @@ const PLACEHOLDER_DATA: SubscriptionData = {
 		tooltipText: null
 	},
 	average_lifetime_value: {
-		title: __( 'Average Lifetime Value', 'burst-statistics' ),
+		title: __( 'Average Lifetime Value', 'burst-mainwp' ),
 		value: '-',
 		exactValue: null,
 		subtitle: '-',
@@ -130,7 +130,7 @@ const SubscriptionsBlock = (): JSX.Element => {
 	}
 
 	const blockHeadingProps = {
-		title: __( 'Subscriptions', 'burst-statistics' ),
+		title: __( 'Subscriptions', 'burst-mainwp' ),
 		isLoading: subscriptionsQuery.isFetching
 	};
 

@@ -168,7 +168,7 @@ const RadioButtonsInput = forwardRef<HTMLDivElement, RadioButtonsInputProps>(
 										{option.pro && <>
 											Pro
 											<ProBadge
-											label={__( 'Pro', 'burst-statistics' )}
+											label={__( 'Pro', 'burst-mainwp' )}
 											id={'reporting'}
 											type={isTrial ? 'icon' : 'badge'}
 										/></>}

@@ -16,10 +16,10 @@ const CompareBlock = (props) => {
 	const args = { filters };
 
 	const metrics = {
-		pageviews: __( 'Pageviews', 'burst-statistics' ),
-		sessions: __( 'Sessions', 'burst-statistics' ),
-		visitors: __( 'Visitors', 'burst-statistics' ),
-		bounce_rate: __( 'Bounce Rate', 'burst-statistics' )
+		pageviews: __( 'Pageviews', 'burst-mainwp' ),
+		sessions: __( 'Sessions', 'burst-mainwp' ),
+		visitors: __( 'Visitors', 'burst-mainwp' ),
+		bounce_rate: __( 'Bounce Rate', 'burst-mainwp' )
 	};
 	const emptyData = {};
 
@@ -51,7 +51,7 @@ const CompareBlock = (props) => {
 
 	return (
 		<Block className="row-span-1 lg:col-span-6 xl:col-span-3">
-			<BlockHeading title={__( 'Compare', 'burst-statistics' )} isReport={isReport} reportBlockIndex={index} isLoading={isLoading} />
+			<BlockHeading title={__( 'Compare', 'burst-mainwp' )} isReport={isReport} reportBlockIndex={index} isLoading={isLoading} />
 			<BlockContent>
 				{Object.keys( data ).map( ( key, i ) => {
 					const m = data[key];

@@ -96,7 +96,7 @@
 @utility rdrPprevButton {
 	& i {
 	border-width: 4px 6px 4px 4px;
-	border-color: transparent rgb(52, 73, 94) transparent transparent;
+	border-color: transparent var(--color-gray-700) transparent transparent;
 	}
 }
 
@@ -104,7 +104,7 @@
 	& i {
 	@apply ml-2;
 	border-width: 4px 4px 4px 6px;
-	border-color: transparent transparent transparent rgb(52, 73, 94);
+	border-color: transparent transparent transparent var(--color-gray-700);
 	transform: translate(3px, 0);
 	}
 }

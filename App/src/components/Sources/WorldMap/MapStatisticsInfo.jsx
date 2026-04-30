@@ -38,12 +38,12 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
                             _x(
                                 '%s per country',
                                 'metric by location',
-                                'burst-statistics'
+                                'burst-mainwp'
                             )								: /* translators: %s: Metric name (e.g., "Pageviews", "Visitors") */
                             _x(
                                 '%s per region',
                                 'metric by location',
-                                'burst-statistics'
+                                'burst-mainwp'
                             ),
                         metricOptions[selectedMetric]?.label ||
                         selectedMetric
@@ -60,13 +60,13 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
                                         '%d country with data',
                                         '%d countries with data',
                                         dataStatistics.count,
-                                        'burst-statistics'
+                                        'burst-mainwp'
                                     ) :
                                     _n(
                                         '%d region with data',
                                         '%d regions with data',
                                         dataStatistics.count,
-                                        'burst-statistics'
+                                        'burst-mainwp'
                                     ),
                                 dataStatistics.count
                             )}
@@ -74,7 +74,7 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
                         {patternsEnabled && (
                             <div className="mt-1 text-xs text-text-gray">
                                 •{' '}
-                                {__( 'Patterns enabled', 'burst-statistics' )}
+                                {__( 'Patterns enabled', 'burst-mainwp' )}
                             </div>
                         )}
                         {currentViewMissingData && (
@@ -90,7 +90,7 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
                                     /* translators: %d: Number of visitors with unknown region, %s: metric label */
                                     __(
                                         '%d %s with unknown region',
-                                        'burst-statistics'
+                                        'burst-mainwp'
                                     ),
                                     missingDataCount,
                                     metricOptions[
@@ -111,7 +111,7 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
 										{_x(
                                             'Range',
                                             'statistic label',
-                                            'burst-statistics'
+                                            'burst-mainwp'
                                         )}
                                         :
 									</span>
@@ -125,7 +125,7 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
 										{_x(
                                             'Average',
                                             'statistic label',
-                                            'burst-statistics'
+                                            'burst-mainwp'
                                         )}
                                         :
 									</span>
@@ -138,7 +138,7 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
 										{_x(
                                             'Median',
                                             'statistic label',
-                                            'burst-statistics'
+                                            'burst-mainwp'
                                         )}
                                         :
 									</span>
@@ -151,7 +151,7 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
 										{_x(
                                             'Total',
                                             'statistic label',
-                                            'burst-statistics'
+                                            'burst-mainwp'
                                         )}
                                         :
 									</span>
@@ -164,7 +164,7 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
 										{_x(
                                             'Method',
                                             'statistic label',
-                                            'burst-statistics'
+                                            'burst-mainwp'
                                         )}
                                         :
 									</span>
@@ -175,7 +175,7 @@ const MapStatisticsInfo = memo( ({dataStatistics, missingDataCount}) => {
                                                 ' '
                                             ),
                                             'classification method',
-                                            'burst-statistics'
+                                            'burst-mainwp'
                                         )}
 									</span>
                             </div>

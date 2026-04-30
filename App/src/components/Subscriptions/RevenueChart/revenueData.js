@@ -40,4 +40,4 @@ export async function fetchRevenueData({ startDate, endDate, range, filters, cha
 }
 
 /** Colors for new and recurring revenue bars respectively. */
-export const REVENUE_COLORS = [ '#2E8A37', '#93C49A' ];
+export const REVENUE_COLORS = [ 'var(--color-primary-700)', 'var(--color-primary-300)' ];

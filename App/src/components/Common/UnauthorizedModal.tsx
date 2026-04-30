@@ -11,12 +11,12 @@ interface UnauthorizedModalProps {
 }
 
 const UnauthorizedModal: React.FC<UnauthorizedModalProps> = ({
-	header = __( 'Access Restricted', 'burst-statistics' ),
+	header = __( 'Access Restricted', 'burst-mainwp' ),
 	message = __(
 		'You don’t have permission to view this page.',
-		'burst-statistics'
+		'burst-mainwp'
 	),
-	actionLabel = __( 'Go Back', 'burst-statistics' )
+	actionLabel = __( 'Go Back', 'burst-mainwp' )
 }) => {
 	const router = useRouter();
 

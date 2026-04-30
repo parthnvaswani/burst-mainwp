@@ -75,7 +75,7 @@ const AdvancedFilter = ({ isOpen, setIsOpen }) => {
 				size="sm"
 				className="flex-1"
 			>
-				{__( 'Apply', 'burst-statistics' )}
+				{__( 'Apply', 'burst-mainwp' )}
 			</ButtonInput>
 			<ButtonInput
 				onClick={() => resetToDefaults()}
@@ -83,7 +83,7 @@ const AdvancedFilter = ({ isOpen, setIsOpen }) => {
 				size="sm"
 				className="flex-1"
 			>
-				{__( 'Reset to defaults', 'burst-statistics' )}
+				{__( 'Reset to defaults', 'burst-mainwp' )}
 			</ButtonInput>
 		</>
 	);
@@ -93,7 +93,7 @@ const AdvancedFilter = ({ isOpen, setIsOpen }) => {
 			showFilterIcon={false}
 			isOpen={isOpen}
 			setIsOpen={setIsOpen}
-			title={__( 'Select filter', 'burst-statistics' )}
+			title={__( 'Select filter', 'burst-mainwp' )}
 			footer={footer}
 			maxWidth={600}
 		>
@@ -168,12 +168,12 @@ const AdvancedFilter = ({ isOpen, setIsOpen }) => {
 										<option value="-1">
 											{__(
 												'None selected',
-												'burst-statistics'
+												'burst-mainwp'
 											) + ' '}
 											{conf.pro && ! isLicenseValid ?
 												__(
 														'(premium)',
-														'burst-statistics'
+														'burst-mainwp'
 													) :
 												''}
 										</option>

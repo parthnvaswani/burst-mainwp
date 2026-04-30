@@ -138,7 +138,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="burst-statistics"/>
+				<element value="burst-mainwp"/>
 			</property>
 		</properties>
 	</rule>
@@ -151,7 +151,7 @@
 	<rule ref="WordPress.WP.I18n.MissingArg">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="burst-statistics"/>
+				<element value="burst-mainwp"/>
 			</property>
 		</properties>
 	</rule>
@@ -164,7 +164,7 @@
 	<rule ref="WordPress.WP.I18n.MissingArgText">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="burst-statistics"/>
+				<element value="burst-mainwp"/>
 			</property>
 		</properties>
 	</rule>
@@ -172,7 +172,7 @@
 	<rule ref="WordPress.WP.I18n.NonSingularStringLiteralText">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="burst-statistics"/>
+				<element value="burst-mainwp"/>
 			</property>
 		</properties>
 	</rule>
@@ -180,7 +180,7 @@
 	<rule ref="WordPress.WP.I18n.NonSingularStringLiteral">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="burst-statistics"/>
+				<element value="burst-mainwp"/>
 			</property>
 		</properties>
 	</rule>
@@ -188,7 +188,7 @@
 	<rule ref="WordPress.WP.I18n.NonSingularConcatenatedString">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="burst-statistics"/>
+				<element value="burst-mainwp"/>
 			</property>
 		</properties>
 	</rule>
@@ -196,7 +196,7 @@
 	<rule ref="WordPress.WP.I18n.NonSingularConcatenatedStringText">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="burst-statistics"/>
+				<element value="burst-mainwp"/>
 			</property>
 		</properties>
 	</rule>

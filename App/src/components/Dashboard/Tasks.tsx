@@ -18,11 +18,11 @@ const LoadingComponent = (): React.ReactElement => {
 			type: 'system',
 			function: 'loading'
 		},
-		msg: __( 'Loading tasks…', 'burst-statistics' ),
+		msg: __( 'Loading tasks…', 'burst-mainwp' ),
 		icon: 'skeleton',
 		dismissible: false,
 		plusone: false,
-		label: __( 'Loading…', 'burst-statistics' )
+		label: __( 'Loading…', 'burst-mainwp' )
 	};
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -41,11 +41,11 @@ const NoTasksComponent = (): React.ReactElement => {
 			type: 'system',
 			function: 'completed'
 		},
-		msg: __( 'No remaining tasks to show', 'burst-statistics' ),
+		msg: __( 'No remaining tasks to show', 'burst-mainwp' ),
 		icon: 'completed',
 		dismissible: false,
 		plusone: false,
-		label: __( 'Completed', 'burst-statistics' )
+		label: __( 'Completed', 'burst-mainwp' )
 	};
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -103,8 +103,8 @@ const Tasks = (): React.ReactElement | Array<React.ReactElement> => {
 
 	return (
 		<AnimatePresence mode="popLayout">
-			<ClientTasks tasks={clientTasks} />
-			<ServerTasks tasks={serverTasks} />
+			<ClientTasks key='client-tasks' tasks={clientTasks} />
+			<ServerTasks key='server-tasks' tasks={serverTasks} />
 		</AnimatePresence>
 	);
 };

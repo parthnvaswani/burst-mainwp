@@ -11,7 +11,7 @@ const SettingsLoader = ( settingsId ) => {
 
 	if ( ! subMenu ) {
 		throw notFound({
-			message: __( 'Settings section not found', 'burst-statistics' )
+			message: __( 'Settings section not found', 'burst-mainwp' )
 		});
 	}
 
@@ -19,7 +19,7 @@ const SettingsLoader = ( settingsId ) => {
 
 	if ( ! currentItem ) {
 		throw notFound({
-			message: __( 'Settings page not found', 'burst-statistics' )
+			message: __( 'Settings page not found', 'burst-mainwp' )
 		});
 	}
 
@@ -48,7 +48,7 @@ export const Route = createFileRoute( '/settings/$settingsId' )({
 	errorComponent: ({ error }) => (
 		<div className="p-4 text-red-500">
 			{error.message ||
-				__( 'An error occurred loading settings', 'burst-statistics' )}
+				__( 'An error occurred loading settings', 'burst-mainwp' )}
 		</div>
 	)
 });

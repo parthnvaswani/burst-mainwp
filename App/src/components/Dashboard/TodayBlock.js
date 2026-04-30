@@ -41,11 +41,11 @@ const TodayBlock = () => {
 	const placeholderData = useMemo(
 		() => ({
 			live: {
-				title: __( 'Live', 'burst-statistics' ),
+				title: __( 'Live', 'burst-mainwp' ),
 				icon: 'visitor'
 			},
 			today: {
-				title: __( 'Total', 'burst-statistics' ),
+				title: __( 'Total', 'burst-mainwp' ),
 				value: '-',
 				icon: 'visitor'
 			},
@@ -94,7 +94,7 @@ const TodayBlock = () => {
 	return (
 		<Block className="row-span-2 lg:col-span-6 xl:col-span-3 overflow-hidden">
 			<BlockHeading
-				title={__( 'Today', 'burst-statistics' )}
+				title={__( 'Today', 'burst-mainwp' )}
 				controls={undefined}
 				className="border-b border-gray-200"
 				isLoading={isLoading}
@@ -110,7 +110,7 @@ const TodayBlock = () => {
 								</h2>
 								<span className="flex gap-[3px] justify-center text-xs">
 									<Icon name="live" size="12" color={'red'} />{' '}
-									{__( 'Live', 'burst-statistics' )}
+									{__( 'Live', 'burst-mainwp' )}
 								</span>
 							</div>
 						</Tooltip>
@@ -126,7 +126,7 @@ const TodayBlock = () => {
 										size="13"
 										color={'green'}
 									/>{' '}
-									{__( 'Total', 'burst-statistics' )}
+									{__( 'Total', 'burst-mainwp' )}
 								</span>
 							</div>
 						</Tooltip>

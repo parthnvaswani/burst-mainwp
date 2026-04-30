@@ -30,22 +30,22 @@ export const Recipients = () => {
 			validate: {
 				required: ( value: string[]) =>
 					0 < value.length ||
-					__( 'Please add at least one recipient', 'burst-statistics' ),
+					__( 'Please add at least one recipient', 'burst-mainwp' ),
 
 				max: ( value: string[]) =>
 					value.length <= MAX_RECIPIENTS ||
 					sprintf(
-						__( 'Maximum %d recipients allowed', 'burst-statistics' ),
+						__( 'Maximum %d recipients allowed', 'burst-mainwp' ),
 						MAX_RECIPIENTS
 					),
 
 				format: ( value: string[]) =>
 					value.every( isValidEmail ) ||
-					__( 'One or more email addresses are invalid', 'burst-statistics' ),
+					__( 'One or more email addresses are invalid', 'burst-mainwp' ),
 
 				unique: ( value: string[]) =>
 					new Set( value ).size === value.length ||
-					__( 'Duplicate email addresses are not allowed', 'burst-statistics' )
+					__( 'Duplicate email addresses are not allowed', 'burst-mainwp' )
 			}
 		});
 	}, [ register ]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -66,7 +66,7 @@ export const Recipients = () => {
 		<>
 			<div className="burst-reporting-wizard-gutter">
 				<p className="text-lg font-semibold">
-					{__( 'Recipients', 'burst-statistics' )}
+					{__( 'Recipients', 'burst-mainwp' )}
 				</p>
 			</div>
 

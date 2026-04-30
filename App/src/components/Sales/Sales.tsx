@@ -40,7 +40,7 @@ const Sales = ( props:BlockComponentProps ): JSX.Element => {
 
 	const placeholderData: SalesData = {
 		'conversion-rate': {
-			title: __( 'Conversion Rate', 'burst-statistics' ),
+			title: __( 'Conversion Rate', 'burst-mainwp' ),
 			value: '-',
 			exactValue: null,
 			subtitle: '-',
@@ -50,7 +50,7 @@ const Sales = ( props:BlockComponentProps ): JSX.Element => {
 			tooltipText: null
 		},
 		'abandonment-rate': {
-			title: __( 'Abandoned Carts', 'burst-statistics' ),
+			title: __( 'Abandoned Carts', 'burst-mainwp' ),
 			value: '-',
 			exactValue: null,
 			subtitle: '-',
@@ -60,7 +60,7 @@ const Sales = ( props:BlockComponentProps ): JSX.Element => {
 			tooltipText: null
 		},
 		'average-order': {
-			title: __( 'Average Order Value', 'burst-statistics' ),
+			title: __( 'Average Order Value', 'burst-mainwp' ),
 			value: '-',
 			exactValue: null,
 			subtitle: '-',
@@ -70,7 +70,7 @@ const Sales = ( props:BlockComponentProps ): JSX.Element => {
 			tooltipText: null
 		},
 		revenue: {
-			title: __( 'Revenue', 'burst-statistics' ),
+			title: __( 'Revenue', 'burst-mainwp' ),
 			value: '-',
 			exactValue: null,
 			subtitle: '-',
@@ -91,7 +91,7 @@ const Sales = ( props:BlockComponentProps ): JSX.Element => {
 	const sales = salesQuery.data || null;
 
 	const blockHeadingProps = {
-		title: __( 'Sales', 'burst-statistics' ),
+		title: __( 'Sales', 'burst-mainwp' ),
 		isReport: props.isReport,
 		reportBlockIndex: index,
 		isLoading: salesQuery.isFetching

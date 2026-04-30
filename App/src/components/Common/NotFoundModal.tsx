@@ -11,12 +11,12 @@ interface NotFoundModalProps {
 }
 
 const NotFoundModal: React.FC<NotFoundModalProps> = ({
-	header = __( 'Page Not Found', 'burst-statistics' ),
+	header = __( 'Page Not Found', 'burst-mainwp' ),
 	message = __(
 		'The page you are trying to access does not exist or is not available.',
-			'burst-statistics'
+			'burst-mainwp'
 	),
-	actionLabel = __( 'Go Back', 'burst-statistics' )
+	actionLabel = __( 'Go Back', 'burst-mainwp' )
 }) => {
 	const router = useRouter();
 

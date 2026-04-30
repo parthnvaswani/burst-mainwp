@@ -30,7 +30,7 @@ const transformTotalGoalsData = ( response ) => {
 			...( response?.conversionMetric || {})
 		},
 		total: {
-			title: response?.total?.title || __( 'Total', 'burst-statistics' ),
+			title: response?.total?.title || __( 'Total', 'burst-mainwp' ),
 			value: response?.total?.value || '-',
 			icon: response?.total?.icon || 'goals',
 			...( response?.total || {})
@@ -97,11 +97,11 @@ const transformTotalGoalsData = ( response ) => {
 		safeResponse.conversionMetric.title
 	) {
 		safeResponse.conversionPercentage.tooltip =
-			__( 'Calculated by:', 'burst-statistics' ) +
+			__( 'Calculated by:', 'burst-mainwp' ) +
 			' ' +
-			__( 'Total amount of goals reached', 'burst-statistics' ) +
+			__( 'Total amount of goals reached', 'burst-mainwp' ) +
 			' / ' +
-			__( 'Total amount of', 'burst-statistics' ) +
+			__( 'Total amount of', 'burst-mainwp' ) +
 			' ' +
 			safeResponse.conversionMetric.title +
 			' (' +
@@ -112,7 +112,7 @@ const transformTotalGoalsData = ( response ) => {
 	} else {
 		safeResponse.conversionPercentage.tooltip = __(
 			'No data available yet',
-			'burst-statistics'
+			'burst-mainwp'
 		);
 	}
 
@@ -121,11 +121,11 @@ const transformTotalGoalsData = ( response ) => {
 
 const placeholderData = {
 	today: {
-		title: __( 'Today', 'burst-statistics' ),
+		title: __( 'Today', 'burst-mainwp' ),
 		icon: 'goals'
 	},
 	total: {
-		title: __( 'Total', 'burst-statistics' ),
+		title: __( 'Total', 'burst-mainwp' ),
 		value: '-',
 		icon: 'goals'
 	},

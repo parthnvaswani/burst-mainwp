@@ -27,11 +27,11 @@ function RevenueLegend({ chartMode }) {
 	const items = [
 		{
 			color: REVENUE_COLORS[ 0 ],
-			label: isRevenueMode ? __( 'New Revenue', 'burst-statistics' ) : __( 'New Sales', 'burst-statistics' )
+			label: isRevenueMode ? __( 'New Revenue', 'burst-mainwp' ) : __( 'New Sales', 'burst-mainwp' )
 		},
 		{
 			color: REVENUE_COLORS[ 1 ],
-			label: isRevenueMode ? __( 'Renewal Revenue', 'burst-statistics' ) : __( 'Renewal Sales', 'burst-statistics' )
+			label: isRevenueMode ? __( 'Renewal Revenue', 'burst-mainwp' ) : __( 'Renewal Sales', 'burst-mainwp' )
 		}
 	];
 
@@ -61,11 +61,11 @@ function RevenueLegend({ chartMode }) {
 function RevenueModeFilter({ chartMode, onApply }) {
 	const modeOptions = {
 		revenue: {
-			label: __( 'Revenue', 'burst-statistics' ),
+			label: __( 'Revenue', 'burst-mainwp' ),
 			default: true
 		},
 		sales: {
-			label: __( 'Sales', 'burst-statistics' )
+			label: __( 'Sales', 'burst-mainwp' )
 		}
 	};
 
@@ -139,15 +139,15 @@ export function RevenueChartBlock() {
 	const showEmptyState = ! isFetching && ! revenueQuery.isError && ! hasChartData;
 
 	const emptyStateMessage = isRevenueMode ?
-		__( 'There is no revenue data available for the selected filters and date range.', 'burst-statistics' ) :
-		__( 'There is no sales data available for the selected filters and date range.', 'burst-statistics' );
+		__( 'There is no revenue data available for the selected filters and date range.', 'burst-mainwp' ) :
+		__( 'There is no sales data available for the selected filters and date range.', 'burst-mainwp' );
 
-	const loadingColors = [ '#D1D5DB', '#E5E7EB' ];
+	const loadingColors = [ 'var(--color-gray-400)', 'var(--color-gray-300)' ];
 
 	return (
 		<Block className="row-span-1 lg:col-span-12 xl:col-span-6 group/root">
 			<BlockHeading
-				title={ isRevenueMode ? __( 'New & Renewal revenue', 'burst-statistics' ) : __( 'New & Renewal sales', 'burst-statistics' ) }
+				title={ isRevenueMode ? __( 'New & Renewal revenue', 'burst-mainwp' ) : __( 'New & Renewal sales', 'burst-mainwp' ) }
 				className="border-b border-gray-200"
 				controls={
 					! showEmptyState ? (
@@ -165,7 +165,7 @@ export function RevenueChartBlock() {
 				{
 					revenueQuery.isError && (
 						<p className="px-6 py-4 text-sm text-red-600">
-							{ __( 'Failed to load chart data.', 'burst-statistics' ) }
+							{ __( 'Failed to load chart data.', 'burst-mainwp' ) }
 						</p>
 					)
 				}
@@ -191,7 +191,7 @@ export function RevenueChartBlock() {
 								</div>
 
 								<h3 className="mb-1 text-base font-medium text-gray-600">
-									{ __( 'No data to display', 'burst-statistics' ) }
+									{ __( 'No data to display', 'burst-mainwp' ) }
 								</h3>
 
 								<p className="text-sm text-gray-400">
@@ -244,9 +244,10 @@ export function RevenueChartBlock() {
 										)
 								}
 								theme={{
-									grid: { line: { stroke: '#E5E7EB', strokeWidth: 1 } },
+									grid: { line: { stroke: 'var(--color-gray-300)', strokeWidth: 1 } },
 									axis: {
-										ticks: { text: { fill: '#6B7280', fontSize: 12 } }
+										ticks: { text: { fill: 'var(--color-gray-600)', fontSize: 12 } },
+										domain: { line: { stroke: 'var(--color-gray-400)', strokeWidth: 1 } }
 									}
 								}}
 							/>

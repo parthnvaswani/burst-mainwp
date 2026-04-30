@@ -128,7 +128,7 @@ const Header = () => {
 							className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-300 rounded-lg border border-primary/20 hover:border-primary/40 transition-all duration-200"
 						>
 							<span className="text-sm font-medium text-text-gray">
-								{__( 'Data collected with', 'burst-statistics' )}{' '}
+								{__( 'Data collected with', 'burst-mainwp' )}{' '}
 								<span className="text-primary font-semibold">
 									Burst Statistics
 								</span>
@@ -174,7 +174,7 @@ const Header = () => {
 									btnVariant="primary"
 								>
 									<span className='flex items-center gap-1'>
-										{__( 'Upgrade to Pro', 'burst-statistics' )}
+										{__( 'Upgrade to Pro', 'burst-mainwp' )}
 										<Icon name="move-right" size={16} color="text-white" strokeWidth={2.5} />
 									</span>
 								</ButtonInput>
@@ -183,7 +183,7 @@ const Header = () => {
 
 <a href={supportUrl} target="_blank" className="flex items-center text-text-gray gap-1 max-xxs:hidden hover:underline">
 
-{__( 'Support', 'burst-statistics' )}
+{__( 'Support', 'burst-mainwp' )}
 <Icon name="external-link" size={12} color="gray" />
 </a>
 

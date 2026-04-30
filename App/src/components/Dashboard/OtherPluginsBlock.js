@@ -12,11 +12,11 @@ const OtherPluginsBlock = () => {
 	// Define pluginActionNice first, before it's used in the useQuery hook
 	const pluginActionNice = ( action ) => {
 		const statuses = {
-			download: __( 'Install', 'burst-statistics' ),
-			activate: __( 'Activate', 'burst-statistics' ),
-			activating: __( 'Activating…', 'burst-statistics' ),
-			downloading: __( 'Downloading…', 'burst-statistics' ),
-			'upgrade-to-pro': __( 'Downloading…', 'burst-statistics' )
+			download: __( 'Install', 'burst-mainwp' ),
+			activate: __( 'Activate', 'burst-mainwp' ),
+			activating: __( 'Activating…', 'burst-mainwp' ),
+			downloading: __( 'Downloading…', 'burst-mainwp' ),
+			'upgrade-to-pro': __( 'Downloading…', 'burst-mainwp' )
 		};
 		return statuses[action];
 	};
@@ -138,7 +138,7 @@ const OtherPluginsBlock = () => {
 			case 'really-simple-ssl':
 				defaultColorClass = 'yellow';
 				break;
-			case 'burst-statistics':
+			case 'burst-mainwp':
 				defaultColorClass = 'green';
 				break;
 			case 'complianz-gdpr':
@@ -201,7 +201,7 @@ const OtherPluginsBlock = () => {
 				<div className="min-w-fit burst-other-plugin-status">
 					{'upgrade-to-pro' === plugin.action && (
 						<a target="_blank" href={plugin.upgrade_url}>
-							{__( 'Upgrade', 'burst-statistics' )}
+							{__( 'Upgrade', 'burst-mainwp' )}
 						</a>
 					)}
 					{'upgrade-to-pro' !== plugin.action &&
@@ -220,7 +220,7 @@ const OtherPluginsBlock = () => {
 							</a>
 						)}
 					{'installed' === plugin.action && (
-						<>{__( 'Installed', 'burst-statistics' )}</>
+						<>{__( 'Installed', 'burst-mainwp' )}</>
 					)}
 				</div>
 				}
@@ -234,7 +234,7 @@ const OtherPluginsBlock = () => {
 			<Block className="bg-transparent! row-span-1 shadow-transparent border-transparent lg:col-span-6">
 				<BlockHeading
 					className={'burst-column-2 no-border no-background'}
-					title={__( 'Other plugins', 'burst-statistics' )}
+					title={__( 'Other plugins', 'burst-mainwp' )}
 					controls={<UpdraftPlusLogo size={24} color="gray" />}
 				/>
 
@@ -249,11 +249,11 @@ const OtherPluginsBlock = () => {
 										}
 									></div>
 									<div className="truncate">
-										{__( 'Loading..', 'burst-statistics' )}
+										{__( 'Loading..', 'burst-mainwp' )}
 									</div>
 								</a>
 								<div className="min-w-fit burst-other-plugin-status">
-									{__( 'Activate', 'burst-statistics' )}
+									{__( 'Activate', 'burst-mainwp' )}
 								</div>
 							</div>
 						) )}
@@ -265,7 +265,7 @@ const OtherPluginsBlock = () => {
 	return (
 		<Block className="bg-trabs bg-transparent! row-span-1 shadow-transparent border-transparent lg:col-span-6">
 			<BlockHeading
-				title={__( 'Other plugins', 'burst-statistics' )}
+				title={__( 'Other plugins', 'burst-mainwp' )}
 				controls={<UpdraftPlusLogo size={24} color="gray" />}
 			/>
 

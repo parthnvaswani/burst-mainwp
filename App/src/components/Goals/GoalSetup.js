@@ -61,7 +61,7 @@ const GoalSetup = ({
 									' '
 							}
 							id={goal.id}
-							defaultValue={__( 'New goal', 'burst-statistics' )}
+							defaultValue={__( 'New goal', 'burst-mainwp' )}
 							onChange={( value ) => {
 								setGoalValue( goal.id, 'title', value );
 								saveGoalTitle( goal.id, value );
@@ -75,8 +75,8 @@ const GoalSetup = ({
 									goal.title :
 									' ',
 							status: status ?
-								__( 'Active', 'burst-statistics' ) :
-								__( 'Inactive', 'burst-statistics' ),
+								__( 'Active', 'burst-mainwp' ) :
+								__( 'Inactive', 'burst-mainwp' ),
 							dateCreated:
 								goal &&
 								goal.date_created !== undefined &&
@@ -91,8 +91,8 @@ const GoalSetup = ({
 					<Tooltip
 						content={
 							status ?
-								__( 'Click to de-activate', 'burst-statistics' ) :
-								__( 'Click to activate', 'burst-statistics' )
+								__( 'Click to de-activate', 'burst-mainwp' ) :
+								__( 'Click to activate', 'burst-mainwp' )
 						}
 					>
 						<span className="burst-click-to-filter burst-goal-toggle">

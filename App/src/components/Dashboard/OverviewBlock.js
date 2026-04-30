@@ -67,18 +67,18 @@ const OverviewBlock = () => {
 	const tabConfig = [
 		{
 			id: 'activity',
-			title: __( 'Activity', 'burst-statistics' )
+			title: __( 'Activity', 'burst-mainwp' )
 		},
 		{
 			id: 'live-visitors',
-			title: __( 'Live visitors', 'burst-statistics' )
+			title: __( 'Live visitors', 'burst-mainwp' )
 		}
 	];
 
 	return (
 		<Block className="row-span-2 lg:col-span-12 xl:col-span-6">
 			<BlockHeading
-				title={__( 'Overview', 'burst-statistics' )}
+				title={__( 'Overview', 'burst-mainwp' )}
 				className="border-b border-gray-200"
 				controls={
 					<TabsList tabConfig={tabConfig} tabGroup={tabGroup} />
