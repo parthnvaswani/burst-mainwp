@@ -10,7 +10,7 @@
  *   - Dark greys (700–900) + black → full light text.
  *   - Border/divider tokens → subtle alpha-white hairlines.
  */
-#burst-statistics.dark {
+body.dashboard-default-dark-theme, #burst-statistics.dark {
 	background-color: var(--color-gray-50);
 	min-height: 100vh;
 
@@ -145,10 +145,4 @@
 	--color-gray-800: oklch(0.9752 0.0017 var(--gray-hue));
 	--color-gray-900: oklch(0.9773 0 var(--gray-hue));
 	--color-gray-950: oklch(0.99 0.01 var(--gray-hue));
-}
-
-body.dashboard-default-dark-theme {
-	background-color: var(--color-gray-50) !important;
-
-	--color-gray-50: oklch(0.184 0.015 var(--gray-hue));
 }

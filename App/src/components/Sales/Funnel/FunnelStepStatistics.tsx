@@ -60,7 +60,7 @@ export const FunnelStepStatistics: React.FC<{
 										{sprintf(
 											__(
 												'%d lost visitors',
-												'burst-statistics'
+												'burst-mainwp'
 											),
 											step.dropOff
 										)}
@@ -81,14 +81,14 @@ export const FunnelStepStatistics: React.FC<{
 
 						<p className="mt-2 text-xs text-center text-text-gray">
 							{sprintf(
-								__( '%d visitors purchased', 'burst-statistics' ),
+								__( '%d visitors purchased', 'burst-mainwp' ),
 								lastStep.value
 							)}
 						</p>
 
 						<p className="text-xs text-center text-text-gray">
 							{sprintf(
-								__( '%d%% conversion rate', 'burst-statistics' ),
+								__( '%d%% conversion rate', 'burst-mainwp' ),
 								lastStep.percentage
 							)}
 						</p>

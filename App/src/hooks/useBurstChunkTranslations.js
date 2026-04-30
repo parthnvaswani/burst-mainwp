@@ -10,10 +10,10 @@ export default function useBurstChunkTranslations() {
 		burst_settings.json_translations.forEach( ( translationsString ) => {
 			const translations = JSON.parse( translationsString );
 			const localeData =
-				translations.locale_data['burst-statistics'] ||
+				translations.locale_data['burst-mainwp'] ||
 				translations.locale_data.messages;
-			localeData[''].domain = 'burst-statistics';
-			setLocaleData( localeData, 'burst-statistics' );
+			localeData[''].domain = 'burst-mainwp';
+			setLocaleData( localeData, 'burst-mainwp' );
 		});
 	}, []);
 }

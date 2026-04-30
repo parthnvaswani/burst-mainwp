@@ -32,7 +32,7 @@ const ChoroplethTooltip = memo(
 		const locationName =
 			feature.properties?.name ||
 			feature.label ||
-			__( 'Unknown location', 'burst-statistics' );
+			__( 'Unknown location', 'burst-mainwp' );
 		const value = feature.value || 0;
 		const metric = metricOptions[selectedMetric] || metricOptions.visitors;
 
@@ -109,7 +109,7 @@ const ChoroplethTooltip = memo(
 							{sprintf(
 
 								/* translators: %s: Percentage value */
-								__( '%s of total', 'burst-statistics' ),
+								__( '%s of total', 'burst-mainwp' ),
 								percentage
 							)}
 						</div>
@@ -125,7 +125,7 @@ const ChoroplethTooltip = memo(
 								/* translators: 1: Population number, 2: Year */
 								__(
 									'Population: %1$s (%2$s)',
-									'burst-statistics'
+									'burst-mainwp'
 								),
 								formatNumber( feature.properties.pop_est ),
 								feature.properties.pop_year
@@ -148,7 +148,7 @@ const ChoroplethTooltip = memo(
 					<div className="mt-2 text-xs font-semibold text-text-gray">
 						{__(
 							'Click to see country specific data',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</div>
 				)}

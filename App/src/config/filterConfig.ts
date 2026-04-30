@@ -5,22 +5,22 @@ import { __ } from '@wordpress/i18n';
  */
 export const FILTER_CATEGORIES = {
 	content: {
-		label: __( 'Context', 'burst-statistics' ),
+		label: __( 'Context', 'burst-mainwp' ),
 		icon: 'content',
 		order: 1
 	},
 	sources: {
-		label: __( 'Sources', 'burst-statistics' ),
+		label: __( 'Sources', 'burst-mainwp' ),
 		icon: 'source',
 		order: 2
 	},
 	behavior: {
-		label: __( 'Behavior', 'burst-statistics' ),
+		label: __( 'Behavior', 'burst-mainwp' ),
 		icon: 'behavior',
 		order: 3
 	},
 	location: {
-		label: __( 'Location', 'burst-statistics' ),
+		label: __( 'Location', 'burst-mainwp' ),
 		icon: 'location',
 		order: 4
 	}
@@ -53,7 +53,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 
 	// Free Filters.
 	page_url: {
-		label: __( 'Page URL', 'burst-statistics' ),
+		label: __( 'Page URL', 'burst-mainwp' ),
 		icon: 'page',
 		type: 'string',
 		options: 'pages',
@@ -63,7 +63,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	referrer: {
-		label: __( 'Referrer', 'burst-statistics' ),
+		label: __( 'Referrer', 'burst-mainwp' ),
 		icon: 'referrer',
 		type: 'string',
 		options: 'referrers',
@@ -73,7 +73,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	goal_id: {
-		label: __( 'Goal', 'burst-statistics' ),
+		label: __( 'Goal', 'burst-mainwp' ),
 		icon: 'goals',
 		type: 'string',
 		options: 'goals',
@@ -82,7 +82,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	bounces: {
-		label: __( 'Bounced Visitors', 'burst-statistics' ),
+		label: __( 'Bounced Visitors', 'burst-mainwp' ),
 		icon: 'bounce',
 		type: 'boolean',
 		pro: false,
@@ -90,7 +90,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: false
 	},
 	device_id: {
-		label: __( 'Device', 'burst-statistics' ),
+		label: __( 'Device', 'burst-mainwp' ),
 		icon: 'desktop',
 		type: 'string',
 		options: 'devices',
@@ -101,7 +101,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 
 	// Pro Filters.
 	host: {
-		label: __( 'Domain', 'burst-statistics' ),
+		label: __( 'Domain', 'burst-mainwp' ),
 		icon: 'browser',
 		type: 'string',
 		options: 'hosts',
@@ -109,7 +109,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		category: 'sources'
 	},
 	new_visitor: {
-		label: __( 'New Visitors', 'burst-statistics' ),
+		label: __( 'New Visitors', 'burst-mainwp' ),
 		icon: 'user',
 		type: 'boolean',
 		pro: true,
@@ -117,7 +117,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: false
 	},
 	bounce_rate: {
-		label: __( 'Bounce Rate', 'burst-statistics' ),
+		label: __( 'Bounce Rate', 'burst-mainwp' ),
 		icon: 'bounce',
 		type: 'int',
 		pro: true,
@@ -125,7 +125,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		coming_soon: true
 	},
 	entry_exit_pages: {
-		label: __( 'Entry or exit page', 'burst-statistics' ),
+		label: __( 'Entry or exit page', 'burst-mainwp' ),
 		icon: 'bounce',
 		type: 'boolean',
 		pro: true,
@@ -133,7 +133,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: false
 	},
 	conversion_rate: {
-		label: __( 'Conversion Rate', 'burst-statistics' ),
+		label: __( 'Conversion Rate', 'burst-mainwp' ),
 		icon: 'conversion',
 		type: 'int',
 		pro: true,
@@ -141,7 +141,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		coming_soon: true
 	},
 	parameter: {
-		label: __( 'URL Parameter', 'burst-statistics' ),
+		label: __( 'URL Parameter', 'burst-mainwp' ),
 		icon: 'parameters',
 		type: 'string',
 		pro: true,
@@ -149,7 +149,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	parameters: {
-		label: __( 'URL Parameters', 'burst-statistics' ),
+		label: __( 'URL Parameters', 'burst-mainwp' ),
 		icon: 'parameters',
 		type: 'string',
 		pro: true,
@@ -157,7 +157,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	campaign: {
-		label: __( 'Campaign', 'burst-statistics' ),
+		label: __( 'Campaign', 'burst-mainwp' ),
 		icon: 'campaign',
 		type: 'string',
 		options: 'campaigns',
@@ -166,7 +166,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	source: {
-		label: __( 'Source', 'burst-statistics' ),
+		label: __( 'Source', 'burst-mainwp' ),
 		icon: 'source',
 		type: 'string',
 		options: 'contents',
@@ -175,7 +175,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	medium: {
-		label: __( 'Medium', 'burst-statistics' ),
+		label: __( 'Medium', 'burst-mainwp' ),
 		icon: 'medium',
 		type: 'string',
 		options: 'mediums',
@@ -184,7 +184,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	term: {
-		label: __( 'Term', 'burst-statistics' ),
+		label: __( 'Term', 'burst-mainwp' ),
 		icon: 'term',
 		type: 'string',
 		options: 'terms',
@@ -193,7 +193,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	content: {
-		label: __( 'Content', 'burst-statistics' ),
+		label: __( 'Content', 'burst-mainwp' ),
 		icon: 'content',
 		type: 'string',
 		options: 'contents',
@@ -202,7 +202,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	country_code: {
-		label: __( 'Country', 'burst-statistics' ),
+		label: __( 'Country', 'burst-mainwp' ),
 		icon: 'world',
 		type: 'string',
 		options: 'countries',
@@ -211,7 +211,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	state: {
-		label: __( 'State', 'burst-statistics' ),
+		label: __( 'State', 'burst-mainwp' ),
 		icon: 'map-pinned',
 		type: 'string',
 		options: 'states',
@@ -220,7 +220,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	city: {
-		label: __( 'City', 'burst-statistics' ),
+		label: __( 'City', 'burst-mainwp' ),
 		icon: 'city',
 		type: 'string',
 		options: 'cities',
@@ -229,7 +229,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	continent_code: {
-		label: __( 'Continent', 'burst-statistics' ),
+		label: __( 'Continent', 'burst-mainwp' ),
 		icon: 'continent',
 		type: 'string',
 		options: 'continents',
@@ -238,15 +238,15 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	time_per_session: {
-		label: __( 'Time per Session', 'burst-statistics' ),
+		label: __( 'Time per Session', 'burst-mainwp' ),
 		icon: 'time',
 		type: 'int',
 		pro: true,
 		category: 'behavior',
-		new_badge: { version: '3.2.3', days: 30, tooltip: __( 'New in 3.2.3 – filter visitors by how long they spent on your site.', 'burst-statistics' ) }
+		new_badge: { version: '3.2.3', days: 30, tooltip: __( 'New in 3.2.3 – filter visitors by how long they spent on your site.', 'burst-mainwp' ) }
 	},
 	platform_id: {
-		label: __( 'Operating System', 'burst-statistics' ),
+		label: __( 'Operating System', 'burst-mainwp' ),
 		icon: 'operating-system',
 		type: 'string',
 		options: 'platforms',
@@ -255,7 +255,7 @@ export const FILTER_CONFIG: Record<string, FilterConfig> = {
 		exclusion_allowed: true
 	},
 	browser_id: {
-		label: __( 'Browser', 'burst-statistics' ),
+		label: __( 'Browser', 'burst-mainwp' ),
 		icon: 'browser',
 		type: 'string',
 		options: 'browsers',

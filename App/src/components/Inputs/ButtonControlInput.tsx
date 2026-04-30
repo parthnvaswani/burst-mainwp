@@ -58,18 +58,18 @@ const ButtonControlInput: React.FC<ButtonControlInputProps> = ({
 			if ( response.success ) {
 				toast.success(
 					response.message ||
-						__( 'Action completed successfully', 'burst-statistics' )
+						__( 'Action completed successfully', 'burst-mainwp' )
 				);
 			} else {
 				toast.error(
-					response.message || __( 'Action failed', 'burst-statistics' )
+					response.message || __( 'Action failed', 'burst-mainwp' )
 				);
 			}
 		} catch ( error ) {
 			toast.error(
 				__(
 					'An error occurred while executing the action',
-					'burst-statistics'
+					'burst-mainwp'
 				)
 			);
 			console.error( 'Action execution error:', error );
@@ -114,7 +114,7 @@ const ButtonControlInput: React.FC<ButtonControlInputProps> = ({
 					btnVariant={'danger' === warnType ? 'danger' : 'secondary'}
 					{...props}
 				>
-					{isExecuting ? __( 'Processing…', 'burst-statistics' ) : text}
+					{isExecuting ? __( 'Processing…', 'burst-mainwp' ) : text}
 				</ButtonInput>
 				{warnTitle && (
 					<Modal
@@ -129,7 +129,7 @@ const ButtonControlInput: React.FC<ButtonControlInputProps> = ({
 									onClick={handleCancel}
 									btnVariant="tertiary"
 								>
-									{__( 'Cancel', 'burst-statistics' )}
+									{__( 'Cancel', 'burst-mainwp' )}
 								</ButtonInput>
 								<ButtonInput
 									onClick={handleConfirm}
@@ -141,8 +141,8 @@ const ButtonControlInput: React.FC<ButtonControlInputProps> = ({
 									disabled={isExecuting}
 								>
 									{isExecuting ?
-										__( 'Processing…', 'burst-statistics' ) :
-										__( 'Confirm', 'burst-statistics' )}
+										__( 'Processing…', 'burst-mainwp' ) :
+										__( 'Confirm', 'burst-mainwp' )}
 								</ButtonInput>
 							</>
 						}

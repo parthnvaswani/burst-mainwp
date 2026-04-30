@@ -174,6 +174,17 @@
 	--shadow-layered-high-b: 0 1px 1px rgb(0 0 0 / 0.06), 0 2px 2px rgb(0 0 0 / 0.05), 0 4px 4px rgb(0 0 0 / 0.03), 0 8px 8px rgb(0 0 0 / 0.025), 0 16px 16px rgb(0 0 0 / 0.025);
 	--shadow-layered-high-t: 0 -1px 1px rgb(0 0 0 / 0.06), 0 -2px 2px rgb(0 0 0 / 0.05), 0 -4px 4px rgb(0 0 0 / 0.03), 0 -8px 8px rgb(0 0 0 / 0.025), 0 -16px 16px rgb(0 0 0 / 0.025);
 
+	/* Button hover ring shadows. */
+	--shadow-ringPrimary:   0 0 0 3px rgba(43, 129, 51, 0.5);
+	--shadow-ringSecondary: 0 0 0 3px rgba(34, 113, 177, 0.5);
+	--shadow-ringNeutral:   0 0 0 3px rgba(0, 0, 0, 0.1);
+	--shadow-ringDanger:    0 0 0 3px rgba(198, 39, 59, 0.5);
+	--shadow-ringSubtle:    0 0 0 3px rgba(0, 0, 0, 0.05);
+	--shadow-ringExcluded:  0 0 0 3px rgba(220, 38, 38, 0.08);
+
+	/* Sticky footer bidirectional shadow. */
+	--shadow-stickyFooter: 0 -8px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
 	/* Grid and animation tokens. */
 	--grid-template-columns-auto-1fr-auto: auto 1fr auto;
 	--animate-scrollIndicator: scrollIndicator 1.5s ease-in-out;

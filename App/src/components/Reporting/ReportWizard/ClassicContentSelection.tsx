@@ -34,7 +34,7 @@ const ClassicContentSelection = () => {
 			value: content,
 			validate: ( value: string[]) =>
 				0 < value.length ||
-				__( 'Please select at least one content item', 'burst-statistics' )
+				__( 'Please select at least one content item', 'burst-mainwp' )
 		});
 	}, [ register, content ]); // eslint-disable-line react-hooks/exhaustive-deps
 

@@ -36,14 +36,14 @@ interface UpsellConfigsProps {
 const upsellConfigs: UpsellConfigsProps = {
 	sales: {
 		upgradePlan: {
-			header: __( 'Unlock Sales Performance', 'burst-statistics' ),
+			header: __( 'Unlock Sales Performance', 'burst-mainwp' ),
 			subTitle: __(
 				'Gain valuable insights into your store’s revenue, top products, and sales trends.',
-				'burst-statistics'
+				'burst-mainwp'
 			),
 			licenseInsufficient: __(
 				'Your current license does not include the Sales dashboard.',
-				'burst-statistics'
+				'burst-mainwp'
 			)
 		},
 		testID: 'sales-upsell-copy-v1',
@@ -52,32 +52,32 @@ const upsellConfigs: UpsellConfigsProps = {
 				utm_medium: 'sales-upsell-variation-a',
 				title: __(
 					'Is your checkout costing you sales?',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				description: __(
 					'You work hard to bring visitors to your site. But do you know why some buy and others leave? Without the right insights, it’s impossible to see where your funnel is leaking revenue. Burst Pro reveals what’s working, what’s broken, and where you can make small changes that drive big results.',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				bullets: [
 					{
 						icon: 'goals',
 						text: __(
 							'Find drop-offs: See exactly where visitors leave in your checkout funnel.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					},
 					{
 						icon: 'goals',
 						text: __(
 							'Reduce cart abandonment: Identify checkout issues before they cost sales.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					},
 					{
 						icon: 'goals',
 						text: __(
 							'Spot opportunities: Learn which products, channels, and devices generate the most revenue.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					}
 				]
@@ -86,7 +86,7 @@ const upsellConfigs: UpsellConfigsProps = {
 				utm_medium: 'sales-upsell-variation-b',
 				title: __(
 					'Are your visitors buying, or just browsing?',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				description: '',
 				bullets: [
@@ -94,21 +94,21 @@ const upsellConfigs: UpsellConfigsProps = {
 						icon: 'goals',
 						text: __(
 							'Uncover checkout drop‑offs',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					},
 					{
 						icon: 'goals',
 						text: __(
 							'Spot and fix cart abandonment issues',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					},
 					{
 						icon: 'goals',
 						text: __(
 							'See which products and channels earn revenue',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					}
 				]
@@ -117,10 +117,10 @@ const upsellConfigs: UpsellConfigsProps = {
 	},
 	sources: {
 		upgradePlan: {
-			header: __( 'Unlock Source Insights', 'burst-statistics' ),
+			header: __( 'Unlock Source Insights', 'burst-mainwp' ),
 			subTitle: __(
 				'Get detailed insights into where your traffic comes from.',
-				'burst-statistics'
+				'burst-mainwp'
 			),
 			licenseInsufficient: ''
 		},
@@ -132,32 +132,32 @@ const upsellConfigs: UpsellConfigsProps = {
 				utm_medium: 'upsell-variation-a',
 				title: __(
 					'Are you just guessing with your marketing?',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				description: __(
 					'You spend time and money creating campaigns, but can\'t see what\'s actually working. Are your newsletters driving traffic or just getting opened? Is your social media budget paying off? Without clear tracking, you\'re making decisions in the dark, which is inefficient and frustrating.',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				bullets: [
 					{
 						icon: 'goals',
 						text: __(
 							'Stop guessing: Track UTM campaigns to see which channels deliver real visitors.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					},
 					{
 						icon: 'filter',
 						text: __(
 							'Optimize with confidence: Refine on-site promotions by analyzing custom URL parameters.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					},
 					{
 						icon: 'world',
 						text: __(
 							'Go beyond numbers: Visualize exactly where your visitors are with an interactive world map.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					}
 				]
@@ -166,32 +166,32 @@ const upsellConfigs: UpsellConfigsProps = {
 				utm_medium: 'upsell-variation-b',
 				title: __(
 					'Turn your traffic into targeted growth.',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				description: __(
 					'Effective growth comes from understanding your audience on a deeper level. Burst Pro provides the tools to see not just how many people visit, but who they are and what brought them to you, so you can focus your efforts where they matter most.',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				bullets: [
 					{
 						icon: 'goals',
 						text: __(
 							'Measure the success of your marketing with automatic UTM campaign tracking.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					},
 					{
 						icon: 'filter',
 						text: __(
 							'Optimize your website by tracking how visitors interact with specific parameters.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					},
 					{
 						icon: 'world',
 						text: __(
 							'Tailor your content by identifying key visitor locations, from country down to the city.',
-							'burst-statistics'
+							'burst-mainwp'
 						)
 					}
 				]
@@ -249,7 +249,7 @@ const UpsellCopy: React.FC<UpsellCopyProps> = ({
 					{! licenseActivated &&
 						__(
 							'Already have a license? Activate it to access these features.',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 
 					{licenseActivated &&
@@ -263,7 +263,7 @@ const UpsellCopy: React.FC<UpsellCopyProps> = ({
 							size="lg"
 							link={{ to: '/settings/license' }}
 						>
-							{__( 'Activate License', 'burst-statistics' )}
+							{__( 'Activate License', 'burst-mainwp' )}
 						</ButtonInput>
 					)}
 
@@ -277,7 +277,7 @@ const UpsellCopy: React.FC<UpsellCopyProps> = ({
 							);
 						}}
 					>
-						{__( 'Upgrade Plan', 'burst-statistics' )}
+						{__( 'Upgrade Plan', 'burst-mainwp' )}
 					</ButtonInput>
 				</div>
 			</div>
@@ -350,7 +350,7 @@ const UpsellCopy: React.FC<UpsellCopyProps> = ({
 					size="lg"
 					link={{ to: burst_get_website_url( 'pricing', baseParams ) }}
 				>
-					{__( 'Upgrade to Pro', 'burst-statistics' )}
+					{__( 'Upgrade to Pro', 'burst-mainwp' )}
 				</ButtonInput>
 
 				<div>
@@ -359,7 +359,7 @@ const UpsellCopy: React.FC<UpsellCopyProps> = ({
 						size="md"
 						link={{ to: burst_get_website_url( '/', baseParams ) }}
 					>
-						{__( 'Learn about all features', 'burst-statistics' )}
+						{__( 'Learn about all features', 'burst-mainwp' )}
 					</ButtonInput>
 				</div>
 			</div>
@@ -375,7 +375,7 @@ const UpsellCopy: React.FC<UpsellCopyProps> = ({
 						/>
 						<span className="text-xs text-text-gray">
 							{sprintf(
-								__( 'Variation: %s', 'burst-statistics' ),
+								__( 'Variation: %s', 'burst-mainwp' ),
 								variation
 							)}
 						</span>

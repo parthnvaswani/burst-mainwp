@@ -44,17 +44,17 @@ const BooleanFilterSetup: React.FC<BooleanFilterSetupProps> = ({
 				'': {
 					type: '',
 					icon: 'user',
-					label: __( 'All visitors (default)', 'burst-statistics' )
+					label: __( 'All visitors (default)', 'burst-mainwp' )
 				},
 				include: {
 					type: 'include',
 					icon: 'bounce',
-					label: __( 'Bounced visitors', 'burst-statistics' )
+					label: __( 'Bounced visitors', 'burst-mainwp' )
 				},
 				exclude: {
 					type: 'exclude',
 					icon: 'user-check',
-					label: __( 'Active visitors', 'burst-statistics' )
+					label: __( 'Active visitors', 'burst-mainwp' )
 				}
 			};
 		} else if ( 'new_visitor' === filterKey ) {
@@ -62,17 +62,17 @@ const BooleanFilterSetup: React.FC<BooleanFilterSetupProps> = ({
 				'': {
 					type: '',
 					icon: 'user',
-					label: __( 'All visitors (default)', 'burst-statistics' )
+					label: __( 'All visitors (default)', 'burst-mainwp' )
 				},
 				include: {
 					type: 'include',
 					icon: 'user-plus',
-					label: __( 'New visitors', 'burst-statistics' )
+					label: __( 'New visitors', 'burst-mainwp' )
 				},
 				exclude: {
 					type: 'exclude',
 					icon: 'user-check',
-					label: __( 'Returning visitors', 'burst-statistics' )
+					label: __( 'Returning visitors', 'burst-mainwp' )
 				}
 			};
 		} else if ( 'entry_exit_pages' === filterKey ) {
@@ -80,17 +80,17 @@ const BooleanFilterSetup: React.FC<BooleanFilterSetupProps> = ({
 				'': {
 					type: '',
 					icon: 'user',
-					label: __( 'All pages', 'burst-statistics' )
+					label: __( 'All pages', 'burst-mainwp' )
 				},
 				entry: {
 					type: 'entry',
 					icon: 'user-plus',
-					label: __( 'Entry pages', 'burst-statistics' )
+					label: __( 'Entry pages', 'burst-mainwp' )
 				},
 				exit: {
 					type: 'exit',
 					icon: 'user-check',
-					label: __( 'Exit pages', 'burst-statistics' )
+					label: __( 'Exit pages', 'burst-mainwp' )
 				}
 			};
 		}
@@ -100,28 +100,28 @@ const BooleanFilterSetup: React.FC<BooleanFilterSetupProps> = ({
 			'': {
 				type: '',
 				icon: 'user',
-				label: __( 'All visitors (default)', 'burst-statistics' ),
+				label: __( 'All visitors (default)', 'burst-mainwp' ),
 				description: __(
 					'Show all visitors without filtering',
-					'burst-statistics'
+					'burst-mainwp'
 				)
 			},
 			include: {
 				type: 'include',
 				icon: 'check',
-				label: __( 'Include', 'burst-statistics' ),
+				label: __( 'Include', 'burst-mainwp' ),
 				description: __(
 					'Include visitors matching this criteria',
-					'burst-statistics'
+					'burst-mainwp'
 				)
 			},
 			exclude: {
 				type: 'exclude',
 				icon: 'times',
-				label: __( 'Exclude', 'burst-statistics' ),
+				label: __( 'Exclude', 'burst-mainwp' ),
 				description: __(
 					'Exclude visitors matching this criteria',
-					'burst-statistics'
+					'burst-mainwp'
 				)
 			}
 		};
@@ -134,7 +134,7 @@ const BooleanFilterSetup: React.FC<BooleanFilterSetupProps> = ({
 			{/* Radio Options */}
 			<div className="flex flex-col gap-3">
 				<label className="block text-sm font-medium text-text-gray">
-					{__( 'Filter option', 'burst-statistics' )}
+					{__( 'Filter option', 'burst-mainwp' )}
 				</label>
 				<RadioButtonsInput
 					inputId={`${filterKey}-boolean`}

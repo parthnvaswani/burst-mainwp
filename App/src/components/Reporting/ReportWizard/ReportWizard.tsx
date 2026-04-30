@@ -124,7 +124,7 @@ const ReportWizard: React.FC = () => {
 								<button type="button" className="bg-gray-100 border border-gray-400 focus:ring-blue-500 rounded-full p-2.5 transition-all duration-200 hover:bg-gray-400 hover:shadow-md focus:outline-hidden focus:ring-2 focus:ring-offset-2" onClick={() => {
 									closeWizard();
 								}}
-								aria-label={__( 'Close', 'burst-statistics' )}
+								aria-label={__( 'Close', 'burst-mainwp' )}
 								>
 								<Icon name="times" />
 							</button>

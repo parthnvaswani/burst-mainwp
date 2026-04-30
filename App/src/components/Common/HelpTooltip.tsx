@@ -44,7 +44,7 @@ const HelpTooltip: React.FC<HelpTooltipProps> = ({
 			<Tooltip.Root>
 				<Tooltip.Trigger
 					asChild={asChild}
-					aria-label={__( 'Help information', 'burst-statistics' )}
+					aria-label={__( 'Help information', 'burst-mainwp' )}
 					onClick={handleClick}
 					onMouseDown={( e ) => e.stopPropagation()}
 				>
@@ -63,7 +63,7 @@ const HelpTooltip: React.FC<HelpTooltipProps> = ({
 					onClick={( e ) => e.stopPropagation()}
 				>
 					{'string' === typeof content ?
-						__( content, 'burst-statistics' ) :
+						__( content, 'burst-mainwp' ) :
 						content}
 
 					{hasArrow && (

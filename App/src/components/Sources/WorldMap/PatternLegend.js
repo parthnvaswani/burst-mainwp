@@ -78,7 +78,7 @@ const PatternLegend = memo(
 								width={symbolSize}
 								height={symbolSize}
 								fill={item.color}
-								stroke="rgba(0,0,0,0.1)"
+								stroke="var(--color-gray-300)"
 								strokeWidth={0.5}
 							/>
 
@@ -90,7 +90,7 @@ const PatternLegend = memo(
 									textAnchor="middle"
 									dominantBaseline="central"
 									fontSize="10"
-									fill="rgba(0,0,0,0.8)"
+									fill="var(--color-text-black)"
 									fontWeight="bold"
 								>
 									{item.pattern}

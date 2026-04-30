@@ -14,8 +14,8 @@ export const StepContentStory: React.FC = () => {
 			<TabsList
 				className="sticky top-0 z-10"
 				tabConfig={[
-					{ id: 'add-content', title: __( 'Add content', 'burst-statistics' )},
-					{ id: 'list-view', title: __( 'List view', 'burst-statistics' ) }
+					{ id: 'add-content', title: __( 'Add content', 'burst-mainwp' )},
+					{ id: 'list-view', title: __( 'List view', 'burst-mainwp' ) }
 				]}
 				tabGroup="report-wizard-content"
 			/>

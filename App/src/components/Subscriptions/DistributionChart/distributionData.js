@@ -2,9 +2,27 @@ import { getData } from '@/utils/api';
 import { __ } from '@wordpress/i18n';
 
 export const DISTRIBUTION_COLORS = {
-	gateways: [ '#2E8A37', '#4CAF50', '#81C784', '#A5D6A7', '#C8E6C9' ],
-	currencies: [ '#1565C0', '#1E88E5', '#42A5F5', '#90CAF9', '#BBDEFB' ],
-	countries: [ '#6A1B9A', '#8E24AA', '#AB47BC', '#CE93D8', '#E1BEE7' ]
+	gateways: [
+		'var(--color-primary-700)',
+		'var(--color-primary-600)',
+		'var(--color-primary-400)',
+		'var(--color-primary-300)',
+		'var(--color-primary-200)'
+	],
+	currencies: [
+		'var(--color-blue-800)',
+		'var(--color-blue-600)',
+		'var(--color-blue-400)',
+		'var(--color-blue-200)',
+		'var(--color-blue-100)'
+	],
+	countries: [
+		'var(--color-orange-700)',
+		'var(--color-orange-600)',
+		'var(--color-orange-400)',
+		'var(--color-orange-300)',
+		'var(--color-orange-200)'
+	]
 };
 
 /**
@@ -20,7 +38,12 @@ export const DISTRIBUTION_PLACEHOLDER_DATA = [
 ];
 
 /** Muted gray palette used in place of real colors while data is loading. */
-export const DISTRIBUTION_LOADING_COLORS = [ '#E5E7EB', '#D1D5DB', '#9CA3AF', '#6B7280' ];
+export const DISTRIBUTION_LOADING_COLORS = [
+	'var(--color-gray-300)',
+	'var(--color-gray-400)',
+	'var(--color-gray-500)',
+	'var(--color-gray-600)'
+];
 
 /**
  * Fetches distribution data for subscriptions.
@@ -92,7 +115,7 @@ export async function fetchDistributionData( view, { startDate, endDate, range, 
 	if ( 0 < smallItems.length ) {
 		output.push({
 			id: 'others',
-			label: __( 'Others', 'burst-statistics' ),
+			label: __( 'Others', 'burst-mainwp' ),
 			value: Number( othersPercent.toFixed( 2 ) ),
 			items: smallItems.map( ( item ) => ({
 				id: item.id,

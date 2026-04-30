@@ -93,19 +93,19 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>( (
 		// Variant-specific styles.
 		{
 
-			// Mirror ButtonInput variants to keep a consistent button look.
-			'bg-primary text-text-white hover:bg-primary hover:[box-shadow:0_0_0_3px_rgba(43,129,51,0.5)] focus:ring-primary':
-				'primary' === normalizedVariant,
-			'bg-blue text-text-white border border-blue-700 hover:bg-wp-blue hover:[box-shadow:0_0_0_3px_rgba(34,113,177,0.5)] focus:ring-blue':
-				'secondary' === normalizedVariant,
-			'border border-gray-400 bg-gray-100 text-text-gray hover:bg-gray-200 hover:text-gray hover:[box-shadow:0_0_0_3px_rgba(0,0,0,0.1)] focus:ring-gray-400':
-				'tertiary' === normalizedVariant,
-			'bg-red text-text-white hover:bg-red hover:[box-shadow:0_0_0_3px_rgba(198,39,59,0.5)] focus:ring-red':
-				'danger' === normalizedVariant,
+		// Mirror ButtonInput variants to keep a consistent button look.
+			'bg-primary text-text-white hover:bg-primary hover:shadow-ringPrimary focus:ring-primary':
+			'primary' === normalizedVariant,
+			'bg-blue text-text-white border border-blue-700 hover:bg-wp-blue hover:shadow-ringSecondary focus:ring-blue':
+			'secondary' === normalizedVariant,
+			'border border-gray-400 bg-gray-100 text-text-gray hover:bg-gray-200 hover:text-gray hover:shadow-ringNeutral focus:ring-gray-400':
+			'tertiary' === normalizedVariant,
+			'bg-red text-text-white hover:bg-red hover:shadow-ringDanger focus:ring-red':
+			'danger' === normalizedVariant,
 
 			// Keep custom dashed styling used by AddFilterButton.
-			'bg-white border border-gray-300 border-dashed shadow-sm hover:bg-gray-50 hover:[box-shadow:0_0_0_3px_rgba(0,0,0,0.05)]':
-				'dashed' === normalizedVariant
+			'bg-white border border-gray-300 border-dashed shadow-sm hover:bg-gray-50 hover:shadow-ringSubtle':
+			'dashed' === normalizedVariant
 		},
 
 		// Size-specific styles.

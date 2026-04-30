@@ -116,14 +116,14 @@ const LicenseActivationForm: React.FC<LicenseActivationFormProps> = ({
 	return (
 		<div className="w-full p-6 border-b border-gray-300">
 			<h2 className="text-xl font-semibold text-text-black mb-4">
-				{__( 'Activate Burst Pro', 'burst-statistics' )}
+				{__( 'Activate Burst Pro', 'burst-mainwp' )}
 			</h2>
 
 			<div className="flex flex-col gap-3">
 				<TextInput
 					id={fieldName}
 					type="password"
-					placeholder={__( 'Enter your license key here', 'burst-statistics' )}
+					placeholder={__( 'Enter your license key here', 'burst-mainwp' )}
 					value={licenseKey}
 					onChange={( e ) => onLicenseKeyChange( e.target.value )}
 					disabled={isLicenseMutationPending}
@@ -141,7 +141,7 @@ const LicenseActivationForm: React.FC<LicenseActivationFormProps> = ({
 						onClick={onActivate}
 						disabled={isLicenseMutationPending || ! licenseKey}
 					>
-						{__( 'Activate license', 'burst-statistics' )}
+						{__( 'Activate license', 'burst-mainwp' )}
 					</ButtonInput>
 					{isLicenseMutationPending && <Icon name="loading" size={20} />}
 				</div>
@@ -149,7 +149,7 @@ const LicenseActivationForm: React.FC<LicenseActivationFormProps> = ({
 				<p className="text-sm text-text-gray">
 					{__(
 						'Activating your license gives you automatic updates and support.',
-						'burst-statistics'
+						'burst-mainwp'
 					)}{' '}
 					<Hyperlink
 						className="underline text-sm text-text-gray"
@@ -161,7 +161,7 @@ const LicenseActivationForm: React.FC<LicenseActivationFormProps> = ({
 						rel="noopener noreferrer"
 						text={__(
 							'Find your license key in %syour account%s.',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					/>{' '}
 					<Hyperlink
@@ -174,7 +174,7 @@ const LicenseActivationForm: React.FC<LicenseActivationFormProps> = ({
 						rel="noopener noreferrer"
 						text={__(
 							'Having trouble? %sCheck our installation guide%s.',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					/>{' '}
 					<Hyperlink
@@ -187,7 +187,7 @@ const LicenseActivationForm: React.FC<LicenseActivationFormProps> = ({
 						rel="noopener noreferrer"
 						text={__(
 							'If that does not help, please %sopen a support ticket%s so we can help you out!',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					/>
 				</p>
@@ -246,7 +246,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 	 */
 	const getActivationDisplay = (): string => {
 		if ( 0 === activationLimit ) {
-			return __( 'Unlimited sites available', 'burst-statistics' );
+			return __( 'Unlimited sites available', 'burst-mainwp' );
 		}
 
 		let usedActivations = activationLimit - activationsLeft;
@@ -256,7 +256,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 		return sprintf(
 
 			/* translators: 1: number of sites used, 2: total number of sites allowed */
-			__( '%1$d of %2$d sites used', 'burst-statistics' ),
+			__( '%1$d of %2$d sites used', 'burst-mainwp' ),
 			usedActivations,
 			activationLimit
 		);
@@ -268,9 +268,9 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 	 */
 	const getLicenseStatusDisplay = (): string => {
 		if ( 'valid' === licenseStatus ) {
-			return __( 'Active on this site', 'burst-statistics' );
+			return __( 'Active on this site', 'burst-mainwp' );
 		}
-		return __( 'Inactive on this site', 'burst-statistics' );
+		return __( 'Inactive on this site', 'burst-mainwp' );
 	};
 
 	/**
@@ -283,7 +283,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 		// Check for lifetime license first (highest priority).
 		if ( isLifetime ) {
 			return {
-				text: __( 'Never', 'burst-statistics' ),
+				text: __( 'Never', 'burst-mainwp' ),
 				color: 'text-text-black'
 			};
 		}
@@ -300,7 +300,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 				text: sprintf(
 
 					/* translators: %d: number of days remaining */
-					__( 'Trial - %d days remaining', 'burst-statistics' ),
+					__( 'Trial - %d days remaining', 'burst-mainwp' ),
 					trialRemainingDays
 				),
 				color: 'text-green-700'
@@ -312,8 +312,8 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 			return {
 				text: sprintf(
 					isExpired ?
-						__( 'Expired on %s', 'burst-statistics' ) :
-						__( 'Expires on %s', 'burst-statistics' ),
+						__( 'Expired on %s', 'burst-mainwp' ) :
+						__( 'Expires on %s', 'burst-mainwp' ),
 					expiresDate
 				),
 				color: 'text-text-black'
@@ -327,7 +327,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 					text: sprintf(
 
 						/* translators: %s: renewal date */
-						__( 'Auto-renews on %s', 'burst-statistics' ),
+						__( 'Auto-renews on %s', 'burst-mainwp' ),
 						expiresDate
 					),
 					color: 'text-text-black'
@@ -336,23 +336,23 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 				return {
 					text: sprintf(
 						isExpired ?
-							__( 'Cancelled - Expired on %s', 'burst-statistics' ) :
-							__( 'Cancelled - Expires on %s', 'burst-statistics' ),
+							__( 'Cancelled - Expired on %s', 'burst-mainwp' ) :
+							__( 'Cancelled - Expires on %s', 'burst-mainwp' ),
 						expiresDate
 					),
 					color: 'text-red font-semibold'
 				};
 			case 'failing':
 				return {
-					text: __( 'Payment failed - Axtion required', 'burst-statistics' ),
+					text: __( 'Payment failed - Axtion required', 'burst-mainwp' ),
 					color: 'text-red'
 				};
 			default:
 				return {
 					text: sprintf(
 						isExpired ?
-							__( 'Expired on %s', 'burst-statistics' ) :
-							__( 'Expires on %s', 'burst-statistics' ),
+							__( 'Expired on %s', 'burst-mainwp' ) :
+							__( 'Expires on %s', 'burst-mainwp' ),
 						expiresDate
 					),
 					color: 'text-text-black'
@@ -372,12 +372,12 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 			( 'cancelled' === subscriptionStatus || 'failing' === subscriptionStatus )
 		) {
 			return {
-				headline: __( 'Keep your Pro insights & lock in your price', 'burst-statistics' ),
+				headline: __( 'Keep your Pro insights & lock in your price', 'burst-mainwp' ),
 				body: sprintf( __(
 					'Your subscription is set to expire on %s.',
-					'burst-statistics' ), expiresDate
-				) + ' ' + __( 'Renew your plan now to lock in your current rate. As long as your subscription stays active, your price won\'t increase and you\'ll keep access to all Pro data and features.', 'burst-statistics' ),
-				buttonText: __( 'Renew subscription', 'burst-statistics' ),
+					'burst-mainwp' ), expiresDate
+				) + ' ' + __( 'Renew your plan now to lock in your current rate. As long as your subscription stays active, your price won\'t increase and you\'ll keep access to all Pro data and features.', 'burst-mainwp' ),
+				buttonText: __( 'Renew subscription', 'burst-mainwp' ),
 				buttonUrl: burst_get_website_url( 'checkout', {
 					edd_license_key: encryptedLicenseKey,
 					download_id: 889,
@@ -458,8 +458,8 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 						)}
 					>
 						{isActive ?
-							__( 'Active', 'burst-statistics' ) :
-							__( 'Inactive', 'burst-statistics' )
+							__( 'Active', 'burst-mainwp' ) :
+							__( 'Inactive', 'burst-mainwp' )
 						}
 					</span>
 				</div>
@@ -469,7 +469,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 					{/* License Status - Active on THIS website. */}
 					<div className="flex items-center justify-between">
 						<span className="font-medium text-text-gray">
-							{__( 'License status', 'burst-statistics' )}
+							{__( 'License status', 'burst-mainwp' )}
 						</span>
 						<span className="text-text-black">{getLicenseStatusDisplay()}</span>
 					</div>
@@ -477,7 +477,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 					{/* Site Activations. */}
 					<div className="flex items-center justify-between">
 						<span className="font-medium text-text-gray">
-							{__( 'Site activations', 'burst-statistics' )}
+							{__( 'Site activations', 'burst-mainwp' )}
 						</span>
 						<span className="text-text-black">{getActivationDisplay()}</span>
 					</div>
@@ -485,7 +485,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 					{/* Subscription Status - Auto-renewal status. */}
 					<div className="flex items-center justify-between">
 						<span className="font-medium text-text-gray">
-							{__( 'Subscription status', 'burst-statistics' )}
+							{__( 'Subscription status', 'burst-mainwp' )}
 						</span>
 						<span className={subscriptionDisplay.color}>
 							{subscriptionDisplay.text}
@@ -508,7 +508,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 								)
 							}
 						>
-							{__( 'Manage subscription', 'burst-statistics' )}
+							{__( 'Manage subscription', 'burst-mainwp' )}
 						</ButtonInput>
 						<button
 							type="button"
@@ -516,7 +516,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 							disabled={isLicenseMutationPending}
 							className="text-sm text-text-gray hover:text-red underline focus:outline-hidden focus:ring-2 focus:ring-red focus:ring-offset-2 rounded transition-colors"
 						>
-							{__( 'Deactivate license on this site', 'burst-statistics' )}
+							{__( 'Deactivate license on this site', 'burst-mainwp' )}
 						</button>
 						{isLicenseMutationPending && <Icon name="loading" size={20} />}
 					</div>
@@ -549,7 +549,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 			{isActive && 0 < upgrades.length && ! contextualAction && (
 				<div className="w-full p-6 bg-gray-50 border-t border-gray-200">
 					<h3 className="text-md font-semibold text-text-gray mb-4">
-						{__( 'Available upgrades', 'burst-statistics' )}
+						{__( 'Available upgrades', 'burst-mainwp' )}
 					</h3>
 					<div className="flex flex-col gap-3">
 						{upgrades.map( ( upgrade, index ) => {
@@ -582,13 +582,13 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 											</h4>
 											{isRecommended && (
 												<span className="inline-flex items-center px-2.5 py-0.5 text-xs font-medium text-green-700 bg-green-300 rounded-full">
-													{__( 'Recommended for you', 'burst-statistics' )}
+													{__( 'Recommended for you', 'burst-mainwp' )}
 												</span>
 											)}
 										</div>
 										<p className="text-sm text-text-gray">
 											{'unlimited' === upgrade.sites ?
-												__( 'Unlimited sites', 'burst-statistics' ) :
+												__( 'Unlimited sites', 'burst-mainwp' ) :
 												sprintf(
 
 														/* translators: %s: number of sites */
@@ -596,7 +596,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 															'%s site',
 															'%s sites',
 															upgrade.sites,
-															'burst-statistics'
+															'burst-mainwp'
 														),
 														upgrade.sites
 												)}
@@ -607,7 +607,7 @@ const LicenseStatusCard: React.FC<LicenseStatusCardProps> = ({
 										size="sm"
 										onClick={() => window.open( upgradeUrlWithUTM, '_blank' )}
 									>
-										{__( 'Upgrade', 'burst-statistics' )}
+										{__( 'Upgrade', 'burst-mainwp' )}
 									</ButtonInput>
 								</div>
 							);

@@ -16,7 +16,7 @@ const AddFilterButton = ({
 	onClick,
 	className = '',
 	icon = 'plus',
-	label = __( 'Add filter', 'burst-statistics' ),
+	label = __( 'Add filter', 'burst-mainwp' ),
 	smallLabels = false
 }) => {
 	return (

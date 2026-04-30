@@ -72,7 +72,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="burst-statistics"/>
+				<element value="burst-mainwp"/>
 			</property>
 		</properties>
 	</rule>

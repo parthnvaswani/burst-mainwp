@@ -42,7 +42,7 @@ export const FunnelTooltip: React.FC<FunnelTooltipProps> = ({ data }) => {
 			<div className="mb-3 flex flex-col gap-1">
 				<p className="text-sm font-light text-text-gray-light">
 					{sprintf(
-						__( '%s visitors (%s%%)', 'burst-statistics' ),
+						__( '%s visitors (%s%%)', 'burst-mainwp' ),
 						sessionCount.toLocaleString(),
 						sessionPercentage.toFixed(
 							0 < sessionPercentage && 10 > sessionPercentage ?
@@ -65,7 +65,7 @@ export const FunnelTooltip: React.FC<FunnelTooltipProps> = ({ data }) => {
 							{sprintf(
 								__(
 									'%d%% conversion from previous step',
-									'burst-statistics'
+									'burst-mainwp'
 								),
 								conversionInRate.toFixed( 1 )
 							)}
@@ -78,7 +78,7 @@ export const FunnelTooltip: React.FC<FunnelTooltipProps> = ({ data }) => {
 								{sprintf(
 									__(
 										'%d%% drop-off to next step',
-										'burst-statistics'
+										'burst-mainwp'
 									),
 									dropoffOutRate.toFixed( 1 )
 								)}
@@ -91,7 +91,7 @@ export const FunnelTooltip: React.FC<FunnelTooltipProps> = ({ data }) => {
 				<div className="flex flex-col gap-1">
 					<p className="text-sm font-semibold text-text-gray">
 						{sprintf(
-							__( '%d lost visitors', 'burst-statistics' ),
+							__( '%d lost visitors', 'burst-mainwp' ),
 							lostSessions.toLocaleString()
 						)}
 					</p>

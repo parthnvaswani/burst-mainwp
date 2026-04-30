@@ -21,8 +21,8 @@ const SalesFooter = ({ startDate, endDate }: SalesFooterProps ) => {
 	const days = differenceInDays( endDateISO, startDateISO ) + 1;
 	const textStr =
 		1 === days ?
-			__( 'vs. previous day', 'burst-statistics' ) :
-			__( 'vs. previous %s days', 'burst-statistics' );
+			__( 'vs. previous day', 'burst-mainwp' ) :
+			__( 'vs. previous %s days', 'burst-mainwp' );
 
 	const text = textStr.replace( '%s', days + '' );
 

@@ -37,7 +37,7 @@ const GoalsHeader = ({ goals, goalId, setGoalId }) => {
 			label:
 				goal && 'string' === typeof goal.title ?
 					goal.title :
-					__( 'Untitled goal', 'burst-statistics' )
+					__( 'Untitled goal', 'burst-mainwp' )
 		};
 	});
 

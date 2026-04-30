@@ -82,7 +82,7 @@ const Reporting = ({ currentSettingPage }) => {
 
 	return (
 		<form>
-			<ErrorBoundary fallback={ __( 'Could not load Reporting Settings', 'burst-statistics' ) }>
+			<ErrorBoundary fallback={ __( 'Could not load Reporting Settings', 'burst-mainwp' ) }>
 				{
 					filteredGroups.map( ( group, index ) => {
 						const isLastGroup = index === filteredGroups.length - 1;

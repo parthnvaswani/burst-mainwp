@@ -79,19 +79,19 @@ export const transformTopPerformersData = ( data, selectedOption ) => {
 		transformedData[name].title = value.label;
 
 		// Set default subtitle based on metric type.
-		let defaultSubtitle = __( 'No data available', 'burst-statistics' );
+		let defaultSubtitle = __( 'No data available', 'burst-mainwp' );
 		switch ( name ) {
 			case 'top-product':
-				defaultSubtitle = __( 'No product data available', 'burst-statistics' );
+				defaultSubtitle = __( 'No product data available', 'burst-mainwp' );
 				break;
 			case 'top-device':
-				defaultSubtitle = __( 'No device data available', 'burst-statistics' );
+				defaultSubtitle = __( 'No device data available', 'burst-mainwp' );
 				break;
 			case 'top-country':
-				defaultSubtitle = __( 'No country data available', 'burst-statistics' );
+				defaultSubtitle = __( 'No country data available', 'burst-mainwp' );
 				break;
 			case 'top-campaign':
-				defaultSubtitle = __( 'No campaign data available', 'burst-statistics' );
+				defaultSubtitle = __( 'No campaign data available', 'burst-mainwp' );
 				break;
 		}
 

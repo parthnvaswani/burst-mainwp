@@ -13,8 +13,8 @@ const MapOverlay = memo( ( props ) => {
                 <div className="border-blue-600 h-8 w-8 animate-spin rounded-full border-b-2"></div>
                 <div className="text-sm font-medium text-text-gray">
                     {isGeoLoading || isGeoFetching ?
-                        __( 'Loading map data…', 'burst-statistics' ) :
-                        __( 'Loading analytics…', 'burst-statistics' )}
+                        __( 'Loading map data…', 'burst-mainwp' ) :
+                        __( 'Loading analytics…', 'burst-mainwp' )}
                 </div>
             </div>
         </div>

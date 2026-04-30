@@ -117,7 +117,7 @@ const IpBlockField = forwardRef(
 						btnVariant="tertiary"
 						size="md"
 					>
-						{__( 'Add current IP address', 'burst-statistics' )}
+						{__( 'Add current IP address', 'burst-mainwp' )}
 					</ButtonInput>
 				</div>
 			</FieldWrapper>

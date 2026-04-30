@@ -24,13 +24,13 @@ const SettingsGroupBlock = memo( ({ group, fields, control, isLastGroup, isShowi
         {group.pro && ! isLicenseValid  && (
           <Overlay className='backdrop-blur-sm'>
             <div className='flex flex-col gap-4'>
-              <h4>{__( 'Unlock Advanced Features with Burst Pro', 'burst-statistics' )}</h4>
+              <h4>{__( 'Unlock Advanced Features with Burst Pro', 'burst-mainwp' )}</h4>
               <p>
-                {__( 'This setting is exclusive to Pro users.', 'burst-statistics' )}
+                {__( 'This setting is exclusive to Pro users.', 'burst-mainwp' )}
               {group.pro && group.pro.text && ( ' ' + group.pro.text )}
               </p>
               {group.pro.url && <ButtonInput className="text-center" target="_blank" link={{ to: group.pro.url }} btnVariant='primary' btnSize='small'>
-                {__( 'Upgrade to Pro', 'burst-statistics' )}
+                {__( 'Upgrade to Pro', 'burst-mainwp' )}
               </ButtonInput>}
             </div>
             </Overlay>

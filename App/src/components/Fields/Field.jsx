@@ -121,7 +121,7 @@ const Field = memo( ({ setting, control, ...props }) => {
 							0 === invalid.length ||
 							__(
 								'Invalid IP address format:',
-								'burst-statistics'
+								'burst-mainwp'
 							) + invalid.join( ', ' )
 						);
 					},
@@ -152,7 +152,7 @@ const Field = memo( ({ setting, control, ...props }) => {
 							0 === dups.length ||
 							__(
 								'Duplicate IP addresses found:',
-								'burst-statistics'
+								'burst-mainwp'
 							) + dups.join( ', ' )
 						);
 					}
@@ -172,7 +172,7 @@ const Field = memo( ({ setting, control, ...props }) => {
 				value: true,
 				message:
 					setting.requiredMessage ||
-					__( 'This field is required', 'burst-statistics' )
+					__( 'This field is required', 'burst-mainwp' )
 			}
 		}),
 		...( setting.validation?.regex && {
@@ -182,7 +182,7 @@ const Field = memo( ({ setting, control, ...props }) => {
 				value: new RegExp( setting.validation.regex ), // nosemgrep
 				message:
 					setting.validation.message ||
-					__( 'Invalid format', 'burst-statistics' )
+					__( 'Invalid format', 'burst-mainwp' )
 			}
 		}),
 		...getCustomValidation(),
@@ -191,7 +191,7 @@ const Field = memo( ({ setting, control, ...props }) => {
 				min: {
 					value: setting.min,
 					message: sprintf(
-						__( 'Value must be at least %s', 'burst-statistics' ),
+						__( 'Value must be at least %s', 'burst-mainwp' ),
 						setting.min
 					)
 				}
@@ -201,7 +201,7 @@ const Field = memo( ({ setting, control, ...props }) => {
 				max: {
 					value: setting.max,
 					message: sprintf(
-						__( 'Value must be at most %s', 'burst-statistics' ),
+						__( 'Value must be at most %s', 'burst-mainwp' ),
 						setting.max
 					)
 				}

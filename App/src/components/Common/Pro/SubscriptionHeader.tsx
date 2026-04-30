@@ -40,7 +40,7 @@ const SubscriptionHeader = () => {
 		sprintf(
 			__(
 				'You\'re enjoying a full-featured trial with <highlight>%d days left.</highlight> It includes premium features from our higher tiers.',
-				'burst-statistics'
+				'burst-mainwp'
 			),
 			trialRemainingDays
 		),
@@ -59,7 +59,7 @@ const SubscriptionHeader = () => {
 		//no subscription, and expiring within 2 weeks.
 		text = __(
 			'Your trial has ended. Upgrade now to reactivate premium features.',
-			'burst-statistics'
+			'burst-mainwp'
 		);
 		showSubscriptionHeader = true;
 	} else if ( 'cancelled' === subscriptionStatus && licenseExpiresTwoWeeks ) {
@@ -69,7 +69,7 @@ const SubscriptionHeader = () => {
 			sprintf(
 				__(
 					'Your license is <highlight>expiring in %d days.</highlight> Upgrade now to reactivate premium features.',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				licenseExpirationRemainingDays
 			),
@@ -83,7 +83,7 @@ const SubscriptionHeader = () => {
 		//no subscription, and expired license.
 		text = __(
 			'Your license has expired. Upgrade now to reactivate premium features.',
-			'burst-statistics'
+			'burst-mainwp'
 		);
 		showSubscriptionHeader = true;
 	}
@@ -92,7 +92,7 @@ const SubscriptionHeader = () => {
 	if ( licenseInactive ) {
 		text = __(
 			'Activate your license to access premium features.',
-			'burst-statistics'
+			'burst-mainwp'
 		);
 		showSubscriptionHeader = true;
 	}
@@ -133,7 +133,7 @@ const SubscriptionHeader = () => {
 						href="https://burst-statistics.com/account"
 						className="text-sm font-medium text-blue-600 hover:text-blue-700 underline hover:underline whitespace-nowrap"
 					>
-						{__( 'Manage subscription', 'burst-statistics' )}
+						{__( 'Manage subscription', 'burst-mainwp' )}
 					</a>
 				</div>
 			</motion.div>

@@ -37,7 +37,7 @@ const InCompleteDataNotice = memo( () => {
                                 {sprintf(
                                     __(
                                         'Region-level data is available for visits after %s.',
-                                        'burst-statistics'
+                                        'burst-mainwp'
                                     ),
                                     cityGeoUpdateTime ?
                                         formatUnixToDate(
@@ -49,7 +49,7 @@ const InCompleteDataNotice = memo( () => {
                             <p className="mt-1">
                                 {__(
                                     'Region tracking is a new feature, so this data is only available for visits recorded after it was enabled.',
-                                    'burst-statistics'
+                                    'burst-mainwp'
                                 )}
                             </p>
                         </div>
@@ -69,7 +69,7 @@ const InCompleteDataNotice = memo( () => {
                             >
                                 {__(
                                     'Learn more',
-                                    'burst-statistics'
+                                    'burst-mainwp'
                                 )}
                             </a>
                             <button
@@ -79,10 +79,10 @@ const InCompleteDataNotice = memo( () => {
                                 className="rounded bg-gray-200 px-3 py-1 text-text-gray hover:bg-gray-300 hover:text-gray"
                                 title={__(
                                     'Dismiss for 30 days',
-                                    'burst-statistics'
+                                    'burst-mainwp'
                                 )}
                             >
-                                {__( 'Dismiss', 'burst-statistics' )}
+                                {__( 'Dismiss', 'burst-mainwp' )}
                             </button>
                         </div>
                     </div>

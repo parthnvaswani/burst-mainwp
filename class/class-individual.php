@@ -47,7 +47,7 @@ class Individual {
 	 */
 	public function add_subpage( array $subpages ): array {
 		$subpages[] = [
-			'title'       => esc_html__( 'Burst Statistics', 'burst-statistics' ),
+			'title'       => esc_html__( 'Burst Statistics', 'burst-mainwp' ),
 			'slug'        => 'BurstStatistics',
 			'sitetab'     => true,
 			'menu_hidden' => true,
@@ -71,7 +71,7 @@ class Individual {
 		$site_id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
 
 		if ( 0 === $site_id ) {
-			echo '<div class="ui red message">' . esc_html__( 'Invalid site ID.', 'burst-statistics' ) . '</div>';
+			echo '<div class="ui red message">' . esc_html__( 'Invalid site ID.', 'burst-mainwp' ) . '</div>';
 			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			do_action( 'mainwp_pagefooter_sites', 'BurstStatistics' );
 			return;
@@ -80,7 +80,7 @@ class Individual {
 		$website = API::instance()->get_site_data( $site_id );
 
 		if ( ! $website ) {
-			echo '<div class="ui red message">' . esc_html__( 'Site not found.', 'burst-statistics' ) . '</div>';
+			echo '<div class="ui red message">' . esc_html__( 'Site not found.', 'burst-mainwp' ) . '</div>';
 			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			do_action( 'mainwp_pagefooter_sites', 'BurstStatistics' );
 			return;
@@ -105,18 +105,13 @@ class Individual {
 		$child_data = API::instance()->get_child_auth( (int) $website->id );
 
 		if ( ! $child_data ) {
-			echo '<div class="ui red message">'
-				. esc_html__(
-					'Could not connect to child site. Please ensure Burst Statistics is installed and active on the child site.',
-					'burst-statistics'
-				)
-				. '</div>';
+			$this->render_connection_error_panel( $website );
 			return;
 		}
 
 		?>
-		<div id="mainwp-burst-statistics">
-			<div id="burst-statistics" class="burst" data-site-id="<?php echo esc_attr( $website->id ); ?>"
+		<div id="burst-statistics">
+			<div id="burst-mainwp" class="burst" data-site-id="<?php echo esc_attr( $website->id ); ?>"
 				data-site-url="<?php echo esc_url( $website->url ); ?>">
 			</div>
 		</div>
@@ -155,6 +150,83 @@ class Individual {
 			'burst_settings',
 			$this->build_localized_settings( $js_data, $child_data, $website )
 		);
+	}
+
+	/**
+	 * Render the child connection error panel using a dedicated template.
+	 */
+	private function render_connection_error_panel( object $website ): void {
+		$site_id                  = (int) ( $website->id ?? 0 );
+		$burst_mainwp_support_url = 'https://burst-statistics.com/support/';
+		$burst_mainwp_report_id   = 'burst-mainwp-support-report-' . $site_id;
+		$burst_mainwp_status_id   = 'burst-mainwp-support-copy-status-' . $site_id;
+		$burst_mainwp_button_id   = 'burst-mainwp-copy-report-' . $site_id;
+		$burst_mainwp_report      = $this->build_connection_error_report( $website );
+
+		$template_path = BURST_MAINWP_PATH . 'class/templates/connection-error-panel.php';
+		if ( file_exists( $template_path ) ) {
+			require $template_path;
+			return;
+		}
+
+		// Fallback for unexpected template loading issues.
+		echo '<div class="ui negative message">' . esc_html__( 'Could not connect to child site.', 'burst-mainwp' ) . '</div>';
+	}
+
+	/**
+	 * Build a detailed support report with the latest auth diagnostics.
+	 */
+	private function build_connection_error_report( object $website ): string {
+		$site_id    = (int) ( $website->id ?? 0 );
+		$site_url   = isset( $website->url ) ? (string) $website->url : '';
+		$auth_debug = API::instance()->get_last_auth_debug( $site_id );
+
+		$failure_reason = isset( $auth_debug['reason'] ) ? (string) $auth_debug['reason'] : 'unknown';
+		$failure_step   = isset( $auth_debug['step'] ) ? (string) $auth_debug['step'] : 'unknown';
+
+		$missing_keys = '';
+		if ( ! empty( $auth_debug['missing_keys'] ) && is_array( $auth_debug['missing_keys'] ) ) {
+			$missing_keys = implode( ', ', array_map( 'strval', $auth_debug['missing_keys'] ) );
+		}
+
+		$attempt_lines = [];
+		if ( ! empty( $auth_debug['http_attempts'] ) && is_array( $auth_debug['http_attempts'] ) ) {
+			foreach ( $auth_debug['http_attempts'] as $index => $attempt ) {
+				if ( ! is_array( $attempt ) ) {
+					continue;
+				}
+
+				$line  = 'Attempt ' . ( $index + 1 ) . ': ';
+				$line .= isset( $attempt['endpoint'] ) ? (string) $attempt['endpoint'] : 'unknown endpoint';
+
+				if ( isset( $attempt['result'] ) && 'wp_error' === $attempt['result'] ) {
+					$line .= ' | WP_Error';
+					if ( ! empty( $attempt['code'] ) ) {
+						$line .= ' (' . (string) $attempt['code'] . ')';
+					}
+					if ( ! empty( $attempt['message'] ) ) {
+						$line .= ': ' . (string) $attempt['message'];
+					}
+				} else {
+					$line .= ' | HTTP ' . ( isset( $attempt['http_code'] ) ? (int) $attempt['http_code'] : 0 );
+					if ( ! empty( $attempt['body_excerpt'] ) ) {
+						$line .= ' | Response excerpt: ' . preg_replace( '/\s+/', ' ', (string) $attempt['body_excerpt'] );
+					}
+				}
+
+				$attempt_lines[] = $line;
+			}
+		}
+
+		return "Burst MainWP child connection failed\n"
+			. 'Site ID: ' . $site_id . "\n"
+			. 'Site URL: ' . $site_url . "\n"
+			. 'Dashboard URL: ' . admin_url() . "\n"
+			. 'Failure step: ' . $failure_step . "\n"
+			. 'Failure reason: ' . $failure_reason . "\n"
+			. ( '' !== $missing_keys ? 'Missing keys in auth payload: ' . $missing_keys . "\n" : '' )
+			. ( ! empty( $attempt_lines ) ? "HTTP attempts:\n- " . implode( "\n- ", $attempt_lines ) . "\n" : '' )
+			. 'Timestamp (UTC): ' . gmdate( 'c' ) . "\n";
 	}
 
 	// ── Localization ──────────────────────────────────────────────────────────
@@ -241,7 +313,7 @@ class Individual {
 			'version'           => '',
 		];
 
-		$text_domain   = 'burst-statistics';
+		$text_domain   = 'burst-mainwp';
 		$languages_dir = WP_CONTENT_DIR . '/languages/plugins';
 
 		$locale            = determine_locale();

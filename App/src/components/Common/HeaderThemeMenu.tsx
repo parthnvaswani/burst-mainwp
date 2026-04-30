@@ -9,20 +9,20 @@ type ThemeOption = 'light' | 'system' | 'dark';
 const themeOptions: Array<{ value: ThemeOption; label: string; title: string; icon: 'sun' | 'desktop' | 'moon' }> = [
 	{
 		value: 'light',
-		label: __( 'Light', 'burst-statistics' ),
-		title: __( 'Light theme', 'burst-statistics' ),
+		label: __( 'Light', 'burst-mainwp' ),
+		title: __( 'Light theme', 'burst-mainwp' ),
 		icon: 'sun'
 	},
 	{
 		value: 'system',
-		label: __( 'System', 'burst-statistics' ),
-		title: __( 'Follow your device appearance setting and switch automatically between light and dark.', 'burst-statistics' ),
+		label: __( 'System', 'burst-mainwp' ),
+		title: __( 'Follow your device appearance setting and switch automatically between light and dark.', 'burst-mainwp' ),
 		icon: 'desktop'
 	},
 	{
 		value: 'dark',
-		label: __( 'Dark', 'burst-statistics' ),
-		title: __( 'Dark theme', 'burst-statistics' ),
+		label: __( 'Dark', 'burst-mainwp' ),
+		title: __( 'Dark theme', 'burst-mainwp' ),
 		icon: 'moon'
 	}
 ];
@@ -40,8 +40,8 @@ const HeaderThemeMenu = () => {
 			<Popover.Trigger asChild>
 				<button
 					className="focus:ring-blue-500 rounded-md p-2.5 transition-all duration-200 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-offset-2"
-					aria-label={__( 'Open theme menu', 'burst-statistics' )}
-					title={__( 'Theme settings', 'burst-statistics' )}
+					aria-label={__( 'Open theme menu', 'burst-mainwp' )}
+					title={__( 'Theme settings', 'burst-mainwp' )}
 					type="button"
 				>
 					<Icon name="preferences" />
@@ -54,7 +54,7 @@ const HeaderThemeMenu = () => {
 			>
 				<div className="flex items-center justify-between gap-4">
 					<span className="text-sm font-medium text-text-black">
-						{__( 'Theme', 'burst-statistics' )}
+						{__( 'Theme', 'burst-mainwp' )}
 					</span>
 
 					<div className="grid w-32 grid-cols-3 rounded-full bg-gray-200 p-0.5">

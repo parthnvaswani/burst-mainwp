@@ -63,7 +63,7 @@ export const Steps = () => {
 
 							<div className="flex flex-col">
 								<p className="text-xs text-text-gray-light uppercase tracking-[0.05em] whitespace-nowrap">
-									{sprintf( __( 'Step %d', 'burst-statistics' ), step.number )}
+									{sprintf( __( 'Step %d', 'burst-mainwp' ), step.number )}
 								</p>
 
 								<p className={clsx( 'text-md font-medium whitespace-nowrap transition-all duration-300 ease-in-out group-hover:text-text-gray', step.number === currentStep ? 'text-text-gray' : 'text-text-gray-light' )}>

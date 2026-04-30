@@ -104,7 +104,7 @@ const FieldWrapper = memo(
 				</Label.Root>
 				{required && (
 					<span className="ml-1 text-xs font-normal text-text-gray">
-						({__( 'Required', 'burst-statistics' )})
+						({__( 'Required', 'burst-mainwp' )})
 					</span>
 				)}
 				{recommended && <RecommendBadge />}
@@ -188,7 +188,7 @@ const FieldWrapper = memo(
 								href={context.url}
 								target="_blank"
 							>
-								{__( 'More info', 'burst-statistics' )}
+								{__( 'More info', 'burst-mainwp' )}
 							</a>
 						)}
 					</p>

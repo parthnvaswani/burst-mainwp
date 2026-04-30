@@ -35,7 +35,7 @@ const SettingsNavigationItem = memo( ({ item, from, to, params }) => {
         >
 			{item.icon && '' !== item.icon && (
 				<span aria-hidden="true" className="inline-flex shrink-0">
-					<Icon name={ item.icon } size={ 14 } color="lightgray" strokeWidth={2.5}/>
+					<Icon name={ item.icon } size={ 14 } color="gray" strokeWidth={2.5}/>
 				</span>
 			)}
 			<span className="min-w-0">{item.title}</span>

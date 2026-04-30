@@ -56,7 +56,7 @@ const NewBadge: React.FC<NewBadgeProps> = ({
 
 	const badge = (
 		<span className={`inline-flex items-center gap-1 rounded bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700 ${className}`}>
-			{__( 'New', 'burst-statistics' )}
+			{__( 'New', 'burst-mainwp' )}
 		</span>
 	);
 

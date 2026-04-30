@@ -43,7 +43,7 @@ class ErrorBoundary extends Component {
 					<h3 className="mb-4 text-xl font-bold text-text-black">
 						{__(
 							'Uh-oh! We stumbled upon an error.',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</h3>
 					<div className="mb-6 rounded-sm border bg-gray-50 p-4">
@@ -60,14 +60,14 @@ class ErrorBoundary extends Component {
 							onClick={this.copyError}
 						>
 							{this.state.copied ?
-								__( 'Copied', 'burst-statistics' ) :
-								__( 'Copy Error', 'burst-statistics' )}
+								__( 'Copied', 'burst-mainwp' ) :
+								__( 'Copy Error', 'burst-mainwp' )}
 						</button>
 					</div>
 					<p className="mb-4 text-text-black">
 						{__(
 							'We\'re sorry for the trouble. Please take a moment to report this issue on the WordPress forums so we can work on fixing it. Here’s how you can report the issue:',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</p>
 					<ol className="list-inside list-decimal flex flex-col gap-2 text-text-black">
@@ -75,7 +75,7 @@ class ErrorBoundary extends Component {
 							{sprintf(
 								__(
 									'Copy the error details by clicking the %s button above.',
-									'burst-statistics'
+									'burst-mainwp'
 								),
 								'"Copy Error"'
 							)}
@@ -87,21 +87,21 @@ class ErrorBoundary extends Component {
 							>
 								{__(
 									'Navigate to the Support Forum.',
-									'burst-statistics'
+									'burst-mainwp'
 								)}
 							</a>
 						</li>
 						<li>
 							{__(
 								'If you haven’t already, log in to your WordPress.org account or create a new account.',
-								'burst-statistics'
+								'burst-mainwp'
 							)}
 						</li>
 						<li>
 							{sprintf(
 								__(
 									'Once logged in, click on %s under the Burst Statistics forum.',
-									'burst-statistics'
+									'burst-mainwp'
 								),
 								'"Create Topic"'
 							)}
@@ -110,7 +110,7 @@ class ErrorBoundary extends Component {
 							{sprintf(
 								__(
 									'Title: Mention %s along with a brief hint of the error.',
-									'burst-statistics'
+									'burst-mainwp'
 								),
 								'\'Error Encountered\''
 							)}
@@ -118,14 +118,14 @@ class ErrorBoundary extends Component {
 						<li>
 							{__(
 								'Description: Paste the copied error details and explain what you were doing when the error occurred.',
-								'burst-statistics'
+								'burst-mainwp'
 							)}
 						</li>
 						<li>
 							{sprintf(
 								__(
 									'Click %s to post your topic. Our team will look into the issue and provide assistance.',
-									'burst-statistics'
+									'burst-mainwp'
 								),
 								'"Submit"'
 							)}

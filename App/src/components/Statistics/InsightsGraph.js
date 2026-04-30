@@ -2,27 +2,31 @@ import { useMemo, useCallback } from '@wordpress/element';
 import { ResponsiveLine } from '@nivo/line';
 import { InsightsTooltip } from './InsightsTooltip';
 import { formatAxisLabel, getChartXAxisTickValues } from '@/utils/formatting';
+import { METRIC_COLORS } from './insightsConfig';
 
 /**
  * Transforms API response data into the format expected by Nivo ResponsiveLine.
  * Each x value is a JS Date object derived from the corresponding Unix timestamp.
+ * Colors are resolved from the design-system METRIC_COLORS map, with the
+ * server-provided borderColor used only as a fallback.
  *
  * @param {Object}   data                    - API response object.
  * @param {Array}    data.datasets            - Dataset definitions with label, data, and borderColor.
  * @param {number[]} timestamps              - Array of Unix timestamps (UTC seconds) per data point.
+ * @param {string[]} metrics                 - Ordered array of active metric keys.
  * @return {Array} Nivo-compatible line series array.
  */
-function transformToNivoFormat( data, timestamps ) {
+function transformToNivoFormat( data, timestamps, metrics ) {
 	if ( ! data?.datasets || ! timestamps?.length ) {
 		return [];
 	}
 
-	return data.datasets.map( ( dataset ) => ({
-		id: dataset.label,
-		color: dataset.borderColor,
-		data: timestamps.map( ( ts, i ) => ({
+	return data.datasets.map( ( dataset, i ) => ({
+		id: metrics?.[ i ] ?? dataset.label,
+		color: METRIC_COLORS[ metrics?.[ i ] ] ?? dataset.borderColor,
+		data: timestamps.map( ( ts, j ) => ({
 			x: new Date( ts * 1000 ),
-			y: dataset.data[ i ] ?? 0
+			y: dataset.data[ j ] ?? 0
 		}) )
 	}) );
 }
@@ -37,12 +41,13 @@ function transformToNivoFormat( data, timestamps ) {
  * @param {number[]} props.timestamps         - Unix timestamps (UTC seconds) per point.
  * @param {string}   props.interval           - Active grouping: 'hour'|'day'|'week'|'month'.
  * @param {boolean}  props.spansMultipleYears - Whether the range covers more than one year.
+ * @param {string[]} props.metrics            - Ordered array of active metric keys (e.g. ['pageviews', 'visitors']).
  * @return {JSX.Element} The rendered line chart.
  */
-const InsightsGraph = ({ data, timestamps, interval, spansMultipleYears }) => {
+const InsightsGraph = ({ data, timestamps, interval, spansMultipleYears, metrics }) => {
 	const nivoData = useMemo(
-		() => transformToNivoFormat( data, timestamps ),
-		[ data, timestamps ]
+		() => transformToNivoFormat( data, timestamps, metrics ),
+		[ data, timestamps, metrics ]
 	);
 
 	const allDates = useMemo(
@@ -66,7 +71,7 @@ const InsightsGraph = ({ data, timestamps, interval, spansMultipleYears }) => {
 		[ interval, spansMultipleYears ]
 	);
 
-	// Slice tooltip wrapper so we can pass the interval down without prop-drilling through Nivo.
+	// Slice tooltip wrapper so we can pass interval down without prop-drilling through Nivo.
 	const sliceTooltip = useCallback(
 		({ slice }) => <InsightsTooltip slice={slice} interval={interval ?? 'day'} />,
 		[ interval ]
@@ -100,10 +105,10 @@ const InsightsGraph = ({ data, timestamps, interval, spansMultipleYears }) => {
 			enableSlices="x"
 			sliceTooltip={ sliceTooltip }
 			theme={{
-				grid: { line: { stroke: '#dee2e6', strokeWidth: 1 } },
+				grid: { line: { stroke: 'var(--color-gray-300)', strokeWidth: 1 } },
 				axis: {
-					ticks: { text: { fill: '#6c757d', fontSize: 12 } },
-					domain: { line: { stroke: '#adb5bd', strokeWidth: 1 } }
+					ticks: { text: { fill: 'var(--color-gray-600)', fontSize: 12 } },
+					domain: { line: { stroke: 'var(--color-gray-400)', strokeWidth: 1 } }
 				}
 			}}
 			curve="catmullRom"

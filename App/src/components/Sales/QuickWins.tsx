@@ -116,7 +116,7 @@ const QuickWins = (): JSX.Element => {
 			toast.error(
 				err instanceof Error ?
 					err.message :
-					__( 'An error occurred', 'burst-statistics' )
+					__( 'An error occurred', 'burst-mainwp' )
 			);
 		},
 		onSuccess: () => {} // eslint-disable-line @typescript-eslint/no-empty-function
@@ -163,7 +163,7 @@ const QuickWins = (): JSX.Element => {
 			toast.error(
 				err instanceof Error ?
 					err.message :
-					__( 'An error occurred', 'burst-statistics' )
+					__( 'An error occurred', 'burst-mainwp' )
 			);
 		},
 		onSuccess: () => {} // eslint-disable-line @typescript-eslint/no-empty-function
@@ -199,7 +199,7 @@ const QuickWins = (): JSX.Element => {
 	}, [ quickWinsData.dateRange ]);
 
 	const blockHeadingProps = {
-		title: __( 'Opportunities', 'burst-statistics' ),
+		title: __( 'Opportunities', 'burst-mainwp' ),
 		controls: dateControl,
 		isLoading: quickWinsQuery.isFetching
 	};
@@ -217,7 +217,7 @@ const QuickWins = (): JSX.Element => {
 			<BlockContent {...blockContentProps}>
 				{quickWinsQuery.isFetching ? (
 					<p className="p-6 text-sm text-text-gray-light">
-						{__( 'Loading…', 'burst-statistics' )}
+						{__( 'Loading…', 'burst-mainwp' )}
 					</p>
 				) : quickWinsData.quickWins &&
 				0 < quickWinsData.quickWins.length ? (
@@ -308,7 +308,7 @@ const QuickWins = (): JSX.Element => {
 														>
 															{__(
 																'Dismiss',
-																'burst-statistics'
+																'burst-mainwp'
 															)}
 														</button>
 													</Close>
@@ -324,7 +324,7 @@ const QuickWins = (): JSX.Element => {
 														>
 															{__(
 																'Snooze for 30 days',
-																'burst-statistics'
+																'burst-mainwp'
 															)}
 														</button>
 													</Close>
@@ -353,7 +353,7 @@ const QuickWins = (): JSX.Element => {
 													>
 														{__(
 															'Read our guide',
-															'burst-statistics'
+															'burst-mainwp'
 														)}
 														<Icon
 															name="right-arrow"
@@ -374,7 +374,7 @@ const QuickWins = (): JSX.Element => {
 					<p className="p-6 text-sm text-text-gray-light">
 						{__(
 							'Crunching data. Check back later to see if there are quick wins!',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</p>
 				)}

@@ -60,7 +60,7 @@ export default function EditableTextField({ value, onChange }) {
 					ref={inputRef}
 				/>
 			) : (
-				<Tooltip content={__( 'Click to edit', 'burst-statistics' )}>
+				<Tooltip content={__( 'Click to edit', 'burst-mainwp' )}>
 					<h5
 						className="min-w-[150px] font-semibold inline-block burst-tooltip-clicktoedit"
 						tabIndex="0"
@@ -70,7 +70,7 @@ export default function EditableTextField({ value, onChange }) {
 						{'' !== tempValue ? (
 							tempValue
 						) : (
-							<i>{__( 'Untitled goal', 'burst-statistics' )}</i>
+							<i>{__( 'Untitled goal', 'burst-mainwp' )}</i>
 						)}
 					</h5>
 				</Tooltip>

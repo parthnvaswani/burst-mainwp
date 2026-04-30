@@ -340,20 +340,20 @@ function getCountryName( countryCode ) {
 	if ( countryCode ) {
 		return (
 			burst_settings.countries[countryCode.toUpperCase()] ||
-			__( 'Not set', 'burst-statistics' )
+			__( 'Not set', 'burst-mainwp' )
 		);
 	}
-	return __( 'Unknown', 'burst-statistics' );
+	return __( 'Unknown', 'burst-mainwp' );
 }
 
 function getContinentName( continentCode ) {
 	if ( continentCode ) {
 		return (
 			burst_settings.continents[continentCode.toUpperCase()] ||
-			__( 'Not set', 'burst-statistics' )
+			__( 'Not set', 'burst-mainwp' )
 		);
 	}
-	return __( 'Unknown', 'burst-statistics' );
+	return __( 'Unknown', 'burst-mainwp' );
 }
 
 function getDateWithOffset( currentDate = new Date() ) {
@@ -378,32 +378,54 @@ function getDateWithOffset( currentDate = new Date() ) {
 }
 const currentDateWithOffset = getDateWithOffset();
 
-export const BURST_START_DATE = new Date( 2022, 0, 1 ); // This is the first date for a first Burst plugin on a live enviroment.
+const DEFAULT_BURST_START_TIMESTAMP = 1640995200;
+
+const getBurstStartDate = () => {
+	let activationTimestamp = DEFAULT_BURST_START_TIMESTAMP;
+	if ( burst_settings.burst_date_picker_start_date ) {
+		activationTimestamp = Number( burst_settings.burst_date_picker_start_date );
+	} else if ( burst_settings.burst_activation_time ) {
+		activationTimestamp = Number( burst_settings.burst_activation_time );
+	}
+
+	if ( isNaN( activationTimestamp ) ) {
+		activationTimestamp = DEFAULT_BURST_START_TIMESTAMP;
+	}
+
+	const startTimestamp =
+		Number.isFinite( activationTimestamp ) && 0 < activationTimestamp ?
+			activationTimestamp :
+			DEFAULT_BURST_START_TIMESTAMP;
+
+	return startOfDay( getDateWithOffset( new Date( startTimestamp * 1000 ) ) );
+};
+
+export const BURST_START_DATE = getBurstStartDate();
 
 const availableRanges = {
 	today: {
-		label: __( 'Today', 'burst-statistics' ),
+		label: __( 'Today', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfDay( currentDateWithOffset ),
 			endDate: endOfDay( currentDateWithOffset )
 		})
 	},
 	yesterday: {
-		label: __( 'Yesterday', 'burst-statistics' ),
+		label: __( 'Yesterday', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfDay( addDays( currentDateWithOffset, -1 ) ),
 			endDate: endOfDay( addDays( currentDateWithOffset, -1 ) )
 		})
 	},
 	'last-7-days': {
-		label: __( 'Last 7 days', 'burst-statistics' ),
+		label: __( 'Last 7 days', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfDay( addDays( currentDateWithOffset, -7 ) ),
 			endDate: endOfDay( addDays( currentDateWithOffset, -1 ) )
 		})
 	},
 	'last-week': {
-		label: __( 'Last week', 'burst-statistics' ),
+		label: __( 'Last week', 'burst-mainwp' ),
 		range: () => {
 			const daysFromSunday = currentDateWithOffset.getDay();
 			const startOfThisWeek = addDays( currentDateWithOffset, -daysFromSunday );
@@ -414,28 +436,28 @@ const availableRanges = {
 		}
 	},
 	'last-30-days': {
-		label: __( 'Last 30 days', 'burst-statistics' ),
+		label: __( 'Last 30 days', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfDay( addDays( currentDateWithOffset, -30 ) ),
 			endDate: endOfDay( addDays( currentDateWithOffset, -1 ) )
 		})
 	},
 	'last-90-days': {
-		label: __( 'Last 90 days', 'burst-statistics' ),
+		label: __( 'Last 90 days', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfDay( addDays( currentDateWithOffset, -90 ) ),
 			endDate: endOfDay( addDays( currentDateWithOffset, -1 ) )
 		})
 	},
 	'last-month': {
-		label: __( 'Last month', 'burst-statistics' ),
+		label: __( 'Last month', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfMonth( addMonths( currentDateWithOffset, -1 ) ),
 			endDate: endOfMonth( addMonths( currentDateWithOffset, -1 ) )
 		})
 	},
 	'week-to-date': {
-		label: __( 'Week to date', 'burst-statistics' ),
+		label: __( 'Week to date', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfDay(
 				addDays( currentDateWithOffset, -currentDateWithOffset.getDay() )
@@ -444,30 +466,30 @@ const availableRanges = {
 		})
 	},
 	'month-to-date': {
-		label: __( 'Month to date', 'burst-statistics' ),
+		label: __( 'Month to date', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfMonth( currentDateWithOffset ),
 			endDate: endOfDay( currentDateWithOffset )
 		})
 	},
 	'year-to-date': {
-		label: __( 'Year to date', 'burst-statistics' ),
+		label: __( 'Year to date', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfYear( currentDateWithOffset ),
 			endDate: endOfDay( currentDateWithOffset )
 		})
 	},
 	'last-year': {
-		label: __( 'Last year', 'burst-statistics' ),
+		label: __( 'Last year', 'burst-mainwp' ),
 		range: () => ({
 			startDate: startOfYear( addYears( currentDateWithOffset, -1 ) ),
 			endDate: endOfYear( addYears( currentDateWithOffset, -1 ) )
 		})
 	},
 	'all-time': {
-		label: __( 'All time', 'burst-statistics' ),
+		label: __( 'All time', 'burst-mainwp' ),
 		range: () => ({
-			startDate: startOfYear( BURST_START_DATE ),
+			startDate: BURST_START_DATE,
 			endDate: endOfDay( currentDateWithOffset )
 		})
 	}

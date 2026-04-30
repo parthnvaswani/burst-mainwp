@@ -38,7 +38,7 @@ export const ReportActionMenu: React.FC<ReportActionMenuProps> = ({ row }) => {
 	// Build menu items dynamically based on report type.
 	const menuItems: MenuItem[] = [
 		{
-			label: __( 'Edit', 'burst-statistics' ),
+			label: __( 'Edit', 'burst-mainwp' ),
 			action: () => {
 				loadReportIntoWizard( row.id, true );
 				setCurrentStep( 4 );
@@ -48,24 +48,24 @@ export const ReportActionMenu: React.FC<ReportActionMenuProps> = ({ row }) => {
 			hidden: null !== wizard.id
 		},
 		{
-			label: __( 'Duplicate', 'burst-statistics' ),
+			label: __( 'Duplicate', 'burst-mainwp' ),
 			action: () => {
 				duplicateReport( row.id ).then( ( response ) => {
 					if ( ! response ) {
-						toast.error( __( 'Failed to duplicate report', 'burst-statistics' ) );
+						toast.error( __( 'Failed to duplicate report', 'burst-mainwp' ) );
 						return;
 					} else {
-						toast.success( __( 'Report duplicated successfully', 'burst-statistics' ) );
+						toast.success( __( 'Report duplicated successfully', 'burst-mainwp' ) );
 					}
 				});
 			}
 		},
 		{
-			label: __( 'Duplicate and edit', 'burst-statistics' ),
+			label: __( 'Duplicate and edit', 'burst-mainwp' ),
 			action: () => {
 				duplicateAndLoadReportIntoWizard( row.id ).then( ( response ) => {
 					if ( ! response ) {
-						toast.error( __( 'Failed to duplicate report', 'burst-statistics' ) );
+						toast.error( __( 'Failed to duplicate report', 'burst-mainwp' ) );
 						return;
 					}
 					setCurrentStep( 4 );
@@ -76,8 +76,8 @@ export const ReportActionMenu: React.FC<ReportActionMenuProps> = ({ row }) => {
 		...( row && row.format && 'story' === row.format ? [ {
 			label: (
 				<span className="flex items-center gap-2">
-					{__( 'Open story in a new tab', 'burst-statistics' )}
-							{! premiumReportsEnabled && <ProBadge id="reporting" label={__( 'Pro', 'burst-statistics' )} />}
+					{__( 'Open story in a new tab', 'burst-mainwp' )}
+							{! premiumReportsEnabled && <ProBadge id="reporting" label={__( 'Pro', 'burst-mainwp' )} />}
 				</span>
 			),
 			action: () => openPreview( row.id, false ),
@@ -87,8 +87,8 @@ export const ReportActionMenu: React.FC<ReportActionMenuProps> = ({ row }) => {
 		...( row && row.format && 'story' === row.format ? [ {
 			label: (
 				<span className="flex items-center gap-2">
-					{__( 'Download PDF', 'burst-statistics' )}
-					{! premiumReportsEnabled && <ProBadge id="reporting" label={__( 'Pro', 'burst-statistics' )} />}
+					{__( 'Download PDF', 'burst-mainwp' )}
+					{! premiumReportsEnabled && <ProBadge id="reporting" label={__( 'Pro', 'burst-mainwp' )} />}
 				</span>
 			),
 			action: () => openPreview( row.id, true ),
@@ -96,32 +96,32 @@ export const ReportActionMenu: React.FC<ReportActionMenuProps> = ({ row }) => {
 			disabled: ! premiumReportsEnabled
 		} ] : []),
 		{
-			label: __( 'Send now', 'burst-statistics' ),
+			label: __( 'Send now', 'burst-mainwp' ),
 			action: () => {
 				sendEmailNow( row.id ).then( ( response: boolean ) => {
 					if ( response ) {
 						toast.success(
-							__( 'Email sending has been started.', 'burst-statistics' )
+							__( 'Email sending has been started.', 'burst-mainwp' )
 						);
 					} else {
 						toast.error(
-							__( 'Failed to start email sending.', 'burst-statistics' )
+							__( 'Failed to start email sending.', 'burst-mainwp' )
 						);
 					}
 				});
 			}
 		},
 		{
-			label: __( 'Send test email', 'burst-statistics' ),
+			label: __( 'Send test email', 'burst-mainwp' ),
 			action: () => {
 				sendTestEmail( row.id ).then( ( response: boolean ) => {
 					if ( response ) {
 						toast.success(
-							__( 'Test email sending has been started.', 'burst-statistics' )
+							__( 'Test email sending has been started.', 'burst-mainwp' )
 						);
 					} else {
 						toast.error(
-							__( 'Failed to start test email sending.', 'burst-statistics' )
+							__( 'Failed to start test email sending.', 'burst-mainwp' )
 						);
 					}
 				});
@@ -129,7 +129,7 @@ export const ReportActionMenu: React.FC<ReportActionMenuProps> = ({ row }) => {
 			divider: true
 		},
 		{
-			label: __( 'Delete', 'burst-statistics' ),
+			label: __( 'Delete', 'burst-mainwp' ),
 			action: () => {
 				deleteReport( row.id ).then( ( success ) => {
 
@@ -138,9 +138,9 @@ export const ReportActionMenu: React.FC<ReportActionMenuProps> = ({ row }) => {
 						useWizardStore.getState().closeWizard();
 					}
 					if ( success ) {
-						toast.success( __( 'Report deleted successfully', 'burst-statistics' ) );
+						toast.success( __( 'Report deleted successfully', 'burst-mainwp' ) );
 					} else {
-						toast.error( __( 'Failed to delete report', 'burst-statistics' ) );
+						toast.error( __( 'Failed to delete report', 'burst-mainwp' ) );
 					}
 				});
 			},

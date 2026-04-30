@@ -11,7 +11,7 @@ const ReportingLoader = ( reportingId ) => {
 
 	if ( ! subMenu ) {
 		throw notFound({
-			message: __( 'Reporting section not found', 'burst-statistics' )
+			message: __( 'Reporting section not found', 'burst-mainwp' )
 		});
 	}
 
@@ -19,7 +19,7 @@ const ReportingLoader = ( reportingId ) => {
 
 	if ( ! currentItem ) {
 		throw notFound({
-			message: __( 'Reporting page not found', 'burst-statistics' )
+			message: __( 'Reporting page not found', 'burst-mainwp' )
 		});
 	}
 
@@ -45,7 +45,7 @@ export const Route = createFileRoute( '/reporting/$reportingId' )({
 	errorComponent: ({ error }) => (
 		<div className="p-4 text-red-500">
 			{error.message ||
-				__( 'An error occurred loading reports', 'burst-statistics' )}
+				__( 'An error occurred loading reports', 'burst-mainwp' )}
 		</div>
 	)
 });

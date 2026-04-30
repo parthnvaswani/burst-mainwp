@@ -15,11 +15,11 @@ const getStatusColor = ( status ) => {
 const getStatusLabel = ( status ) => {
 	switch ( status ) {
 		case 'active':
-			return __( 'Active', 'burst-statistics' );
+			return __( 'Active', 'burst-mainwp' );
 		case 'inactive':
-			return __( 'Inactive', 'burst-statistics' );
+			return __( 'Inactive', 'burst-mainwp' );
 		default:
-			return __( 'Unknown', 'burst-statistics' );
+			return __( 'Unknown', 'burst-mainwp' );
 	}
 };
 const GoalStatus = ({ data }) => {

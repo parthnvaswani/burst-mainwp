@@ -11,17 +11,17 @@ function SettingsFooter({ onSubmit, control }) {
 	const formStates = [
 		{
 			condition: isSubmitting,
-			message: __( 'Saving…', 'burst-statistics' ),
+			message: __( 'Saving…', 'burst-mainwp' ),
 			color: 'black'
 		},
 		{
 			condition: isValidating,
-			message: __( 'Validating…', 'burst-statistics' ),
+			message: __( 'Validating…', 'burst-mainwp' ),
 			color: 'black'
 		},
 		{
 			condition: isDirty,
-			message: __( 'You have unsaved changes', 'burst-statistics' ),
+			message: __( 'You have unsaved changes', 'burst-mainwp' ),
 			color: 'black'
 		}
 	];
@@ -29,7 +29,7 @@ function SettingsFooter({ onSubmit, control }) {
 	const currentState = formStates.find( ( state ) => state.condition );
 
 	return (
-		<div className="sticky bottom-0 start-0 z-10 rounded-b-md border-b border-r border-l border-gray-300 bg-gray-100 shadow-[0_-8px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.05)]">
+		<div className="sticky bottom-0 start-0 z-10 rounded-b-md border-b border-r border-l border-gray-300 bg-gray-100 shadow-stickyFooter">
 			<SettingsScrollProgressLine />
 			<div className="flex flex-row items-center justify-end gap-2 p-5">
 				{currentState?.message && (
@@ -57,7 +57,7 @@ function SettingsFooter({ onSubmit, control }) {
 					</div>
 				)}
 				<ButtonInput className="burst-save" onClick={onSubmit}>
-					{__( 'Save', 'burst-statistics' )}
+					{__( 'Save', 'burst-mainwp' )}
 				</ButtonInput>
 			</div>
 		</div>

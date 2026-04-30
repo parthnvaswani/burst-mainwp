@@ -2,7 +2,7 @@ import {useState, useCallback, useEffect, useMemo, createInterpolateElement} fro
 import {__, _n, sprintf} from '@wordpress/i18n';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation } from '@tanstack/react-router';
-import { doAction, getAction } from '@/utils/api';
+import { doAction } from '@/utils/api';
 import { toast } from '@/utils/toast';
 import useLicenseData from '@/hooks/useLicenseData';
 import useDateRange from '@/hooks/useDateRange';
@@ -25,10 +25,10 @@ import React from 'react';
  * Expiration options for the share link.
  */
 const EXPIRATION_OPTIONS = [
-	{ value: '24h', label: __( '24 hours', 'burst-statistics' ) },
-	{ value: '7d', label: __( '7 days', 'burst-statistics' ) },
-	{ value: '30d', label: __( '30 days', 'burst-statistics' ) },
-	{ value: 'never', label: __( 'Never', 'burst-statistics' ) }
+	{ value: '24h', label: __( '24 hours', 'burst-mainwp' ) },
+	{ value: '7d', label: __( '7 days', 'burst-mainwp' ) },
+	{ value: '30d', label: __( '30 days', 'burst-mainwp' ) },
+	{ value: 'never', label: __( 'Never', 'burst-mainwp' ) }
 ];
 
 /**
@@ -43,8 +43,8 @@ const DEFAULT_PERMISSIONS = {
  * Permission labels for display.
  */
 const PERMISSION_LABELS = {
-	can_change_date: __( 'Change date range', 'burst-statistics' ),
-	can_filter: __( 'Change filters', 'burst-statistics' )
+	can_change_date: __( 'Change date range', 'burst-mainwp' ),
+	can_filter: __( 'Change filters', 'burst-mainwp' )
 };
 
 /**
@@ -101,14 +101,14 @@ const getTabTitle = ( tabId ) => {
  */
 const formatExpiration = ( expires ) => {
 	if ( 0 === expires ) {
-		return __( 'Never expires', 'burst-statistics' );
+		return __( 'Never expires', 'burst-mainwp' );
 	}
 
 	const now = Date.now() / 1000;
 	const diff = expires - now;
 
 	if ( 0 > diff ) {
-		return __( 'Expired', 'burst-statistics' );
+		return __( 'Expired', 'burst-mainwp' );
 	}
 
 	const days = Math.floor( diff / 86400 );
@@ -116,21 +116,21 @@ const formatExpiration = ( expires ) => {
 
 	if ( 0 < days ) {
 		return 1 === days ?
-			__( 'Expires in 1 day', 'burst-statistics' ) :
+			__( 'Expires in 1 day', 'burst-mainwp' ) :
 
 			// translators: %d is the number of days.
-			__( `Expires in ${days} days`, 'burst-statistics' );
+			__( `Expires in ${days} days`, 'burst-mainwp' );
 	}
 
 	if ( 0 < hours ) {
 		return 1 === hours ?
-			__( 'Expires in 1 hour', 'burst-statistics' ) :
+			__( 'Expires in 1 hour', 'burst-mainwp' ) :
 
 			// translators: %d is the number of hours.
-			__( `Expires in ${hours} hours`, 'burst-statistics' );
+			__( `Expires in ${hours} hours`, 'burst-mainwp' );
 	}
 
-	return __( 'Expires soon', 'burst-statistics' );
+	return __( 'Expires soon', 'burst-mainwp' );
 };
 
 /**
@@ -177,13 +177,13 @@ const LinkConfigurationSummary = ({ currentTab, startDate, endDate, filters }) =
 	return (
 		<div className="flex flex-col gap-2">
 			<h4 className="text-md font-medium text-text-black">
-				{__( 'What you\'re sharing:', 'burst-statistics' )}
+				{__( 'What you\'re sharing:', 'burst-mainwp' )}
 			</h4>
 
 			<dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-sm">
 				{/* Initial tab - always shown. */}
 				<dt className="font-base text-text-gray">
-					{__( 'Initial tab:', 'burst-statistics' )}
+					{__( 'Initial tab:', 'burst-mainwp' )}
 				</dt>
 				<dd className="font-medium text-text-black">
 					{getTabTitle( currentTab )}
@@ -193,7 +193,7 @@ const LinkConfigurationSummary = ({ currentTab, startDate, endDate, filters }) =
 				{hasDateRange && (
 					<>
 						<dt className="font-base text-text-gray">
-							{__( 'Date range:', 'burst-statistics' )}
+							{__( 'Date range:', 'burst-mainwp' )}
 						</dt>
 						<dd className="font-medium text-text-black">
 							{formatDateShort( startDate )} – {formatDateShort( endDate )}
@@ -206,7 +206,7 @@ const LinkConfigurationSummary = ({ currentTab, startDate, endDate, filters }) =
 					<>
 						<dt className="font-base text-text-gray">
 							{sprintf(
-								_n( 'Filter:', 'Filters:', activeFilters.length, 'burst-statistics' )
+								_n( 'Filter:', 'Filters:', activeFilters.length, 'burst-mainwp' )
 							)}
 						</dt>
 						<dd className="font-medium text-text-black">
@@ -220,7 +220,7 @@ const LinkConfigurationSummary = ({ currentTab, startDate, endDate, filters }) =
 							sprintf(
 
 								/* translators: 1: filter label, 2: filter value */
-								__( '%1$s is %2$s', 'burst-statistics' ),
+								__( '%1$s is %2$s', 'burst-mainwp' ),
 								'<strong>' + filter.label + '</strong>',
 								'<em>' + filter.value + '</em>'
 							),
@@ -240,7 +240,7 @@ const LinkConfigurationSummary = ({ currentTab, startDate, endDate, filters }) =
 						sprintf(
 
 							/* translators: 1: filter label, 2: filter value */
-							__( ' and %1$s is %2$s', 'burst-statistics' ),
+							__( ' and %1$s is %2$s', 'burst-mainwp' ),
 							'<strong>' + filter.label + '</strong>',
 							'<em>' + filter.value + '</em>'
 						),
@@ -307,7 +307,7 @@ const AdvancedOptions = ({
 					size={14}
 					className={`text-text-gray transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}
 				/>
-				<span>{__( 'Advanced options', 'burst-statistics' )}</span>
+				<span>{__( 'Advanced options', 'burst-mainwp' )}</span>
 				<ProBadge label={window.burst_settings?.is_pro ? 'Agency' : 'Pro'} id={'share-link-advanced'} />
 			</ButtonInput>
 
@@ -325,7 +325,7 @@ const AdvancedOptions = ({
 							{/* Permissions. */}
 							<div className="flex flex-col gap-2">
 								<span className="text-sm text-text-gray-light">
-									{__( 'Allow viewer to:', 'burst-statistics' )}
+									{__( 'Allow viewer to:', 'burst-mainwp' )}
 								</span>
 								<div className="flex flex-wrap gap-x-6 gap-y-2">
 									{Object.entries( PERMISSION_LABELS ).map( ([ key, label ]) => (
@@ -350,7 +350,7 @@ const AdvancedOptions = ({
 							{1 < shareableTabs.length && (
 								<div className="flex flex-col gap-2">
 									<span className="text-sm text-text-gray-light">
-										{__( 'Allow access to these tabs:', 'burst-statistics' )}
+										{__( 'Allow access to these tabs:', 'burst-mainwp' )}
 									</span>
 									<div className="flex flex-wrap gap-x-6 gap-y-2">
 										{shareableTabs.map( ( tab ) => {
@@ -374,7 +374,7 @@ const AdvancedOptions = ({
 														{tab.title}
 														{isCurrentTab && (
 															<span className="ml-1 text-xs text-text-gray-light">
-																({__( 'current view', 'burst-statistics' )})
+																({__( 'current view', 'burst-mainwp' )})
 															</span>
 														)}
 													</span>
@@ -489,8 +489,8 @@ const ShareLinkItem = ({ link, copiedId, onCopy, onRevoke, isRevoking }) => {
 					<Tooltip
 						content={
 							isCopied ?
-								__( 'Copied!', 'burst-statistics' ) :
-								__( 'Copy link', 'burst-statistics' )
+								__( 'Copied!', 'burst-mainwp' ) :
+								__( 'Copy link', 'burst-mainwp' )
 						}
 					>
 						<IconButton
@@ -502,8 +502,8 @@ const ShareLinkItem = ({ link, copiedId, onCopy, onRevoke, isRevoking }) => {
 							onClick={() => onCopy( link )}
 							ariaLabel={
 								isCopied ?
-									__( 'Copied!', 'burst-statistics' ) :
-									__( 'Copy link', 'burst-statistics' )
+									__( 'Copied!', 'burst-mainwp' ) :
+									__( 'Copy link', 'burst-mainwp' )
 							}
 							className={
 								'burst-share-link-copy-btn !min-w-0 !border-0 !bg-transparent !shadow-none p-1 text-text-gray-light transition-colors ' +
@@ -513,7 +513,7 @@ const ShareLinkItem = ({ link, copiedId, onCopy, onRevoke, isRevoking }) => {
 						/>
 					</Tooltip>
 
-					<Tooltip content={__( 'Revoke', 'burst-statistics' )}>
+					<Tooltip content={__( 'Revoke', 'burst-mainwp' )}>
 						<IconButton
 							type="button"
 							variant="tertiary"
@@ -522,7 +522,7 @@ const ShareLinkItem = ({ link, copiedId, onCopy, onRevoke, isRevoking }) => {
 							iconSize={14}
 							onClick={() => onRevoke( link.token )}
 							disabled={isRevoking}
-							ariaLabel={__( 'Revoke', 'burst-statistics' )}
+							ariaLabel={__( 'Revoke', 'burst-mainwp' )}
 							className={
 								'burst-share-link-revoke-btn !min-w-0 !border-0 !bg-transparent !shadow-none p-1 ' +
 								'text-text-gray-light transition-colors hover:!bg-red-50 hover:!text-red focus:!ring-1 focus:!ring-red-300'
@@ -594,7 +594,6 @@ const ActiveLinksSection = ({
 	if ( ! isLoading && 0 === linkCount ) {
 		return null;
 	}
-
 	return (
 		<div className="border-t border-gray-200 pt-4 mt-4">
 			{/* Header / Toggle. */}
@@ -615,7 +614,7 @@ const ActiveLinksSection = ({
 					className={`text-text-gray-light transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}
 				/>
 				<span>
-					{__( 'Active shared links', 'burst-statistics' )}
+					{__( 'Active shared links', 'burst-mainwp' )}
 					{! isLoading && 0 < linkCount && (
 						<span className="ml-1.5 text-text-gray-light">({linkCount})</span>
 					)}
@@ -635,7 +634,7 @@ const ActiveLinksSection = ({
 						<div className="pt-3 flex flex-col gap-2">
 							{isLoading ? (
 								<p className="text-sm text-text-gray-light py-2">
-									{__( 'Loading…', 'burst-statistics' )}
+									{__( 'Loading…', 'burst-mainwp' )}
 								</p>
 							) : (
 								<AnimatePresence>
@@ -749,8 +748,8 @@ export const ShareButton = () => {
 	const fetchShareLinks = useCallback( async() => {
 		setIsLoading( true );
 		try {
-			const response = await getAction( 'get_share_links' );
-			setShareLinks( response.share_links || []);
+			const response = await doAction( 'list_share_links' );
+			setShareLinks( Object.values( response.share_links || {}) );
 		} catch ( error ) {
 			console.error( 'Failed to fetch share links:', error );
 		} finally {
@@ -826,7 +825,7 @@ export const ShareButton = () => {
 
 			if ( ! response.share_token || ! response.share_url ) {
 				toast.error(
-					__( 'Failed to generate share link', 'burst-statistics' )
+					__( 'Failed to generate share link', 'burst-mainwp' )
 				);
 				return;
 			}
@@ -843,13 +842,13 @@ export const ShareButton = () => {
 
 			// Set the newly created link as copied.
 			setCopiedId( response.share_token );
-			toast.success( __( 'Link created and copied to clipboard!', 'burst-statistics' ) );
+			toast.success( __( 'Link created and copied to clipboard!', 'burst-mainwp' ) );
 
 			// Reset copied state after 3 seconds.
 			setTimeout( () => setCopiedId( null ), 3000 );
 		} catch ( error ) {
 			console.error( 'Failed to generate share link:', error );
-			toast.error( __( 'Failed to generate share link', 'burst-statistics' ) );
+			toast.error( __( 'Failed to generate share link', 'burst-mainwp' ) );
 		} finally {
 			setIsGenerating( false );
 		}
@@ -864,13 +863,13 @@ export const ShareButton = () => {
 		try {
 			await copyToClipboard( link.url );
 			setCopiedId( link.token );
-			toast.success( __( 'Link copied!', 'burst-statistics' ) );
+			toast.success( __( 'Link copied!', 'burst-mainwp' ) );
 
 			// Reset copied state after 2 seconds.
 			setTimeout( () => setCopiedId( null ), 2000 );
 		} catch ( error ) {
 			console.error( 'Failed to copy link:', error );
-			toast.error( __( 'Failed to copy link', 'burst-statistics' ) );
+			toast.error( __( 'Failed to copy link', 'burst-mainwp' ) );
 		}
 	}, []);
 
@@ -886,12 +885,12 @@ export const ShareButton = () => {
 			const response = await doAction( 'revoke_share_link', { token });
 
 			if ( response.success ) {
-				setShareLinks( response.share_links || []);
-				toast.success( __( 'Link revoked', 'burst-statistics' ) );
+				setShareLinks( Object.values( response.share_links || {}) );
+				toast.success( __( 'Link revoked', 'burst-mainwp' ) );
 			}
 		} catch ( error ) {
 			console.error( 'Failed to revoke link:', error );
-			toast.error( __( 'Failed to revoke link', 'burst-statistics' ) );
+			toast.error( __( 'Failed to revoke link', 'burst-mainwp' ) );
 		} finally {
 			setIsRevoking( false );
 		}
@@ -916,14 +915,14 @@ export const ShareButton = () => {
 			<Modal
 				isOpen={isModalOpen}
 				onClose={handleClose}
-				title={__( 'Share dashboard', 'burst-statistics' )}
+				title={__( 'Share dashboard', 'burst-mainwp' )}
 				content={
 					<div className="flex flex-col gap-4">
 						{/* Description. */}
 						<p className="text-text-gray text-sm">
 							{__(
 								'Generate a private, shareable link to a live view of this dashboard.',
-								'burst-statistics'
+								'burst-mainwp'
 							)}
 						</p>
 
@@ -940,7 +939,7 @@ export const ShareButton = () => {
 							{/* Expiration. */}
 							<div className="flex items-center gap-3">
 								<span className="text-base font-medium text-text-gray">
-									{__( 'Link expires in:', 'burst-statistics' )}
+									{__( 'Link expires in:', 'burst-mainwp' )}
 								</span>
 								<SelectInput
 									value={expiration}
@@ -971,8 +970,8 @@ export const ShareButton = () => {
 								className="burst-generate-share-link-button w-full justify-center"
 							>
 								{isGenerating ?
-									__( 'Generating…', 'burst-statistics' ) :
-									__( 'Generate shareable link', 'burst-statistics' )}
+									__( 'Generating…', 'burst-mainwp' ) :
+									__( 'Generate shareable link', 'burst-mainwp' )}
 							</ButtonInput>
 						</div>
 

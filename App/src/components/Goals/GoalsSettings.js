@@ -35,9 +35,9 @@ const GoalsSettings = () => {
 			case 'hook':
 				return 'Hook';
 			case 'clicks':
-				return __( 'Click', 'burst-statistics' );
+				return __( 'Click', 'burst-mainwp' );
 			case 'views':
-				return __( 'View', 'burst-statistics' );
+				return __( 'View', 'burst-mainwp' );
 			default:
 				return type;
 		}
@@ -52,13 +52,13 @@ const GoalsSettings = () => {
 			<p className="text-base">
 				{__(
 					'Goals are a great way to track your progress and keep you motivated.',
-					'burst-statistics'
+					'burst-mainwp'
 				)}
 				{! isLicenseValid &&
 					' ' +
 						__(
 							'While free users can create one goal, Burst Pro lets you set unlimited goals to plan, measure, and achieve more.',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 			</p>
 			<div className="flex flex-wrap flex-col gap-4 mt-4">
@@ -80,7 +80,7 @@ const GoalsSettings = () => {
 				{( isLicenseValid || 0 === goals.length ) && (
 					<div className="flex items-center gap-2">
 						<ButtonInput btnVariant={'tertiary'} onClick={addGoal}>
-							{__( 'Add goal', 'burst-statistics' )}
+							{__( 'Add goal', 'burst-mainwp' )}
 						</ButtonInput>
 
 						{predefinedGoals && (
@@ -89,7 +89,7 @@ const GoalsSettings = () => {
 									<IconButton
 										label={__(
 											'Add predefined goal',
-											'burst-statistics'
+											'burst-mainwp'
 										)}
 										icon={'chevron-down'}
 										className={
@@ -133,7 +133,7 @@ const GoalsSettings = () => {
 										})}
 										{__(
 											'Plug-in you\'re looking for not listed?',
-											'burst-statistics'
+											'burst-mainwp'
 										) + ' '}
 										<a
 											className="underline"
@@ -147,7 +147,7 @@ const GoalsSettings = () => {
 										>
 											{__(
 												'Request it here!',
-												'burst-statistics'
+												'burst-mainwp'
 											)}
 										</a>
 									</Popover.Content>
@@ -168,10 +168,10 @@ const GoalsSettings = () => {
 				{! isLicenseValid && (
 					<div className="flex gap-4 p-4 bg-gray-200 rounded-md mt-4 justify-start items-center border-2 border-gray-300">
 						<Icon name={'goals'} size={24} color="gray" />
-						<h4>{__( 'Want more goals?', 'burst-statistics' )}</h4>
+						<h4>{__( 'Want more goals?', 'burst-mainwp' )}</h4>
 						<div className="burst-divider" />
 						<p className="text-sm text-text-gray">
-							{__( 'Upgrade to Burst Pro', 'burst-statistics' )}
+							{__( 'Upgrade to Burst Pro', 'burst-mainwp' )}
 						</p>
 						<a
 							href={burst_get_website_url( '/pricing/', {
@@ -181,7 +181,7 @@ const GoalsSettings = () => {
 							target={'_blank'}
 							className="ml-auto burst-button burst-button--pro"
 						>
-							{__( 'Upgrade to Pro', 'burst-statistics' )}
+							{__( 'Upgrade to Pro', 'burst-mainwp' )}
 						</a>
 					</div>
 				)}

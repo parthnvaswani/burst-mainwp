@@ -144,7 +144,7 @@ const DownloadCsvButton = ({
 		<Tooltip
 			content={
 				! isFeatureAvailable ?
-					__( 'Available in Burst Pro', 'burst-statistics' ) :
+					__( 'Available in Burst Pro', 'burst-mainwp' ) :
 					undefined
 			}
 		>

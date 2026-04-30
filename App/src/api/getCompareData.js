@@ -9,33 +9,33 @@ import {
 import { __ } from '@wordpress/i18n';
 
 const metrics = {
-	pageviews: __( 'Pageviews', 'burst-statistics' ),
-	sessions: __( 'Sessions', 'burst-statistics' ),
-	visitors: __( 'Visitors', 'burst-statistics' ),
-	bounce_rate: __( 'Bounce Rate', 'burst-statistics' )
+	pageviews: __( 'Pageviews', 'burst-mainwp' ),
+	sessions: __( 'Sessions', 'burst-mainwp' ),
+	visitors: __( 'Visitors', 'burst-mainwp' ),
+	bounce_rate: __( 'Bounce Rate', 'burst-mainwp' )
 };
 
 const goalMetrics = {
-	conversions: __( 'Conversions', 'burst-statistics' ),
-	pageviews: __( 'Pageviews', 'burst-statistics' ),
-	sessions: __( 'Sessions', 'burst-statistics' ),
-	visitors: __( 'Visitors', 'burst-statistics' )
+	conversions: __( 'Conversions', 'burst-mainwp' ),
+	pageviews: __( 'Pageviews', 'burst-mainwp' ),
+	sessions: __( 'Sessions', 'burst-mainwp' ),
+	visitors: __( 'Visitors', 'burst-mainwp' )
 };
 
 const templates = {
 	default: {
 		pageviews: ( curr ) => ({
-			title: __( 'Pageviews', 'burst-statistics' ),
+			title: __( 'Pageviews', 'burst-mainwp' ),
 			subtitle: __(
 				'%s pageviews per session',
-				'burst-statistics'
+				'burst-mainwp'
 			).replace( '%s', formatNumber( curr.pageviews / curr.sessions ) ),
 			value: formatNumber( curr.pageviews ),
 			exactValue: curr.pageviews
 		}),
 		sessions: ( curr ) => ({
-			title: __( 'Sessions', 'burst-statistics' ),
-			subtitle: __( '%s per session', 'burst-statistics' ).replace(
+			title: __( 'Sessions', 'burst-mainwp' ),
+			subtitle: __( '%s per session', 'burst-mainwp' ).replace(
 				'%s',
 				formatTime(
 					( curr.pageviews / curr.sessions ) * curr.avg_time_on_page
@@ -45,8 +45,8 @@ const templates = {
 			exactValue: curr.sessions
 		}),
 		visitors: ( curr ) => ({
-			title: __( 'Visitors', 'burst-statistics' ),
-			subtitle: __( '%s are new visitors', 'burst-statistics' ).replace(
+			title: __( 'Visitors', 'burst-mainwp' ),
+			subtitle: __( '%s are new visitors', 'burst-mainwp' ).replace(
 				'%s',
 				getPercentage( curr.first_time_visitors, curr.visitors )
 			),
@@ -54,8 +54,8 @@ const templates = {
 			exactValue: curr.visitors
 		}),
 		bounce_rate: ( curr ) => ({
-			title: __( 'Bounce Rate', 'burst-statistics' ),
-			subtitle: __( '%s visitors bounced', 'burst-statistics' ).replace(
+			title: __( 'Bounce Rate', 'burst-mainwp' ),
+			subtitle: __( '%s visitors bounced', 'burst-mainwp' ).replace(
 				'%s',
 				curr.bounced_sessions
 			),
@@ -65,37 +65,37 @@ const templates = {
 	},
 	goalSelected: {
 		conversions: ( curr ) => ({
-			title: __( 'Conversions', 'burst-statistics' ),
+			title: __( 'Conversions', 'burst-mainwp' ),
 			subtitle: __(
 				'%s of pageviews converted',
-				'burst-statistics'
+				'burst-mainwp'
 			).replace( '%s', getPercentage( curr.conversion_rate, 100 ) ),
 			value: formatNumber( curr.conversions ),
 			exactValue: curr.conversions
 		}),
 		pageviews: ( curr ) => ({
-			title: __( 'Pageviews', 'burst-statistics' ),
+			title: __( 'Pageviews', 'burst-mainwp' ),
 			subtitle: __(
 				'%s pageviews per conversion',
-				'burst-statistics'
+				'burst-mainwp'
 			).replace( '%s', formatNumber( curr.pageviews / curr.conversions ) ),
 			value: formatNumber( curr.pageviews ),
 			exactValue: curr.pageviews
 		}),
 		sessions: ( curr ) => ({
-			title: __( 'Sessions', 'burst-statistics' ),
+			title: __( 'Sessions', 'burst-mainwp' ),
 			subtitle: __(
 				'%s sessions per conversion',
-				'burst-statistics'
+				'burst-mainwp'
 			).replace( '%s', formatNumber( curr.sessions / curr.conversions ) ),
 			value: formatNumber( curr.sessions ),
 			exactValue: curr.sessions
 		}),
 		visitors: ( curr ) => ({
-			title: __( 'Visitors', 'burst-statistics' ),
+			title: __( 'Visitors', 'burst-mainwp' ),
 			subtitle: __(
 				'%s visitors per conversion',
-				'burst-statistics'
+				'burst-mainwp'
 			).replace( '%s', formatNumber( curr.visitors / curr.conversions ) ),
 			value: formatNumber( curr.visitors ),
 			exactValue: curr.visitors

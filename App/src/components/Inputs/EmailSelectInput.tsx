@@ -27,7 +27,7 @@ export const EmailSelectInput = forwardRef<HTMLInputElement, EmailSelectInputPro
 			onChange,
 			name,
 			disabled = false,
-			placeholder = __( 'Add email...', 'burst-statistics' ),
+			placeholder = __( 'Add email...', 'burst-mainwp' ),
 			maxSelections = 10,
 			showRemoveButton = true
 		} = props;

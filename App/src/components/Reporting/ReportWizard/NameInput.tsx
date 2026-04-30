@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import Icon from '@/utils/Icon';
 import { clsx } from 'clsx';
 
-const DEFAULT_NAME = __( 'Untitled report', 'burst-statistics' );
+const DEFAULT_NAME = __( 'Untitled report', 'burst-mainwp' );
 
 export const NameInput = () => {
 	const reportName = useWizardStore( ( state ) => state.wizard.name );
@@ -25,11 +25,11 @@ export const NameInput = () => {
 
 	useEffect( () => {
 		register( 'reportName', {
-			required: __( 'Report name is required', 'burst-statistics' ),
+			required: __( 'Report name is required', 'burst-mainwp' ),
 			value: reportName,
 			minLength: {
 				value: 3,
-				message: __( 'Report name must be at least 3 characters', 'burst-statistics' )
+				message: __( 'Report name must be at least 3 characters', 'burst-mainwp' )
 			}
 		});
 	}, [ register ]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -91,7 +91,7 @@ export const NameInput = () => {
 					onBlur={handleBlur}
 					onKeyDown={handleKeyDown}
 					className="w-full text-lg font-semibold rounded-md border border-gray-400 p-2 focus:border-primary-700 focus:outline-hidden focus:ring-3 disabled:cursor-not-allowed disabled:border-gray-200 disabled:bg-gray-200"
-					placeholder={__( 'Untitled report', 'burst-statistics' )}
+					placeholder={__( 'Untitled report', 'burst-mainwp' )}
 				/>
 				{errors.reportName?.message && (
 					<span className="text-red text-sm mt-1">
