@@ -21,48 +21,48 @@ import {ComponentType} from 'react';
 const AVAILABLE_CONTENT: ContentItems = [
 	{
 		id: 'logo',
-		label: __( 'Logo', 'burst-statistics' ),
+		label: __( 'Logo', 'burst-mainwp' ),
 		icon: 'image',
 		pro: false,
 		component: Logo
 	},
 	{
 		id: 'insights',
-		label: __( 'Insights', 'burst-statistics' ),
+		label: __( 'Insights', 'burst-mainwp' ),
 		icon: 'bulb',
 		pro: true,
 		component: InsightsBlock
 	},
 	{
 		id: 'compare_story',
-		label: __( 'Compare', 'burst-statistics' ),
+		label: __( 'Compare', 'burst-mainwp' ),
 		icon: 'arrow-down-up',
 		pro: true,
 		component: CompareBlock
 	},
 	{
 		id: 'compare',
-		label: __( 'Compare', 'burst-statistics' ),
+		label: __( 'Compare', 'burst-mainwp' ),
 		icon: 'arrow-down-up',
 		pro: false
 	},
 	{
 		id: 'devices',
-		label: __( 'Devices', 'burst-statistics' ),
+		label: __( 'Devices', 'burst-mainwp' ),
 		icon: 'mobile',
 		pro: true,
 		component: DevicesBlock
 	},
 	{
 		id: 'world',
-		label: __( 'World Map', 'burst-statistics' ),
+		label: __( 'World Map', 'burst-mainwp' ),
 		icon: 'world',
 		pro: true,
 		component: WorldMapBlock
 	},
 	{
 		id: 'pages',
-		label: __( 'Pages', 'burst-statistics' ),
+		label: __( 'Pages', 'burst-mainwp' ),
 		icon: 'page',
 		pro: true,
 		component: DataTableBlock as ComponentType<BlockComponentProps>,
@@ -70,7 +70,7 @@ const AVAILABLE_CONTENT: ContentItems = [
 	},
 	{
 		id: 'referrers',
-		label: __( 'Referrers', 'burst-statistics' ),
+		label: __( 'Referrers', 'burst-mainwp' ),
 		icon: 'external-link',
 		pro: true,
 		component: DataTableBlock as ComponentType<BlockComponentProps>,
@@ -78,7 +78,7 @@ const AVAILABLE_CONTENT: ContentItems = [
 	},
 	{
 		id: 'locations',
-		label: __( 'Locations', 'burst-statistics' ),
+		label: __( 'Locations', 'burst-mainwp' ),
 		icon: 'map-pinned',
 		pro: true,
 		component: DataTableBlock as ComponentType<BlockComponentProps>,
@@ -86,7 +86,7 @@ const AVAILABLE_CONTENT: ContentItems = [
 	},
 	{
 		id: 'campaigns',
-		label: __( 'Campaigns', 'burst-statistics' ),
+		label: __( 'Campaigns', 'burst-mainwp' ),
 		icon: 'campaign',
 		pro: true,
 		component: DataTableBlock as ComponentType<BlockComponentProps>,
@@ -94,7 +94,7 @@ const AVAILABLE_CONTENT: ContentItems = [
 	},
 	{
 		id: 'sales',
-		label: __( 'Sales', 'burst-statistics' ),
+		label: __( 'Sales', 'burst-mainwp' ),
 		icon: 'shopping-cart',
 		pro: true,
 		component: Sales,
@@ -102,7 +102,7 @@ const AVAILABLE_CONTENT: ContentItems = [
 	},
 	{
 		id: 'top_performers',
-		label: __( 'Top Performers', 'burst-statistics' ),
+		label: __( 'Top Performers', 'burst-mainwp' ),
 		icon: 'trophy',
 		pro: true,
 		component: TopPerformers,
@@ -110,7 +110,7 @@ const AVAILABLE_CONTENT: ContentItems = [
 	},
 	{
 		id: 'funnel',
-		label: __( 'Funnel', 'burst-statistics' ),
+		label: __( 'Funnel', 'burst-mainwp' ),
 		icon: 'filter',
 		pro: true,
 		component: FunnelChartSection,
@@ -118,25 +118,25 @@ const AVAILABLE_CONTENT: ContentItems = [
 	},
 	{
 		id: 'most_visited_pages',
-		label: __( 'Most visited pages', 'burst-statistics' ),
+		label: __( 'Most visited pages', 'burst-mainwp' ),
 		icon: 'page',
 		pro: false
 	},
 	{
 		id: 'top_referrers',
-		label: __( 'Top referrers', 'burst-statistics' ),
+		label: __( 'Top referrers', 'burst-mainwp' ),
 		icon: 'external-link',
 		pro: false
 	},
 	{
 		id: 'top_campaigns',
-		label: __( 'Top campaigns', 'burst-statistics' ),
+		label: __( 'Top campaigns', 'burst-mainwp' ),
 		icon: 'campaign',
 		pro: true
 	},
 	{
 		id: 'countries',
-		label: __( 'Top countries', 'burst-statistics' ),
+		label: __( 'Top countries', 'burst-mainwp' ),
 		icon: 'world',
 		pro: true
 	}
@@ -188,15 +188,15 @@ const REPORT_LOG_STATUS_CONFIG: Record<
 };
 
 const STEPS: WizardStep[] = [
-	{ number: 1, label: __( 'Create', 'burst-statistics' ), fields: [ 'create' ] },
-	{ number: 2, label: __( 'Edit', 'burst-statistics' ), fields: [ 'editContent' ] },
-	{ number: 3, label: __( 'Recipients', 'burst-statistics' ), fields: [ 'recipients' ] },
-	{ number: 4, label: __( 'Review', 'burst-statistics' ), fields: [ 'reportName' ] }
+	{ number: 1, label: __( 'Create', 'burst-mainwp' ), fields: [ 'create' ] },
+	{ number: 2, label: __( 'Edit', 'burst-mainwp' ), fields: [ 'editContent' ] },
+	{ number: 3, label: __( 'Recipients', 'burst-mainwp' ), fields: [ 'recipients' ] },
+	{ number: 4, label: __( 'Review', 'burst-mainwp' ), fields: [ 'reportName' ] }
 ];
 
 const FORMATS: ReportFormat[] = [
-	{ key: 'classic', label: __( 'Classic', 'burst-statistics' ), disabled: false, pro: false },
-	{ key: 'story', label: __( 'Story', 'burst-statistics' ), disabled: true, pro: true }
+	{ key: 'classic', label: __( 'Classic', 'burst-mainwp' ), disabled: false, pro: false },
+	{ key: 'story', label: __( 'Story', 'burst-mainwp' ), disabled: true, pro: true }
 ];
 
 const capitalize = ( value: string ) =>
@@ -211,19 +211,19 @@ export const useReportConfigStore = create( () => ({
 	statusSeverityClasses: STATUS_SEVERITY_CLASSES,
 
 	frequencyOptions: [
-		{ value: 'daily', label: __( 'Daily', 'burst-statistics' ) },
-		{ value: 'weekly', label: __( 'Weekly', 'burst-statistics' ) },
-		{ value: 'monthly', label: __( 'Monthly', 'burst-statistics' ) }
+		{ value: 'daily', label: __( 'Daily', 'burst-mainwp' ) },
+		{ value: 'weekly', label: __( 'Weekly', 'burst-mainwp' ) },
+		{ value: 'monthly', label: __( 'Monthly', 'burst-mainwp' ) }
 	],
 
 	dayOptions: [
-		{ value: 'monday', label: __( 'Monday', 'burst-statistics' ) },
-		{ value: 'tuesday', label: __( 'Tuesday', 'burst-statistics' ) },
-		{ value: 'wednesday', label: __( 'Wednesday', 'burst-statistics' ) },
-		{ value: 'thursday', label: __( 'Thursday', 'burst-statistics' ) },
-		{ value: 'friday', label: __( 'Friday', 'burst-statistics' ) },
-		{ value: 'saturday', label: __( 'Saturday', 'burst-statistics' ) },
-		{ value: 'sunday', label: __( 'Sunday', 'burst-statistics' ) }
+		{ value: 'monday', label: __( 'Monday', 'burst-mainwp' ) },
+		{ value: 'tuesday', label: __( 'Tuesday', 'burst-mainwp' ) },
+		{ value: 'wednesday', label: __( 'Wednesday', 'burst-mainwp' ) },
+		{ value: 'thursday', label: __( 'Thursday', 'burst-mainwp' ) },
+		{ value: 'friday', label: __( 'Friday', 'burst-mainwp' ) },
+		{ value: 'saturday', label: __( 'Saturday', 'burst-mainwp' ) },
+		{ value: 'sunday', label: __( 'Sunday', 'burst-mainwp' ) }
 	],
 
 	getTimeOptions: () =>
@@ -233,10 +233,10 @@ export const useReportConfigStore = create( () => ({
 		}),
 
 	getMonthlyWeekdayOptions: () => [
-		{ value: 1, label: __( 'First', 'burst-statistics' ) },
-		{ value: 2, label: __( 'Second', 'burst-statistics' ) },
-		{ value: 3, label: __( 'Third', 'burst-statistics' ) },
-		{ value: -1, label: __( 'Last', 'burst-statistics' ) }
+		{ value: 1, label: __( 'First', 'burst-mainwp' ) },
+		{ value: 2, label: __( 'Second', 'burst-mainwp' ) },
+		{ value: 3, label: __( 'Third', 'burst-mainwp' ) },
+		{ value: -1, label: __( 'Last', 'burst-mainwp' ) }
 	],
 
 	getWeekOfMonthTypeLabel: (
@@ -275,7 +275,7 @@ export const useReportConfigStore = create( () => ({
 		sendTime?: string
 	): string => {
 		if ( ! scheduled ) {
-			return __( 'No schedule', 'burst-statistics' );
+			return __( 'No schedule', 'burst-mainwp' );
 		}
 
 		let label: string;
@@ -283,13 +283,13 @@ export const useReportConfigStore = create( () => ({
 		switch ( frequency ) {
 			case 'weekly': {
 				if ( ! dayOfWeek ) {
-					label = __( 'Weekly', 'burst-statistics' );
+					label = __( 'Weekly', 'burst-mainwp' );
 					break;
 				}
 
 				const day = `${ capitalize( dayOfWeek ) }s`;
 				label = sprintf(
-					__( 'Weekly on %s', 'burst-statistics' ),
+					__( 'Weekly on %s', 'burst-mainwp' ),
 					day
 				);
 				break;
@@ -297,7 +297,7 @@ export const useReportConfigStore = create( () => ({
 
 			case 'monthly': {
 				if ( ! weekOfMonth ) {
-					label = __( 'Monthly', 'burst-statistics' );
+					label = __( 'Monthly', 'burst-mainwp' );
 					break;
 				}
 
@@ -307,19 +307,19 @@ export const useReportConfigStore = create( () => ({
 						.getWeekOfMonthTypeLabel( weekOfMonth, dayOfWeek );
 
 				label = sprintf(
-					__( 'Monthly on %s', 'burst-statistics' ),
+					__( 'Monthly on %s', 'burst-mainwp' ),
 					ruleLabel
 				);
 				break;
 			}
 
 			default:
-				label = __( 'Daily', 'burst-statistics' );
+				label = __( 'Daily', 'burst-mainwp' );
 		}
 
 		return sendTime ?
 			sprintf(
-				__( '%s at %s', 'burst-statistics' ),
+				__( '%s at %s', 'burst-mainwp' ),
 				label,
 				sendTime
 			) :

@@ -152,7 +152,7 @@ const SelectorField = forwardRef(
 							setWarning(
 								__(
 									'Warning: The current element is hidden via CSS.',
-									'burst-statistics'
+									'burst-mainwp'
 								)
 							);
 						} else {
@@ -238,7 +238,7 @@ const SelectorField = forwardRef(
 								setWarning(
 									__(
 										'Warning: this element might be hidden via CSS.',
-										'burst-statistics'
+										'burst-mainwp'
 									)
 								);
 							} else {
@@ -266,55 +266,55 @@ const SelectorField = forwardRef(
 							'Found %1$d element on %2$s %3$s',
 							'Found %1$d elements on %2$s %3$s',
 							previewData.count,
-							'burst-statistics'
+							'burst-mainwp'
 						),
 						previewData.count,
 						displayPreviewURL,
 						previewDisplayLoggedOut ?
-							__( '(Logged out)', 'burst-statistics' ) :
-							__( '(Logged in)', 'burst-statistics' )
+							__( '(Logged out)', 'burst-mainwp' ) :
+							__( '(Logged in)', 'burst-mainwp' )
 					) :
 				originalContext;
 
 		const helpText = (
 			<>
 				<h4 className="text-base font-bold mb-2">
-					{__( 'Selector Examples:', 'burst-statistics' )}
+					{__( 'Selector Examples:', 'burst-mainwp' )}
 				</h4>
 				<ul>
 					<li>
 						<code>.class-name</code> –{' '}
 						{__(
 							'Selects all elements with class "class-name".',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</li>
 					<li>
 						<code>#element-id</code> –{' '}
 						{__(
 							'Selects the element with ID "element-id".',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</li>
 					<li>
 						<code>button</code> –{' '}
 						{__(
 							'Selects all <button> elements.',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</li>
 					<li>
 						<code>a[href^=&quot;https&quot;]</code> –{' '}
 						{__(
 							'Selects links whose href starts with "https".',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</li>
 					<li>
 						<code>.nav-item:not(.active)</code> –{' '}
 						{__(
 							'Selects .nav-item elements that do not have the "active" class.',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</li>
 				</ul>
@@ -381,7 +381,7 @@ const SelectorField = forwardRef(
 					tabIndex={0}
 					aria-label={__(
 						'Preview panel, use arrow keys to navigate',
-						'burst-statistics'
+						'burst-mainwp'
 					)}
 				>
 					{/* Preview navigation header */}
@@ -396,7 +396,7 @@ const SelectorField = forwardRef(
 									role="group"
 									aria-label={__(
 										'Step through matches',
-										'burst-statistics'
+										'burst-mainwp'
 									)}
 									className="flex items-center justify-center rounded overflow-hidden shadow-sm"
 								>
@@ -406,7 +406,7 @@ const SelectorField = forwardRef(
 										className="bg-white text-text-gray-light hover:bg-gray-100 px-3 py-1 border-r"
 										aria-label={__(
 											'Previous match',
-											'burst-statistics'
+											'burst-mainwp'
 										)}
 									>
 										←
@@ -421,7 +421,7 @@ const SelectorField = forwardRef(
 										className="bg-white text-text-gray-light hover:bg-gray-100 px-3 py-1 border-l"
 										aria-label={__(
 											'Next match',
-											'burst-statistics'
+											'burst-mainwp'
 										)}
 									>
 										→
@@ -437,11 +437,11 @@ const SelectorField = forwardRef(
 									previewDisplayLoggedOut ?
 										__(
 												'Set logged in mode',
-												'burst-statistics'
+												'burst-mainwp'
 											) :
 										__(
 												'Set logged out mode',
-												'burst-statistics'
+												'burst-mainwp'
 											)
 								}
 							>
@@ -483,7 +483,7 @@ const SelectorField = forwardRef(
 					<span className="sr-only" aria-live="polite">
 						{__(
 							'%s elements match your selector. Use arrow keys to cycle through matches.',
-							'burst-statistics'
+							'burst-mainwp'
 						).replace( '%s', previewData.count )}
 					</span>
 				)}

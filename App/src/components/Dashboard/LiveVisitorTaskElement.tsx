@@ -47,7 +47,7 @@ export const LiveVisitorTaskElement = ({
 			'%d person is exploring your site right now',
 			'%d people are exploring your site right now',
 			live,
-			'burst-statistics'
+			'burst-mainwp'
 		),
 		live
 	);
@@ -72,7 +72,7 @@ export const LiveVisitorTaskElement = ({
 					setActiveTab( 'dashboard-overview', 'live-visitors' )
 				}
 			>
-				{__( 'View', 'burst-statistics' )}
+				{__( 'View', 'burst-mainwp' )}
 			</span>
 		</div>
 	);

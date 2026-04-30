@@ -13,26 +13,26 @@ interface Preset {
 
 const PRESETS: Preset[] = [
 	{
-		label: __( '0–30s', 'burst-statistics' ),
-		description: __( 'Short visits', 'burst-statistics' ),
+		label: __( '0–30s', 'burst-mainwp' ),
+		description: __( 'Short visits', 'burst-mainwp' ),
 		minSeconds: 0,
 		maxSeconds: 30
 	},
 	{
-		label: __( '30s–2m', 'burst-statistics' ),
-		description: __( 'Quick visits', 'burst-statistics' ),
+		label: __( '30s–2m', 'burst-mainwp' ),
+		description: __( 'Quick visits', 'burst-mainwp' ),
 		minSeconds: 30,
 		maxSeconds: 120
 	},
 	{
-		label: __( '2m–10m', 'burst-statistics' ),
-		description: __( 'Engaged', 'burst-statistics' ),
+		label: __( '2m–10m', 'burst-mainwp' ),
+		description: __( 'Engaged', 'burst-mainwp' ),
 		minSeconds: 120,
 		maxSeconds: 600
 	},
 	{
-		label: __( '10m+', 'burst-statistics' ),
-		description: __( 'Deep sessions', 'burst-statistics' ),
+		label: __( '10m+', 'burst-mainwp' ),
+		description: __( 'Deep sessions', 'burst-mainwp' ),
 		minSeconds: 600,
 		maxSeconds: null
 	}
@@ -162,15 +162,15 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 			const parsedMax = '' === trimmedMax ? null : parseDurationToSeconds( trimmedMax );
 
 			if ( '' === trimmedMin ) {
-				setMinError( __( 'Minimum duration is required.', 'burst-statistics' ) );
+				setMinError( __( 'Minimum duration is required.', 'burst-mainwp' ) );
 			} else if ( null === parsedMin ) {
-				setMinError( __( 'Use a value like 30s, 2m, 1h, or 120.', 'burst-statistics' ) );
+				setMinError( __( 'Use a value like 30s, 2m, 1h, or 120.', 'burst-mainwp' ) );
 			} else {
 				setMinError( '' );
 			}
 
 			if ( '' !== trimmedMax && null === parsedMax ) {
-				setMaxError( __( 'Use a value like 30s, 2m, 1h, or 120.', 'burst-statistics' ) );
+				setMaxError( __( 'Use a value like 30s, 2m, 1h, or 120.', 'burst-mainwp' ) );
 			} else {
 				setMaxError( '' );
 			}
@@ -181,7 +181,7 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 			}
 
 			if ( null !== parsedMax && parsedMin > parsedMax ) {
-				setRangeError( __( 'Minimum duration cannot be greater than maximum duration.', 'burst-statistics' ) );
+				setRangeError( __( 'Minimum duration cannot be greater than maximum duration.', 'burst-mainwp' ) );
 				return;
 			}
 
@@ -245,13 +245,13 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 
 		if ( isOpenEnded ) {
 			return sprintf(
-				__( 'Showing sessions longer than %s.', 'burst-statistics' ),
+				__( 'Showing sessions longer than %s.', 'burst-mainwp' ),
 				formatDuration( minSeconds )
 			);
 		}
 
 		return sprintf(
-			__( 'Showing sessions between %s and %s.', 'burst-statistics' ),
+			__( 'Showing sessions between %s and %s.', 'burst-mainwp' ),
 			formatDuration( minSeconds ),
 			formatDuration( maxSeconds as number )
 		);
@@ -262,7 +262,7 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 			{/* Preset pills */}
 			<div>
 				<label className="block text-sm font-medium text-text-gray mb-2">
-					{__( 'Quick select', 'burst-statistics' )}
+					{__( 'Quick select', 'burst-mainwp' )}
 				</label>
 
 				<div className="flex flex-wrap gap-2">
@@ -301,11 +301,11 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 			<div>
 				<div className="mb-2">
 					<label className="text-sm font-medium text-text-gray">
-						{__( 'Custom range', 'burst-statistics' )}
+						{__( 'Custom range', 'burst-mainwp' )}
 					</label>
 
 					<p className="text-xs text-text-gray-light mt-1">
-						{__( 'Use values like 30s, 2m, 10m, 1h.', 'burst-statistics' )}
+						{__( 'Use values like 30s, 2m, 10m, 1h.', 'burst-mainwp' )}
 					</p>
 				</div>
 
@@ -313,7 +313,7 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 					{/* Min input */}
 					<div className="flex-1">
 						<label className="block text-xs text-text-gray-light mb-1">
-							{__( 'Minimum', 'burst-statistics' )}
+							{__( 'Minimum', 'burst-mainwp' )}
 						</label>
 
 						<TextInput
@@ -338,8 +338,8 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 						<label className="block text-xs text-text-gray-light mb-1">
 							{
 								isOpenEnded ?
-									__( 'No upper limit', 'burst-statistics' ) :
-									__( 'Maximum', 'burst-statistics' )}
+									__( 'No upper limit', 'burst-mainwp' ) :
+									__( 'Maximum', 'burst-mainwp' )}
 						</label>
 
 						<TextInput
@@ -347,7 +347,7 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 							value={maxInput}
 							onChange={handleMaxChange}
 							onBlur={commitCurrentInputs}
-							placeholder={__( 'No limit', 'burst-statistics' )}
+							placeholder={__( 'No limit', 'burst-mainwp' )}
 							className="w-full"
 						/>
 						{
@@ -375,7 +375,7 @@ const TimePerSessionFilterSetup: React.FC<TimePerSessionFilterSetupProps> = ({
 				{
 					! summaryText() && (
 						<p className="mt-2 text-xs text-text-gray-light">
-							{__( 'Leave maximum empty for no upper limit.', 'burst-statistics' )}
+							{__( 'Leave maximum empty for no upper limit.', 'burst-mainwp' )}
 						</p>
 					)
 				}

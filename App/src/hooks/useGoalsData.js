@@ -111,7 +111,7 @@ const useGoalsData = () => {
 		},
 		onError: ( error ) => {
 			console.error( error );
-			toast.error( __( 'Failed to save goals', 'burst-statistics' ) );
+			toast.error( __( 'Failed to save goals', 'burst-mainwp' ) );
 		}
 	});
 
@@ -123,7 +123,7 @@ const useGoalsData = () => {
 		},
 		onError: ( error ) => {
 			console.error( error );
-			toast.error( __( 'Failed to save goal title', 'burst-statistics' ) );
+			toast.error( __( 'Failed to save goal title', 'burst-mainwp' ) );
 		}
 	});
 
@@ -143,11 +143,11 @@ const useGoalsData = () => {
 				});
 			});
 
-			toast.success( __( 'Goal added successfully!', 'burst-statistics' ) );
+			toast.success( __( 'Goal added successfully!', 'burst-mainwp' ) );
 		},
 		onError: ( error ) => {
 			console.error( error );
-			toast.error( __( 'Failed to add goal', 'burst-statistics' ) );
+			toast.error( __( 'Failed to add goal', 'burst-mainwp' ) );
 		}
 	});
 
@@ -182,13 +182,13 @@ const useGoalsData = () => {
 				});
 
 				toast.success(
-					__( 'Goal deleted successfully!', 'burst-statistics' )
+					__( 'Goal deleted successfully!', 'burst-mainwp' )
 				);
 			}
 		},
 		onError: ( error ) => {
 			console.error( error );
-			toast.error( __( 'Failed to delete goal', 'burst-statistics' ) );
+			toast.error( __( 'Failed to delete goal', 'burst-mainwp' ) );
 		}
 	});
 
@@ -199,7 +199,7 @@ const useGoalsData = () => {
 				throw new Error(
 					__(
 						'Predefined goals are a premium feature.',
-						'burst-statistics'
+						'burst-mainwp'
 					)
 				);
 			}
@@ -218,14 +218,14 @@ const useGoalsData = () => {
 			});
 
 			toast.success(
-				__( 'Successfully added predefined goal!', 'burst-statistics' )
+				__( 'Successfully added predefined goal!', 'burst-mainwp' )
 			);
 		},
 		onError: ( error ) => {
 			console.error( error );
 			toast.error(
 				error.message ||
-					__( 'Failed to add predefined goal', 'burst-statistics' )
+					__( 'Failed to add predefined goal', 'burst-mainwp' )
 			);
 		}
 	});

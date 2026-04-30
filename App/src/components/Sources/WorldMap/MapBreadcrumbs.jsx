@@ -23,7 +23,7 @@ const MapBreadcrumbs = () => {
 	// Generate breadcrumb items based on current view and history
 	const breadcrumbItems = [
 		{
-			label: _x( 'World', 'navigation item', 'burst-statistics' ),
+			label: _x( 'World', 'navigation item', 'burst-mainwp' ),
 			isActive: 'world' === currentView.level,
 			onClick: handleWorldClick,
 			isClickable: 'world' !== currentView.level
@@ -56,11 +56,11 @@ const MapBreadcrumbs = () => {
 					}`}
 					title={
 						canGoBack ?
-							_x( 'Go back', 'button title', 'burst-statistics' ) :
+							_x( 'Go back', 'button title', 'burst-mainwp' ) :
 							_x(
 									'No previous page',
 									'button title',
-									'burst-statistics'
+									'burst-mainwp'
 								)
 					}
 				>
@@ -79,7 +79,7 @@ const MapBreadcrumbs = () => {
 					aria-label={_x(
 						'Map navigation',
 						'aria label',
-						'burst-statistics'
+						'burst-mainwp'
 					)}
 				>
 					<ol className="flex items-center space-x-1">

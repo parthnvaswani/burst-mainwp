@@ -80,7 +80,7 @@ const ReportingField = ({ field, fieldState, help, context, ...props }) => {
 
 	const columns = [
 		{
-			name: __( 'Report name', 'burst-statistics' ),
+			name: __( 'Report name', 'burst-mainwp' ),
 			selector: ( row ) => row.name,
 			cell: ( row ) => (
 				<button
@@ -99,7 +99,7 @@ const ReportingField = ({ field, fieldState, help, context, ...props }) => {
 			grow: 0
 		},
 		{
-			name: __( 'Last status', 'burst-statistics' ),
+			name: __( 'Last status', 'burst-mainwp' ),
 			cell: ( row ) => {
 				const severity = getSeverity( row.lastSendStatus );
 
@@ -114,7 +114,7 @@ const ReportingField = ({ field, fieldState, help, context, ...props }) => {
 			maxWidth: '200px'
 		},
 		{
-			name: __( 'Format', 'burst-statistics' ),
+			name: __( 'Format', 'burst-mainwp' ),
 			cell: ( row ) => {
 				const formatObj = formats.find( ( f ) => f.key === row.format );
 				return (
@@ -128,7 +128,7 @@ const ReportingField = ({ field, fieldState, help, context, ...props }) => {
 			maxWidth: '70px'
 		},
 		{
-			name: __( 'Schedule', 'burst-statistics' ),
+			name: __( 'Schedule', 'burst-mainwp' ),
 			sortable: true,
 			grow: 2,
 			cell: ( row ) => {
@@ -140,11 +140,11 @@ const ReportingField = ({ field, fieldState, help, context, ...props }) => {
 			}
 		},
 		{
-			name: __( 'Last edit', 'burst-statistics' ),
+			name: __( 'Last edit', 'burst-mainwp' ),
 			grow: 2,
 			cell: ( row ) => (
 				<OverflowTooltip>
-					{ row.lastEdit ? formatDateAndTime( new Date( row.lastEdit * 1000 ) ) : __( 'N/A', 'burst-statistics' ) }
+					{ row.lastEdit ? formatDateAndTime( new Date( row.lastEdit * 1000 ) ) : __( 'N/A', 'burst-mainwp' ) }
 				</OverflowTooltip>
 			)
 		},
@@ -165,8 +165,8 @@ const ReportingField = ({ field, fieldState, help, context, ...props }) => {
 
 				return (
 					<Tooltip content={row.enabled ?
-						__( 'This report is active and will be sent on schedule. Toggle to pause.', 'burst-statistics' ) :
-						__( 'This report is paused. Toggle to activate and resume scheduled sending.', 'burst-statistics' )
+						__( 'This report is active and will be sent on schedule. Toggle to pause.', 'burst-mainwp' ) :
+						__( 'This report is paused. Toggle to activate and resume scheduled sending.', 'burst-mainwp' )
 					}>
 						<div className="report-activate-toggle">
 							<SwitchInput
@@ -204,18 +204,18 @@ const ReportingField = ({ field, fieldState, help, context, ...props }) => {
 			>
 				<div className="w-full lg:w-4/6 flex flex-col gap-4">
 					<p className="px-6 text-base text-text-black">
-						{__( 'Share Burst Insights with your team on a schedule that works for them. All reports are generated locally on your site and sent directly to your chosen emails.', 'burst-statistics' )}
+						{__( 'Share Burst Insights with your team on a schedule that works for them. All reports are generated locally on your site and sent directly to your chosen emails.', 'burst-mainwp' )}
 					</p>
 				</div>
 
 				<div className="w-full flex flex-col gap-4 mt-4">
 					<ButtonInput onClick={() => handleAddReport()} className="mt-2 w-fit self-end mr-6" type="button">
-						{__( 'New report', 'burst-statistics' )}
+						{__( 'New report', 'burst-mainwp' )}
 					</ButtonInput>
 
 					{
 						isFetching ? (
-							<p className="text-center text-text-gray">{__( 'Loading reports...', 'burst-statistics' )}</p>
+							<p className="text-center text-text-gray">{__( 'Loading reports...', 'burst-mainwp' )}</p>
 						) : (
 							<DataTable
 								noDataComponent={
@@ -223,7 +223,7 @@ const ReportingField = ({ field, fieldState, help, context, ...props }) => {
 										noData={ 0 === reports.length }
 										data={[]}
 										isLoading={isFetching}
-										emptyStateMessage={ __( 'There are no reports available.', 'burst-statistics' ) }
+										emptyStateMessage={ __( 'There are no reports available.', 'burst-mainwp' ) }
 									/>
 								}
 								className="burst-data-table"

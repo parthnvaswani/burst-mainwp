@@ -28,7 +28,7 @@ const Flag = ({ country, countryNiceName = '', iconOnly = false }) => {
 	}
 
 	if ( '' === countryNiceName ) {
-		countryNiceName = __( 'Unknown', 'burst-statistics' );
+		countryNiceName = __( 'Unknown', 'burst-mainwp' );
 	}
 
 	country = country.toLowerCase();

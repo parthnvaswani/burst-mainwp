@@ -31,7 +31,7 @@ export const ReportLogsField = ({ field, fieldState, help, context, ...props }: 
 	const columns: TableColumn<ReportLogEntry>[] = useMemo(
 		() => [
 			{
-				name: __( 'Status', 'burst-statistics' ),
+				name: __( 'Status', 'burst-mainwp' ),
 				cell: ( row ) => {
 					const severity = reportLogStatusConfig?.[row.status]?.severity ?? 'info';
 					return (
@@ -45,7 +45,7 @@ export const ReportLogsField = ({ field, fieldState, help, context, ...props }: 
 				grow: 0
 			},
 			{
-				name: __( 'Report', 'burst-statistics' ),
+				name: __( 'Report', 'burst-mainwp' ),
 				cell: ( row ) => (
 					<OverflowTooltip>
 						{ row.report_name }
@@ -54,13 +54,13 @@ export const ReportLogsField = ({ field, fieldState, help, context, ...props }: 
 				grow: 1
 			},
 			{
-				name: __( 'Date', 'burst-statistics' ),
+				name: __( 'Date', 'burst-mainwp' ),
 				cell: ( row ) => formatDateAndTime( new Date( row.time * 1000 ) ),
 				sortable: true,
 				grow: 2
 			},
 			{
-				name: __( 'Queue', 'burst-statistics' ),
+				name: __( 'Queue', 'burst-mainwp' ),
 				cell: ( row ) => (
 					<OverflowTooltip className="text-right">
 						{ row.queue_id }
@@ -70,7 +70,7 @@ export const ReportLogsField = ({ field, fieldState, help, context, ...props }: 
 				grow: 1
 			},
 			{
-				name: __( 'Message', 'burst-statistics' ),
+				name: __( 'Message', 'burst-mainwp' ),
 				cell: ( row ) =>
 					row.message ? (
 						<OverflowTooltip className="text-right">
@@ -102,7 +102,7 @@ export const ReportLogsField = ({ field, fieldState, help, context, ...props }: 
 						noData={ 0 === data.length }
 						isLoading={ isFetching }
 						error={null}
-						emptyStateMessage={ __( 'No report logs available.', 'burst-statistics' ) }
+						emptyStateMessage={ __( 'No report logs available.', 'burst-mainwp' ) }
 					/>
 				}
 				className="burst-data-table no-custom-burst-style"
@@ -138,7 +138,7 @@ const ExpandedComponent = ({ data }: { data: ReportLogEntry }) => {
 	return (
 		<div className = "px-6 py-4 bg-gray-50 flex flex-col gap-2">
 			<h4 className = "text-sm font-semibold">
-				{__( 'Batch details', 'burst-statistics' )}
+				{__( 'Batch details', 'burst-mainwp' )}
 			</h4>
 
 			<ul className = "flex flex-col gap-1">

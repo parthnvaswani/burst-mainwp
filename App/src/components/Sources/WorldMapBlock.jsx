@@ -18,7 +18,7 @@ const WorldMapBlock = ( props ) => {
 			<ErrorBoundary>
 				<BlockHeading
 					className="border-b border-gray-200"
-					title={__( 'World view', 'burst-statistics' )}
+					title={__( 'World view', 'burst-mainwp' )}
 					isReport={isReport}
 					reportBlockIndex={index}
 					isLoading={isGeoFetching}

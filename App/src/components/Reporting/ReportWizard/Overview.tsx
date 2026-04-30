@@ -20,10 +20,10 @@ export const Overview = () => {
 
 	const getDeliveryText = () => {
 		if ( scheduled ) {
-			return __( 'Scheduled email, sent automatically', 'burst-statistics' );
+			return __( 'Scheduled email, sent automatically', 'burst-mainwp' );
 		}
 
-		return __( 'Manual download', 'burst-statistics' );
+		return __( 'Manual download', 'burst-mainwp' );
 	};
 
 	const getLabel = ( blockId: ContentBlockId ) => {
@@ -38,13 +38,13 @@ export const Overview = () => {
 				scheduled && (
 					<>
 						<div className="text-text-gray-light font-medium">
-							{__( 'Delivers:', 'burst-statistics' )}
+							{__( 'Delivers:', 'burst-mainwp' )}
 						</div>
 
 					<div className="text-text-black font-medium">{getDeliveryText()}</div>
 
 					<div className="text-text-gray-light font-medium">
-						{__( 'Scheduled:', 'burst-statistics' )}
+						{__( 'Scheduled:', 'burst-mainwp' )}
 					</div>
 
 						<div className="text-text-black font-medium">{getScheduleLabel( scheduled, frequency, dayOfWeek, weekOfMonth, sendTime )}</div>
@@ -53,7 +53,7 @@ export const Overview = () => {
 			}
 
 			<div className="text-text-gray-light font-medium">
-				{__( 'Recipients:', 'burst-statistics' )}
+				{__( 'Recipients:', 'burst-mainwp' )}
 			</div>
 
 			<div className="text-text-black font-medium">
@@ -69,13 +69,13 @@ export const Overview = () => {
 							}
 						</ul>
 					) : (
-						<span className="text-md">{__( 'No recipients added', 'burst-statistics' )}</span>
+						<span className="text-md">{__( 'No recipients added', 'burst-mainwp' )}</span>
 					)
 				}
 			</div>
 
 			<div className="text-text-gray-light font-medium">
-				{__( 'Content:', 'burst-statistics' )}
+				{__( 'Content:', 'burst-mainwp' )}
 			</div>
 
 			<div className="text-text-black font-medium">
@@ -93,7 +93,7 @@ export const Overview = () => {
 							}
 						</ul>
 					) : (
-						<span className="text-md">{__( 'No content selected', 'burst-statistics' )}</span>
+						<span className="text-md">{__( 'No content selected', 'burst-mainwp' )}</span>
 					)
 				}
 			</div>
@@ -103,7 +103,7 @@ export const Overview = () => {
 					<>
 						{'story' === format && <>
 							<div className="text-text-gray-light font-medium">
-								{__( 'Story URL:', 'burst-statistics' )}
+								{__( 'Story URL:', 'burst-mainwp' )}
 							</div>
 							<div className="flex gap-2.5">
 								<ReportStoryUrl reportId={id}/>

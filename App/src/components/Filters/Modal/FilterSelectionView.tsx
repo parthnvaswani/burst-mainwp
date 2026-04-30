@@ -59,10 +59,10 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 	const tabs = [
 		{
 			key: 'favorites',
-			label: __( 'Favorites', 'burst-statistics' ),
+			label: __( 'Favorites', 'burst-mainwp' ),
 			icon: 'star-outline'
 		},
-		{ key: 'all', label: __( 'All', 'burst-statistics' ), icon: 'grid' },
+		{ key: 'all', label: __( 'All', 'burst-mainwp' ), icon: 'grid' },
 		...Object.entries( filterCategories )
 			.sort( ([ , a ], [ , b ]) => ( a as any ).order - ( b as any ).order ) // eslint-disable-line @typescript-eslint/no-explicit-any
 			.map( ([ key, category ]) => ({
@@ -132,21 +132,21 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 						{searchQuery.trim() ?
 							__(
 									'No filters match your search.',
-									'burst-statistics'
+									'burst-mainwp'
 								) :
 							'favorites' === activeTab ?
 								__(
 										'No favorite filters yet. Pin filters to add them here.',
-										'burst-statistics'
+										'burst-mainwp'
 									) :
 								'all' === activeTab ?
 									__(
 											'No filters available.',
-											'burst-statistics'
+											'burst-mainwp'
 										) :
 									__(
 											'No filters in this category.',
-											'burst-statistics'
+											'burst-mainwp'
 										)}
 					</p>
 				</div>
@@ -163,7 +163,7 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 							<span className="text-sm text-blue-700">
 								{__(
 									'No results found in current tab. Showing results from all filters.',
-									'burst-statistics'
+									'burst-mainwp'
 								)}
 							</span>
 						</div>
@@ -173,7 +173,7 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 				<div
 					className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center"
 					role="grid"
-					aria-label={__( 'Available filters', 'burst-statistics' )}
+					aria-label={__( 'Available filters', 'burst-mainwp' )}
 				>
 					{filters.map( ( filter, index ) => (
 						<FilterCard
@@ -198,7 +198,7 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 			{/* Search Input */}
 			<div className="mb-6">
 				<label htmlFor="filter-search" className="sr-only">
-					{__( 'Search filters', 'burst-statistics' )}
+					{__( 'Search filters', 'burst-mainwp' )}
 				</label>
 				<div className="relative">
 					<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -212,7 +212,7 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 					<input
 						id="filter-search"
 						type="text"
-						placeholder={__( 'Search filters…', 'burst-statistics' )}
+						placeholder={__( 'Search filters…', 'burst-mainwp' )}
 						value={searchQuery}
 						onChange={( e ) => setSearchQuery( e.target.value )}
 						className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary text-sm"
@@ -225,7 +225,7 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 						<button
 							onClick={() => setSearchQuery( '' )}
 							className="absolute inset-y-0 right-0 pr-3 flex items-center text-text-gray-light hover:text-text-gray-light focus:outline-hidden focus:text-text-gray"
-							aria-label={__( 'Clear search', 'burst-statistics' )}
+							aria-label={__( 'Clear search', 'burst-mainwp' )}
 							type="button"
 						>
 							<Icon name="times" size={16} aria-hidden="true" />
@@ -240,7 +240,7 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 					<nav
 						className="-mb-px flex space-x-8 overflow-x-auto scrollbar-hide"
 						role="tablist"
-						aria-label={__( 'Filter categories', 'burst-statistics' )}
+						aria-label={__( 'Filter categories', 'burst-mainwp' )}
 					>
 						{tabs.map( ( tab ) => (
 							<button
@@ -294,7 +294,7 @@ const FilterSelectionView: React.FC<FilterSelectionViewProps> = ({
 							<div id="search-results-info" className="sr-only">
 								{__(
 									'Showing %d search results',
-									'burst-statistics'
+									'burst-mainwp'
 								).replace(
 									'%d',
 									searchResults.results.length.toString()

@@ -25,7 +25,7 @@ export const ReportStoryUrl: React.FC<ReportStoryUrlProps> = ({ reportId }) => {
             setLink( shareUrl );
             await copyToClipboard( shareUrl );
             setCopied( true );
-            toast.success( __( 'Link created and copied to clipboard!', 'burst-statistics' ) );
+            toast.success( __( 'Link created and copied to clipboard!', 'burst-mainwp' ) );
         }
     };
 
@@ -37,14 +37,14 @@ export const ReportStoryUrl: React.FC<ReportStoryUrlProps> = ({ reportId }) => {
                 >
                     { isGenerating &&
                         <Icon name="loading" size={14} color="gray" />
-                    }{__( 'Copy URL', 'burst-statistics' )}
+                    }{__( 'Copy URL', 'burst-mainwp' )}
                 </ButtonInput>
                 <ButtonInput disabled={ ! isLicenseValidFor( 'share-link-advanced' ) } onClick={ () => openPreview( reportId, true ) } btnVariant="tertiary"
                              className="flex items-center gap-2 !px-3 py-1.5 h-fit text-sm leading-none text-text-gray bg-gray-100 border border-gray-400 rounded-md hover:bg-gray-50 transition-colors"
                 >
                     { isGenerating &&
                         <Icon name="loading" size={14} color="gray" />
-                    }{__( 'Download PDF', 'burst-statistics' )}
+                    }{__( 'Download PDF', 'burst-mainwp' )}
                 </ButtonInput>
             </div>
             {0 < link.length &&
@@ -59,7 +59,7 @@ export const ReportStoryUrl: React.FC<ReportStoryUrlProps> = ({ reportId }) => {
                     className="burst-story-report-url max-w-full truncate text-sm text-text-gray font-mono w-full bg-gray-50 px-2 py-1.5 rounded border border-gray-300 cursor-text focus:border-wp-blue focus:ring-1 focus:ring-wp-blue/20"
                 />
 
-                <Tooltip content={isCopied ? __( 'Copied!', 'burst-statistics' ) : __( 'Copy link', 'burst-statistics' )}>
+                <Tooltip content={isCopied ? __( 'Copied!', 'burst-mainwp' ) : __( 'Copy link', 'burst-mainwp' )}>
                     <button
                         onClick={() => copyToClipboard( link )}
                         className="rounded p-1 text-text-gray-light transition-colors hover:bg-gray-200 hover:text-text-gray-light"

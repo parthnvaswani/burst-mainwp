@@ -38,7 +38,7 @@ export const FunnelChart: React.FC<FunnelChartProps> = ({
 			return [ {
 				id: 'step-0',
 				value: 1,
-				label: __( 'No data', 'burst-statistics' )
+				label: __( 'No data', 'burst-mainwp' )
 			} ];
 		}
 
@@ -110,7 +110,7 @@ export const FunnelChart: React.FC<FunnelChartProps> = ({
 	if ( ! data || 0 === data.length || ! formattedData || 0 === formattedData.length ) {
 		return (
 			<div className="border-t border-gray-300 p-4">
-				{__( 'No funnel data available', 'burst-statistics' )}
+				{__( 'No funnel data available', 'burst-mainwp' )}
 			</div>
 		);
 	}
@@ -234,7 +234,7 @@ export const FunnelChart: React.FC<FunnelChartProps> = ({
 									sprintf(
 											__(
 												'Improving this by %s%% could lead to ~%d more sales.',
-												'burst-statistics'
+												'burst-mainwp'
 											),
 											improvementPercentage,
 											potentialGain

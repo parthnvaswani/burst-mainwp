@@ -66,23 +66,23 @@ const FilterCard: React.FC<FilterCardProps> = ({
 		let description = `${config.label} filter`;
 
 		if ( isActive ) {
-			description += `, ${__( 'currently active', 'burst-statistics' )}`;
+			description += `, ${__( 'currently active', 'burst-mainwp' )}`;
 		}
 
 		if ( config.pro ) {
-			description += `, ${__( 'Pro feature', 'burst-statistics' )}`;
+			description += `, ${__( 'Pro feature', 'burst-mainwp' )}`;
 		}
 
 		if ( config.coming_soon ) {
-			description += `, ${__( 'coming soon', 'burst-statistics' )}`;
+			description += `, ${__( 'coming soon', 'burst-mainwp' )}`;
 		}
 
 		if ( config.new_badge ) {
-			description += `, ${__( 'new', 'burst-statistics' )}`;
+			description += `, ${__( 'new', 'burst-mainwp' )}`;
 		}
 
 		if ( isDisabled ) {
-			description += `, ${__( 'disabled', 'burst-statistics' )}`;
+			description += `, ${__( 'disabled', 'burst-mainwp' )}`;
 		}
 
 		return description;
@@ -144,11 +144,11 @@ const FilterCard: React.FC<FilterCardProps> = ({
 						isFav ?
 							__(
 									'Remove %s from favorites',
-									'burst-statistics'
+									'burst-mainwp'
 								).replace( '%s', config.label ) :
 							__(
 									'Add %s to favorites',
-									'burst-statistics'
+									'burst-mainwp'
 								).replace( '%s', config.label )
 					}
 					aria-pressed={isFav}
@@ -201,7 +201,7 @@ const FilterCard: React.FC<FilterCardProps> = ({
 					{
 						config.pro && (
 							<div className="mt-2">
-								<ProBadge label={__( 'Pro', 'burst-statistics' )} />
+								<ProBadge label={__( 'Pro', 'burst-mainwp' )} />
 							</div>
 						)
 					}
@@ -210,7 +210,7 @@ const FilterCard: React.FC<FilterCardProps> = ({
 						config.coming_soon && (
 							<div className="mt-2">
 								<span className="inline-flex items-center rounded bg-blue-50 px-2 py-0.5 text-xs font-medium text-text-gray">
-									{__( 'Coming soon', 'burst-statistics' )}
+									{__( 'Coming soon', 'burst-mainwp' )}
 								</span>
 							</div>
 						)

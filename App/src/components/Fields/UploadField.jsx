@@ -66,8 +66,8 @@ const EXCLUDED_FIELDS = [
 			if ( 'application/json' !== file.type && ! file.name.endsWith( '.json' ) ) {
 				setDisabled( true );
 				setImportStatus( 'error' );
-				setImportMessage( __( 'You can only upload .json files!', 'burst-statistics' ) );
-				toast.error( __( 'You can only upload .json files!', 'burst-statistics' ) );
+				setImportMessage( __( 'You can only upload .json files!', 'burst-mainwp' ) );
+				toast.error( __( 'You can only upload .json files!', 'burst-mainwp' ) );
 			} else {
 				setDisabled( false );
 			}
@@ -83,7 +83,7 @@ const EXCLUDED_FIELDS = [
 			return new Promise( ( resolve, reject ) => {
 				const reader = new FileReader();
 				reader.onload = ( e ) => resolve( e.target.result );
-				reader.onerror = () => reject( new Error( __( 'Failed to read the file.', 'burst-statistics' ) ) );
+				reader.onerror = () => reject( new Error( __( 'Failed to read the file.', 'burst-mainwp' ) ) );
 				reader.readAsText( fileToRead );
 			});
 		};
@@ -100,11 +100,11 @@ const EXCLUDED_FIELDS = [
 			try {
 				data = JSON.parse( content );
 			} catch {
-				throw new Error( __( 'The JSON file is malformed or invalid.', 'burst-statistics' ) );
+				throw new Error( __( 'The JSON file is malformed or invalid.', 'burst-mainwp' ) );
 			}
 
 			if ( ! data || ! data.settings || 'object' !== typeof data.settings ) {
-				throw new Error( __( 'The file does not contain valid settings data.', 'burst-statistics' ) );
+				throw new Error( __( 'The file does not contain valid settings data.', 'burst-mainwp' ) );
 			}
 
 			return data;
@@ -118,7 +118,7 @@ const EXCLUDED_FIELDS = [
 		 */
 		const buildSettingsForSave = ( importedSettings ) => {
 			if ( ! settings ) {
-				throw new Error( __( 'Settings not loaded. Please refresh the page.', 'burst-statistics' ) );
+				throw new Error( __( 'Settings not loaded. Please refresh the page.', 'burst-mainwp' ) );
 			}
 
 			const settingsToSave = {};
@@ -176,7 +176,7 @@ const EXCLUDED_FIELDS = [
 				await saveSettings( settingsToSave );
 
 				setImportStatus( 'success' );
-				setImportMessage( __( 'Settings imported successfully!', 'burst-statistics' ) );
+				setImportMessage( __( 'Settings imported successfully!', 'burst-mainwp' ) );
 
 				// Clear file after successful import.
 				setFile( false );
@@ -184,7 +184,7 @@ const EXCLUDED_FIELDS = [
 					fileInputRef.current.value = '';
 				}
 			} catch ( error ) {
-				const errorMessage = error.message || __( 'An unexpected error occurred while importing settings.', 'burst-statistics' );
+				const errorMessage = error.message || __( 'An unexpected error occurred while importing settings.', 'burst-mainwp' );
 				setImportStatus( 'error' );
 				setImportMessage( errorMessage );
 				toast.error( errorMessage );
@@ -260,8 +260,8 @@ const EXCLUDED_FIELDS = [
 									type="button"
 									onClick={handleClearFile}
 									className="p-1 rounded hover:bg-gray-200 transition-colors"
-									aria-label={__( 'Clear file selection', 'burst-statistics' )}
-									title={__( 'Clear file selection', 'burst-statistics' )}
+									aria-label={__( 'Clear file selection', 'burst-mainwp' )}
+									title={__( 'Clear file selection', 'burst-mainwp' )}
 								>
 									<Icon name="times" size={16} color="gray" />
 								</button>
@@ -278,17 +278,17 @@ const EXCLUDED_FIELDS = [
 							onChange={handleFileSelect}
 							className="hidden"
 							id={`${inputId}-file-input`}
-							aria-label={__( 'Upload settings file (.json)', 'burst-statistics' )}
+							aria-label={__( 'Upload settings file (.json)', 'burst-mainwp' )}
 						/>
 						<ButtonInput
 							btnVariant="tertiary"
 							onClick={handleSelectFileClick}
 							disabled={props.disabled || isProcessing}
-							ariaLabel={__( 'Upload settings file (.json)', 'burst-statistics' )}
+							ariaLabel={__( 'Upload settings file (.json)', 'burst-mainwp' )}
 						>
 							<span className="flex items-center gap-2">
 								<Icon name="upload" color="black" />
-								{__( 'Upload settings file (.json)', 'burst-statistics' )}
+								{__( 'Upload settings file (.json)', 'burst-mainwp' )}
 							</span>
 						</ButtonInput>
 						<ButtonInput
@@ -299,10 +299,10 @@ const EXCLUDED_FIELDS = [
 							{isProcessing ? (
 								<span className="flex items-center gap-2">
 									<Icon name="loading" color="white" />
-									{__( 'Importing...', 'burst-statistics' )}
+									{__( 'Importing...', 'burst-mainwp' )}
 								</span>
 							) : (
-								__( 'Import', 'burst-statistics' )
+								__( 'Import', 'burst-mainwp' )
 							)}
 						</ButtonInput>
 					</div>

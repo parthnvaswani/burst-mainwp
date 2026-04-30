@@ -39,8 +39,8 @@ const LogoEditorField =
 
 			// Create new frame
 			const frame = wp.media({
-				title: __( 'Select a logo', 'burst-statistics' ),
-				button: { text: __( 'Set logo', 'burst-statistics' ) },
+				title: __( 'Select a logo', 'burst-mainwp' ),
+				button: { text: __( 'Set logo', 'burst-mainwp' ) },
 				multiple: false
 			});
 
@@ -104,7 +104,7 @@ const LogoEditorField =
 						'0' === field.value
 					}
 				>
-					{__( 'Reset to Default', 'burst-statistics' )}
+					{__( 'Reset to Default', 'burst-mainwp' )}
 				</ButtonInput>
 			</FieldWrapper>
 		);

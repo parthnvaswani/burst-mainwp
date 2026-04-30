@@ -68,7 +68,7 @@ const SkeletonHeader = () => {
 					className="text-sm font-semibold text-text-gray-light select-none animate-pulseSlow"
 					style={{ filter: 'blur(4px)' }}
 				>
-					{__( 'Page URL', 'burst-statistics' )}
+					{__( 'Page URL', 'burst-mainwp' )}
 				</span>
 			</div>
 			{/* Second column header - blurred text effect. */}
@@ -77,7 +77,7 @@ const SkeletonHeader = () => {
 					className="text-sm font-semibold text-text-gray-light select-none animate-pulseSlow"
 					style={{ filter: 'blur(4px)' }}
 				>
-					{__( 'Pageviews', 'burst-statistics' )}
+					{__( 'Pageviews', 'burst-mainwp' )}
 				</span>
 			</div>
 		</div>
@@ -108,7 +108,7 @@ const SkeletonPagination = () => {
 				className="text-sm text-text-gray-light select-none animate-pulseSlow"
 				style={{ filter: 'blur(3px)', animationDelay: '100ms' }}
 			>
-				1-10 {__( 'of', 'burst-statistics' )} 100
+				1-10 {__( 'of', 'burst-mainwp' )} 100
 			</span>
 
 			{/* Navigation buttons skeleton. */}
@@ -198,7 +198,7 @@ const EmptyPagination = () => {
 
 			{/* Page info. */}
 			<span className="text-sm text-text-gray-light select-none">
-				0-0 {__( 'of', 'burst-statistics' )} 0
+				0-0 {__( 'of', 'burst-mainwp' )} 0
 			</span>
 
 			{/* Navigation buttons. */}
@@ -261,11 +261,11 @@ const EmptyState = ({ emptyStateMessage = '' }) => {
 				</div>
 				{/* Empty state message. */}
 				<h3 className="text-base font-medium text-text-gray-light mb-1">
-					{__( 'No data to display', 'burst-statistics' )}
+					{__( 'No data to display', 'burst-mainwp' )}
 				</h3>
 				<p className="text-sm text-text-gray-light max-w-xs">
 					{
-						emptyStateMessage ? emptyStateMessage : __( 'There is no data available for the selected filters and date range.', 'burst-statistics' )
+						emptyStateMessage ? emptyStateMessage : __( 'There is no data available for the selected filters and date range.', 'burst-mainwp' )
 					}
 				</p>
 			</div>
@@ -311,10 +311,10 @@ const ErrorState = ({ error }) => {
 				</div>
 				{/* Error message. */}
 				<h3 className="text-base font-medium text-text-gray-light mb-1">
-					{__( 'Something went wrong', 'burst-statistics' )}
+					{__( 'Something went wrong', 'burst-mainwp' )}
 				</h3>
 				<p className="text-sm text-text-gray-light max-w-xs">
-					{error?.message || __( 'An unexpected error occurred while loading data.', 'burst-statistics' )}
+					{error?.message || __( 'An unexpected error occurred while loading data.', 'burst-mainwp' )}
 				</p>
 			</div>
 			{/* Disabled pagination. */}

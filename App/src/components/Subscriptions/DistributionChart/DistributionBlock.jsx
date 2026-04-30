@@ -17,13 +17,13 @@ import {
 } from './distributionData';
 
 const options = [
-	{ label: __( 'Gateways', 'burst-statistics' ), value: 'gateways' },
-	{ label: __( 'Currencies', 'burst-statistics' ), value: 'currencies' },
-	{ label: __( 'Countries', 'burst-statistics' ), value: 'countries' }
+	{ label: __( 'Gateways', 'burst-mainwp' ), value: 'gateways' },
+	{ label: __( 'Currencies', 'burst-mainwp' ), value: 'currencies' },
+	{ label: __( 'Countries', 'burst-mainwp' ), value: 'countries' }
 ];
 
 const EMPTY_STATE_DATA = [
-	{ id: 'empty', label: __( 'No data', 'burst-statistics' ), value: 100 }
+	{ id: 'empty', label: __( 'No data', 'burst-mainwp' ), value: 100 }
 ];
 
 /**
@@ -41,7 +41,7 @@ function DistributionLegend({ data, colors, isEmptyState }) {
 				isEmptyState ?
 					(
 						<div className="mt-4 text-sm text-center text-gray-500">
-							{ __( 'No distribution data for this period.', 'burst-statistics' ) }
+							{ __( 'No distribution data for this period.', 'burst-mainwp' ) }
 						</div>
 					) :
 					data.map( ( item, index ) => (
@@ -93,13 +93,13 @@ export function DistributionBlock() {
 		colors = DISTRIBUTION_LOADING_COLORS;
 	} else if ( isEmptyState ) {
 		data = EMPTY_STATE_DATA;
-		colors = [ '#E5E7EB' ];
+		colors = [ 'var(--color-gray-300)' ];
 	}
 
 	return (
 		<Block className="row-span-1 lg:col-span-6 xl:col-span-3">
 			<BlockHeading
-				title={ __( 'Distribution', 'burst-statistics' ) }
+				title={ __( 'Distribution', 'burst-mainwp' ) }
 				className="border-b border-gray-200"
 				isLoading={ isFetching }
 				controls={
@@ -116,7 +116,7 @@ export function DistributionBlock() {
 			<BlockContent className="px-0 py-0">
 				{ distributionQuery.isError && (
 					<p className="px-6 py-4 text-sm text-red-600">
-						{ __( 'Failed to load distribution data.', 'burst-statistics' ) }
+						{ __( 'Failed to load distribution data.', 'burst-mainwp' ) }
 					</p>
 				) }
 

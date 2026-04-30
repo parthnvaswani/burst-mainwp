@@ -26,9 +26,9 @@ const useArchiveStore = create( ( set, get ) => ({
 		const data = {};
 		data.archives = deleteArchives;
 		await toast.promise( doAction( 'delete_archives', data ), {
-			pending: __( 'Deleting…', 'burst-statistics' ),
-			success: __( 'Archives deleted successfully!', 'burst-statistics' ),
-			error: __( 'Failed to delete archive', 'burst-statistics' )
+			pending: __( 'Deleting…', 'burst-mainwp' ),
+			success: __( 'Archives deleted successfully!', 'burst-mainwp' ),
+			error: __( 'Failed to delete archive', 'burst-mainwp' )
 		});
 	},
 	fetchData: async( isPro ) => {
@@ -78,14 +78,14 @@ const useArchiveStore = create( ( set, get ) => ({
 		await toast.promise(
 			doAction( 'start_restore_archives', { archives: selectedArchives }),
 			{
-				pending: __( 'Starting restore…', 'burst-statistics' ),
+				pending: __( 'Starting restore…', 'burst-mainwp' ),
 				success: __(
 					'Restore successfully started!',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				error: __(
 					'Failed to start restore process.',
-					'burst-statistics'
+					'burst-mainwp'
 				)
 			}
 		);

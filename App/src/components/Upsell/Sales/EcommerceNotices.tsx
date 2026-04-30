@@ -51,7 +51,7 @@ const EcommerceNoticeToast: React.FC<
 					rel="noopener noreferrer"
 					className="text-sm text-blue-600 hover:text-blue-800 underline"
 				>
-					{linkText || __( 'Read more', 'burst-statistics' )}
+					{linkText || __( 'Read more', 'burst-mainwp' )}
 				</a>
 			)}
 		</div>
@@ -165,15 +165,15 @@ const getEcommerceNotices = (): EcommerceNotice[] => {
 			title: sprintf(
 				__(
 					'Sales data is available for visits after %s.',
-					'burst-statistics'
+					'burst-mainwp'
 				),
 				formattedDate
 			),
 			description: __(
 				'Sales tracking is a new feature, so this data is only available for visits recorded after it was enabled.',
-				'burst-statistics'
+				'burst-mainwp'
 			),
-			linkText: __( 'Read more', 'burst-statistics' ),
+			linkText: __( 'Read more', 'burst-mainwp' ),
 			url: docsUrl,
 			icon: 'campaign',
 			color: 'blue',

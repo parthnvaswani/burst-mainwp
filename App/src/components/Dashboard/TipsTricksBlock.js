@@ -36,7 +36,7 @@ const TipsTricksBlock = () => {
 	const items = pickRandomArticles( articlesQuery.data );
 	return (
 		<Block className="row-span-1 lg:col-span-6">
-			<BlockHeading title={__( 'Tips & tricks', 'burst-statistics' )} isLoading={articlesQuery.isFetching} />
+			<BlockHeading title={__( 'Tips & tricks', 'burst-mainwp' )} isLoading={articlesQuery.isFetching} />
 
 			<BlockContent className="py-0">
 				<div className="flex flex-row flex-wrap mb-2.5 text-base leading-[1.7] gap-1.5 max-[992px]:overflow-hidden">
@@ -67,7 +67,7 @@ const TipsTricksBlock = () => {
 					}}
 					btnVariant="tertiary"
 				>
-					{__( 'View all', 'burst-statistics' )}
+					{__( 'View all', 'burst-mainwp' )}
 				</ButtonInput>
 			</BlockFooter>
 		</Block>

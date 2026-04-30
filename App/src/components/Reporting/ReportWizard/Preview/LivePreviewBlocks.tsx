@@ -78,7 +78,7 @@ export const LivePreviewBlocks = ({ className }: { className?: string }) => {
                 {
                     0 === contents.length && (
                         <p className="text-text-gray-light text-center">
-                            {__( 'Select content to see preview', 'burst-statistics' )}
+                            {__( 'Select content to see preview', 'burst-mainwp' )}
                         </p>
                     )
                 }

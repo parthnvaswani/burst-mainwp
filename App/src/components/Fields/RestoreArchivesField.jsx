@@ -130,9 +130,9 @@ const RestoreArchivesField = forwardRef( () => {
 			'warning',
 			__(
 				'Because restoring files can conflict with the archiving functionality, archiving has been disabled.',
-				'burst-statistics'
+				'burst-mainwp'
 			),
-			__( 'Archiving disabled', 'burst-statistics' )
+			__( 'Archiving disabled', 'burst-mainwp' )
 		);
 	};
 
@@ -332,12 +332,12 @@ const RestoreArchivesField = forwardRef( () => {
 			width: '60px'
 		},
 		{
-			name: __( 'Archive', 'burst-statistics' ),
+			name: __( 'Archive', 'burst-mainwp' ),
 			selector: ( row ) => row.title,
 			sortable: true
 		},
 		{
-			name: __( 'Size', 'burst-statistics' ),
+			name: __( 'Size', 'burst-mainwp' ),
 			selector: ( row ) => row.size,
 			sortable: true,
 			width: '120px',
@@ -381,7 +381,7 @@ const RestoreArchivesField = forwardRef( () => {
 			<div className="flex py-2.5 px-6 justify-between">
 				<input
 					type="text"
-					placeholder={__( 'Search', 'burst-statistics' )}
+					placeholder={__( 'Search', 'burst-mainwp' )}
 					value={searchValue}
 					onChange={( e ) => setSearchValue( e.target.value )}
 				/>
@@ -403,7 +403,7 @@ const RestoreArchivesField = forwardRef( () => {
 										'%s item selected',
 										'%s items selected',
 										selectedArchives.length,
-										'burst-statistics'
+										'burst-mainwp'
 									),
 									selectedArchives.length
 								)}
@@ -419,7 +419,7 @@ const RestoreArchivesField = forwardRef( () => {
 									className="burst-button burst-button--secondary"
 									onClick={( e ) => downloadArchives( e )}
 								>
-									{__( 'Download', 'burst-statistics' )}
+									{__( 'Download', 'burst-mainwp' )}
 
 									{downloading && (
 										<Icon name="loading" color="gray" />
@@ -434,7 +434,7 @@ const RestoreArchivesField = forwardRef( () => {
 									onRestoreArchives( e, selectedArchives )
 								}
 							>
-								{__( 'Restore', 'burst-statistics' )}
+								{__( 'Restore', 'burst-mainwp' )}
 								{100 > progress && (
 									<Icon name="loading" color="gray" />
 								)}
@@ -447,7 +447,7 @@ const RestoreArchivesField = forwardRef( () => {
 									onDeleteArchives( e, selectedArchives )
 								}
 							>
-								{__( 'Delete', 'burst-statistics' )}
+								{__( 'Delete', 'burst-mainwp' )}
 							</button>
 						</div>
 					</div>
@@ -468,14 +468,14 @@ const RestoreArchivesField = forwardRef( () => {
 					paginationRowsPerPageOptions={[ 10, 25, 50 ]}
 					paginationComponentOptions={{
 						rowsPerPageText: '',
-						rangeSeparatorText: __( 'of', 'burst-statistics' ),
+						rangeSeparatorText: __( 'of', 'burst-mainwp' ),
 						noRowsPerPage: false,
 						selectAllRowsItem: true,
-						selectAllRowsItemText: __( 'All', 'burst-statistics' )
+						selectAllRowsItemText: __( 'All', 'burst-mainwp' )
 					}}
 					noDataComponent={
 						<div className="p-8">
-							{__( 'No archives', 'burst-statistics' )}
+							{__( 'No archives', 'burst-mainwp' )}
 						</div>
 					}
 					sortFunction={handleSort}

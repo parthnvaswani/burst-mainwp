@@ -58,19 +58,19 @@ export const StepControls = () => {
 	const handleFinalSubmit = async() => {
 		const response = await validateAndSave();
 		if ( ! response ) {
-			toast.error( __( 'Failed to save report', 'burst-statistics' ) );
+			toast.error( __( 'Failed to save report', 'burst-mainwp' ) );
 			return;
 		}
-		toast.success( __( 'Report saved successfully', 'burst-statistics' ) );
+		toast.success( __( 'Report saved successfully', 'burst-mainwp' ) );
 		handleClose();
 	};
 
 	const handleSave = async() => {
 		const response = await validateAndSave();
 		if ( null !== response ) {
-			toast.success( __( 'Report saved successfully', 'burst-statistics' ) );
+			toast.success( __( 'Report saved successfully', 'burst-mainwp' ) );
 		} else {
-			toast.error( __( 'Failed to save report', 'burst-statistics' ) );
+			toast.error( __( 'Failed to save report', 'burst-mainwp' ) );
 		}
 	};
 
@@ -79,7 +79,7 @@ export const StepControls = () => {
 		if ( isFirstStep && ! isReportCreated ) {
 			return (
 				<ButtonInput btnVariant="tertiary" onClick={handleClose}>
-					{__( 'Cancel create report', 'burst-statistics' )}
+					{__( 'Cancel create report', 'burst-mainwp' )}
 				</ButtonInput>
 			);
 		}
@@ -88,11 +88,11 @@ export const StepControls = () => {
 			<>
 
 				<ButtonInput btnVariant="tertiary" onClick={prevStep} disabled={isFirstStep}>
-					{__( 'Previous', 'burst-statistics' )}
+					{__( 'Previous', 'burst-mainwp' )}
 				</ButtonInput>
 
 				<ButtonInput btnVariant="tertiary" onClick={nextStep} disabled={isLastStep}>
-					{__( 'Next', 'burst-statistics' )}
+					{__( 'Next', 'burst-mainwp' )}
 				</ButtonInput>
 			</>
 		);
@@ -101,16 +101,16 @@ export const StepControls = () => {
 	// Get the appropriate button text for the primary action.
 	const getActionButtonText = () => {
 		if ( isFirstStep && ! isReportCreated ) {
-			return __( 'Create report', 'burst-statistics' );
+			return __( 'Create report', 'burst-mainwp' );
 		}
 
 		if ( isLastStep ) {
 			return scheduled ?
-				__( 'Schedule and save', 'burst-statistics' ) :
-				__( 'Save and close', 'burst-statistics' );
+				__( 'Schedule and save', 'burst-mainwp' ) :
+				__( 'Save and close', 'burst-mainwp' );
 		}
 
-		return __( 'Save and continue', 'burst-statistics' );
+		return __( 'Save and continue', 'burst-mainwp' );
 	};
 
 	return (
@@ -120,7 +120,7 @@ export const StepControls = () => {
 			<div className="flex gap-2 max-w-4xl w-full">
 				<div className="flex gap-2 flex-1">{renderNavButtons()}</div>
 				<div className="flex gap-2 flex-1 justify-end">
-					<ButtonInput btnVariant="tertiary" onClick={handleSave}>{__( 'Save', 'burst-statistics' )}</ButtonInput>
+					<ButtonInput btnVariant="tertiary" onClick={handleSave}>{__( 'Save', 'burst-mainwp' )}</ButtonInput>
 					<ButtonInput onClick={isLastStep ? handleFinalSubmit : handleNext}>
 						{getActionButtonText()}
 					</ButtonInput>

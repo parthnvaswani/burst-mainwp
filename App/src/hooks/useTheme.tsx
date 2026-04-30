@@ -92,7 +92,7 @@ const getAppWrapperElement = () => {
 		return legacyWrapper;
 	}
 
-	const container = document.getElementById( 'burst-statistics' );
+	const container = document.getElementById( 'burst-mainwp' );
 	return container?.parentElement || null;
 };
 
@@ -106,7 +106,7 @@ const applyThemeToContainer = ( theme: ThemeMode ) => {
 		wrapper.classList.add( 'burst-statistics-wrapper' );
 	}
 
-	const container = document.getElementById( 'burst-statistics' );
+	const container = document.getElementById( 'burst-mainwp' );
 	if ( container ) {
 		container.classList.toggle( 'dark', 'dark' === theme );
 	}

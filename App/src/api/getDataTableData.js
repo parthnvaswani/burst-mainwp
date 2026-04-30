@@ -108,7 +108,7 @@ const COLUMN_FORMATTERS = {
 	[FORMATS.INTEGER]: ( value ) => parseInt( value, 10 ),
 	[FORMATS.COUNTRY]: ( value ) => {
 		if ( ! value || '' === value ) {
-			return __( 'Not set', 'burst-statistics' );
+			return __( 'Not set', 'burst-mainwp' );
 		}
 		return <CountryFilter value={value} />;
 	},
@@ -200,16 +200,16 @@ const addABTestIcon = ( content, row ) => {
 	let color;
 	let tooltip;
 	if ( 'no_winner' === row.significant ) {
-		tooltip = __( 'The test resulted in a tie. More hits might still result in a winner, but the difference will probably be very small.', 'burst-statistics' );
+		tooltip = __( 'The test resulted in a tie. More hits might still result in a winner, but the difference will probably be very small.', 'burst-mainwp' );
 		color = 'gold';
 		name = 'scale';
 	} else if ( 'still_running' === row.significant ) {
-		tooltip = __( 'Not enough data yet to declare a winner or tie.', 'burst-statistics' );
+		tooltip = __( 'Not enough data yet to declare a winner or tie.', 'burst-mainwp' );
 		color = 'grey';
 		name = 'hourglass';
 	} else {
-		tooltip = row.winner ? __( 'Winner of the A/B test with a probability of >95%.', 'burst-statistics' ) :
-			__( 'Least performant version of the A/B test with a probability of >95%.', 'burst-statistics' );
+		tooltip = row.winner ? __( 'Winner of the A/B test with a probability of >95%.', 'burst-mainwp' ) :
+			__( 'Least performant version of the A/B test with a probability of >95%.', 'burst-mainwp' );
 		color = row.winner ? 'gold' : 'black';
 		name = row.winner ? 'trophy' : 'frown';
 	}
@@ -239,6 +239,9 @@ const createCellFormatter = ( format, columnId ) => {
 	return ( row ) => {
 		try {
 			const value = row[columnId] ?? '';
+			if ( format === FORMATS.PERCENTAGE && ( null === row[columnId] || undefined === row[columnId] || '' === row[columnId]) ) {
+				return __( 'N/A', 'burst-mainwp' );
+			}
 			const formatted = formatter( value, columnId, row );
 
 			// Add a-b test icon when conversion_rate or conversions column are present, but not both.

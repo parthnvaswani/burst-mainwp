@@ -22,6 +22,12 @@ import NotFoundModal from '@/components/Common/NotFoundModal';
 
 export const Route = createFileRoute( '/sales' )({
 	beforeLoad: ({ context }) => {
+
+		// If plugin is not a pro version then no need to check for Unauthorized error, showing upsell for free version.
+		if ( ! context?.isPro ) {
+			return;
+		}
+
 		let canAccessSales = false;
 
 		if ( '1' === context?.canViewSales ) {
@@ -33,7 +39,7 @@ export const Route = createFileRoute( '/sales' )({
 				type: 'UNAUTHORIZED',
 				message: __(
 					'You do not have permission to view sales data.',
-					'burst-statistics'
+					'burst-mainwp'
 				)
 			};
 		}
@@ -51,9 +57,9 @@ export const Route = createFileRoute( '/sales' )({
 		if ( 'UNAUTHORIZED' === error.type ) {
 			return (
 				<UnauthorizedModal
-					header={__( 'Unauthorized Access', 'burst-statistics' )}
+					header={__( 'Unauthorized Access', 'burst-mainwp' )}
 					message={error.message}
-					actionLabel={__( 'Go Back', 'burst-statistics' )}
+					actionLabel={__( 'Go Back', 'burst-mainwp' )}
 				/>
 			);
 		}
@@ -63,7 +69,7 @@ export const Route = createFileRoute( '/sales' )({
 				{error.message ||
 					__(
 						'An error occurred loading sales',
-						'burst-statistics'
+						'burst-mainwp'
 					)}
 			</div>
 		);

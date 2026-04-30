@@ -41,7 +41,7 @@ const ProPopover = ({
 					</div>
 					<div className="px-6 py-4">
 						<p className="mb-3 text-xs font-medium uppercase tracking-wide text-text-gray">
-							{__( 'Pro features include:', 'burst-statistics' )}
+							{__( 'Pro features include:', 'burst-mainwp' )}
 						</p>
 						<div className="flex flex-col gap-2">
 							{bulletPoints.map( ({ text, icon }) => (
@@ -53,7 +53,7 @@ const ProPopover = ({
 										<Icon
 											name={icon}
 											size={16}
-											color="#2B8133"
+											color="var(--color-primary-700)"
 										/>
 									</div>
 									<p className="m-0 text-sm text-text-gray">
@@ -68,17 +68,17 @@ const ProPopover = ({
 							href={primaryButtonUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="w-full rounded bg-primary px-4 py-1 text-center text-base font-normal text-text-white no-underline transition-all duration-200 hover:bg-primary hover:[box-shadow:0_0_0_3px_rgba(43,129,51,0.5)]"
+							className="w-full rounded bg-primary px-4 py-1 text-center text-base font-normal text-text-white no-underline transition-all duration-200 hover:bg-primary hover:shadow-ringPrimary"
 						>
-							{__( 'Upgrade to Pro', 'burst-statistics' )}
+							{__( 'Upgrade to Pro', 'burst-mainwp' )}
 						</a>
 						<a
 							href={secondaryButtonUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="w-full rounded border border-gray-400 bg-gray-100 px-4 py-1 text-center text-base font-normal text-text-gray no-underline transition-all duration-200 hover:bg-gray-200 hover:text-text-gray hover:[box-shadow:0_0_0_3px_rgba(0,0,0,0.1)]"
+							className="w-full rounded border border-gray-400 bg-gray-100 px-4 py-1 text-center text-base font-normal text-text-gray no-underline transition-all duration-200 hover:bg-gray-200 hover:text-text-gray hover:shadow-ringNeutral"
 						>
-							{__( 'Learn More', 'burst-statistics' )}
+							{__( 'Learn More', 'burst-mainwp' )}
 						</a>
 					</div>
 				</Popover.Content>

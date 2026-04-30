@@ -111,7 +111,7 @@ const useSettingsData = (): UseSettingsDataResult => {
 				await setFields( data );
 			},
 			onSuccess: async() => {
-				toast.success( __( 'Settings saved', 'burst-statistics' ) );
+				toast.success( __( 'Settings saved', 'burst-mainwp' ) );
 
 				await queryClient.invalidateQueries({
 					queryKey: [ 'settings_fields' ],

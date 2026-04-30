@@ -94,13 +94,13 @@ export const useFilterDisplay = ( reportBlockIndex ) => {
 		}
 		case 'bounces':
 			return 'include' === value ?
-				__( 'Bounced visitors', 'burst-statistics' ) :
-				__( 'Active visitors', 'burst-statistics' );
+				__( 'Bounced visitors', 'burst-mainwp' ) :
+				__( 'Active visitors', 'burst-mainwp' );
 
 		case 'new_visitor':
 			return 'true' === value ?
-				__( 'New visitors', 'burst-statistics' ) :
-				__( 'Returning visitors', 'burst-statistics' );
+				__( 'New visitors', 'burst-mainwp' ) :
+				__( 'Returning visitors', 'burst-mainwp' );
 
 		case 'time_per_session': {
 			const dashIdx = String( value ).indexOf( '-' );
@@ -114,7 +114,7 @@ export const useFilterDisplay = ( reportBlockIndex ) => {
 			if ( '' === maxRaw ) {
 
 				/* translators: %s is a human-readable duration like 2m, 1h */
-				return sprintf( __( '%s+', 'burst-statistics' ), formattedMin );
+				return sprintf( __( '%s+', 'burst-mainwp' ), formattedMin );
 			}
 			const maxSec = parseInt( maxRaw, 10 );
 			const formattedMax = formatDuration( isNaN( maxSec ) ? 0 : maxSec );

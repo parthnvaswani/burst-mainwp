@@ -30,7 +30,7 @@ const TrialToastContent: React.FC<
 					// translators: %s is description of the trial feature.
 					__(
 						'%s Enjoy full access for the remainder of your trial.',
-						'burst-statistics'
+						'burst-mainwp'
 					),
 					description
 				)}
@@ -42,7 +42,7 @@ const TrialToastContent: React.FC<
 				rel="noopener noreferrer"
 				className="text-sm text-blue-600 hover:text-blue-800 underline"
 			>
-				{__( 'Compare all plans', 'burst-statistics' )}
+				{__( 'Compare all plans', 'burst-mainwp' )}
 			</a>
 		</div>
 	</div>
@@ -57,16 +57,16 @@ const TrialPopup: React.FC<TrialPopupProps> = ({ type = 'sources' }) => {
 
 		switch ( type ) {
 			case 'sources':
-				title = __( 'You\'re exploring the Sources dashboard', 'burst-statistics' );
-				description = __( 'A key feature of our all premium plans.', 'burst-statistics' );
+				title = __( 'You\'re exploring the Sources dashboard', 'burst-mainwp' );
+				description = __( 'A key feature of our all premium plans.', 'burst-mainwp' );
 				break;
 			case 'reporting':
-				title = __( 'You\'re exploring the Reporting dashboard', 'burst-statistics' );
-				description = __( 'A key feature of our Agency plan.', 'burst-statistics' );
+				title = __( 'You\'re exploring the Reporting dashboard', 'burst-mainwp' );
+				description = __( 'A key feature of our Agency plan.', 'burst-mainwp' );
 				break;
 			default:
-				title = __( 'You\'re exploring the Sales dashboard', 'burst-statistics' );
-				description = __( 'A key feature of our Business and Agency plans.', 'burst-statistics' );
+				title = __( 'You\'re exploring the Sales dashboard', 'burst-mainwp' );
+				description = __( 'A key feature of our Business and Agency plans.', 'burst-mainwp' );
 				break;
 		}
 

@@ -17,18 +17,18 @@ import {BlockComponentProps} from '@/store/reports/types';
 
 const options = [
 	{
-		label: __( 'Revenue', 'burst-statistics' ),
+		label: __( 'Revenue', 'burst-mainwp' ),
 		value: 'revenue'
 	},
 	{
-		label: __( 'Sales', 'burst-statistics' ),
+		label: __( 'Sales', 'burst-mainwp' ),
 		value: 'count'
 	}
 ];
 
 const placeholderData = {
 	'top-product': {
-		title: __( 'Top product', 'burst-statistics' ),
+		title: __( 'Top product', 'burst-mainwp' ),
 		subtitle: '-',
 		value: '-',
 		exactValue: null,
@@ -36,7 +36,7 @@ const placeholderData = {
 		changeStatus: '-'
 	},
 	'top-campaign': {
-		title: __( 'Top campaign', 'burst-statistics' ),
+		title: __( 'Top campaign', 'burst-mainwp' ),
 		subtitle: '-',
 		value: '-',
 		exactValue: null,
@@ -44,7 +44,7 @@ const placeholderData = {
 		changeStatus: '-'
 	},
 	'top-country': {
-		title: __( 'Top country', 'burst-statistics' ),
+		title: __( 'Top country', 'burst-mainwp' ),
 		subtitle: '-',
 		value: '-',
 		exactValue: null,
@@ -52,7 +52,7 @@ const placeholderData = {
 		changeStatus: '-'
 	},
 	'top-device': {
-		title: __( 'Top device', 'burst-statistics' ),
+		title: __( 'Top device', 'burst-mainwp' ),
 		subtitle: '-',
 		value: '-',
 		exactValue: null,
@@ -98,7 +98,7 @@ const TopPerformers = ( props:BlockComponentProps ): JSX.Element => {
 	);
 
 	const blockHeadingProps = {
-		title: __( 'Top performers', 'burst-statistics' ),
+		title: __( 'Top performers', 'burst-mainwp' ),
 		isReport: props.isReport,
 		reportBlockIndex: index,
 		isLoading,

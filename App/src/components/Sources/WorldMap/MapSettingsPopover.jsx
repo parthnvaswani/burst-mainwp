@@ -148,7 +148,7 @@ const UnifiedMapPopover = () => {
 
 					<div className="border-b border-gray-100 px-4 py-3">
 						<h5 className="m-0 text-base font-semibold text-text-black">
-							{__( 'Metrics & options', 'burst-statistics' )}
+							{__( 'Metrics & options', 'burst-mainwp' )}
 						</h5>
 					</div>
 
@@ -156,7 +156,7 @@ const UnifiedMapPopover = () => {
 						{/* Metric Selection Section */}
 						<div className="mb-6">
 							<label className="mb-3 block text-sm font-medium text-text-gray">
-								{__( 'Select metric', 'burst-statistics' )}
+								{__( 'Select metric', 'burst-mainwp' )}
 							</label>
 							<div className="flex flex-col">
 								{Object.entries( metricOptions ).map(
@@ -182,7 +182,7 @@ const UnifiedMapPopover = () => {
 									<label className="block text-sm font-medium text-text-gray">
 										{__(
 											'Classification method',
-											'burst-statistics'
+											'burst-mainwp'
 										)}
 									</label>
 
@@ -193,7 +193,7 @@ const UnifiedMapPopover = () => {
 										className="rounded-full bg-blue-lighest"
 										tooltip={__(
 											'A classification method determines how data values are grouped into ranges or categories to color regions on a choropleth map. The recommended method is based on the selected metric. For more information for each method, see the help icon next to each method.',
-											'burst-statistics'
+											'burst-mainwp'
 										)}
 									/>
 								</div>
@@ -203,7 +203,7 @@ const UnifiedMapPopover = () => {
 										htmlFor="auto-select"
 										className="text-sm text-text-gray"
 									>
-										{__( 'Auto-select', 'burst-statistics' )}
+										{__( 'Auto-select', 'burst-mainwp' )}
 									</label>
 									<SwitchInput
 										id="auto-select"
@@ -254,20 +254,20 @@ const UnifiedMapPopover = () => {
 						{/* Accessibility Section */}
 						<div className="mb-6">
 							<label className="mb-3 block text-sm font-medium text-text-gray">
-								{__( 'Accessibility', 'burst-statistics' )}
+								{__( 'Accessibility', 'burst-mainwp' )}
 							</label>
 							<div className="flex items-center justify-between">
 								<div className="flex-1">
 									<div className="mb-1 text-sm text-text-black">
 										{__(
 											'Colorblind Patterns',
-											'burst-statistics'
+											'burst-mainwp'
 										)}
 									</div>
 									<div className="text-xs text-text-gray">
 										{__(
 											'Add patterns for colorblind accessibility',
-											'burst-statistics'
+											'burst-mainwp'
 										)}
 									</div>
 								</div>
@@ -289,7 +289,7 @@ const UnifiedMapPopover = () => {
 									size="sm"
 									className="flex-1"
 								>
-									{__( 'Apply', 'burst-statistics' )}
+									{__( 'Apply', 'burst-mainwp' )}
 								</ButtonInput>
 								<ButtonInput
 									onClick={handleResetToDefaults}
@@ -299,7 +299,7 @@ const UnifiedMapPopover = () => {
 								>
 									{__(
 										'Reset to defaults',
-										'burst-statistics'
+										'burst-mainwp'
 									)}
 								</ButtonInput>
 							</div>

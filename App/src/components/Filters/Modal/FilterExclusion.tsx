@@ -4,8 +4,8 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 
 const EXCLUSION_OPTIONS = [
-	{ value: 'include', label: __( 'Include', 'burst-statistics' ) },
-	{ value: 'exclude', label: __( 'Exclude', 'burst-statistics' ) }
+	{ value: 'include', label: __( 'Include', 'burst-mainwp' ) },
+	{ value: 'exclude', label: __( 'Exclude', 'burst-mainwp' ) }
 ];
 
 /**

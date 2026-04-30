@@ -46,7 +46,7 @@ const TodayFilterItem = memo(
 				<h2 className="mt-1.5 font-extrabold">{count}</h2>
 				<span className="flex gap-[3px] justify-center text-xs">
 					<Icon name="sun" color={'yellow'} size="13" />{' '}
-					{__( 'Today', 'burst-statistics' )}
+					{__( 'Today', 'burst-mainwp' )}
 				</span>
 			</div>
 		</ClickToFilter>
@@ -69,7 +69,7 @@ const TotalFilterItem = memo(
 				<Icon name={icon} size="26" />
 				<h2 className="mt-1.5 font-extrabold">{count}</h2>
 				<span className="flex gap-[3px] justify-center text-xs">
-					<Icon name="calendar" size="13" /> {__( 'Total', 'burst-statistics' )}
+					<Icon name="calendar" size="13" /> {__( 'Total', 'burst-mainwp' )}
 				</span>
 			</div>
 		</ClickToFilter>
@@ -133,11 +133,11 @@ const GoalsBlock = () => {
 	const placeholderData = useMemo(
 		() => ({
 			today: {
-				title: __( 'Today', 'burst-statistics' ),
+				title: __( 'Today', 'burst-mainwp' ),
 				icon: 'goals'
 			},
 			total: {
-				title: __( 'Total', 'burst-statistics' ),
+				title: __( 'Total', 'burst-mainwp' ),
 				value: '-',
 				icon: 'goals'
 			},
@@ -234,7 +234,7 @@ const GoalsBlock = () => {
 			filter: 'goal_id',
 			filterValue: data.goalId,
 			label:
-				data.today?.tooltip + __( 'Goal and today', 'burst-statistics' ),
+				data.today?.tooltip + __( 'Goal and today', 'burst-mainwp' ),
 			startDate: today,
 			icon: todayIcon,
 			count: live
@@ -248,7 +248,7 @@ const GoalsBlock = () => {
 			filterValue: data.goalId,
 			label:
 				data.today?.tooltip +
-				__( 'Goal and the start date', 'burst-statistics' ),
+				__( 'Goal and the start date', 'burst-mainwp' ),
 			startDate: goalStart,
 			endDate: goalEnd,
 			icon: totalIcon,
@@ -270,12 +270,12 @@ const GoalsBlock = () => {
 			{'0' === burst_settings.goals_information_shown && (
 				<Overlay>
 					<h4 className="mb-4 text-lg font-bold">
-						{__( 'Goals', 'burst-statistics' )}
+						{__( 'Goals', 'burst-mainwp' )}
 					</h4>
 					<p className="mb-4">
 						{__(
 							'Keep track of customizable goals and get valuable insights. Add your first goal!',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</p>
 					<p className="mb-4">
@@ -287,7 +287,7 @@ const GoalsBlock = () => {
 						>
 							{__(
 								'Learn how to set your first goal',
-								'burst-statistics'
+								'burst-mainwp'
 							)}
 						</a>
 					</p>
@@ -296,13 +296,13 @@ const GoalsBlock = () => {
 						btnVariant="secondary"
 						btnSize="small"
 					>
-						{__( 'Create my first goal', 'burst-statistics' )}
+						{__( 'Create my first goal', 'burst-mainwp' )}
 					</ButtonInput>
 				</Overlay>
 			)}
 
 		<BlockHeading
-			title={__( 'Goals', 'burst-statistics' )}
+			title={__( 'Goals', 'burst-mainwp' )}
 			controls={
 				<GoalsHeader
 					goalId={goalId}
@@ -318,7 +318,7 @@ const GoalsBlock = () => {
 					<div className="text-red p-4">
 						{__(
 							'Error loading goals data. Please try again later.',
-							'burst-statistics'
+							'burst-mainwp'
 						)}
 					</div>
 				) : (
@@ -398,7 +398,7 @@ const GoalsBlock = () => {
 			{0 !== goals.length && (
 				<BlockFooter>
 					{burst_settings.manage_burst_statistics && <ButtonInput btnVariant={'tertiary'} link={{ to: '/settings/goals' }}>
-						{__( 'View setup', 'burst-statistics' )}
+						{__( 'View setup', 'burst-mainwp' )}
 					</ButtonInput>
 					}
 					<div className="ml-auto">

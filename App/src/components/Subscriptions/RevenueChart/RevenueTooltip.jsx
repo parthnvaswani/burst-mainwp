@@ -17,8 +17,8 @@ import { formatCurrency } from '@/utils/formatting';
 export function RevenueTooltip({ id, value, color, data, mode = 'revenue', currency = 'USD' }) {
 	const isRevenueMode = 'revenue' === mode;
 	const label = 'newValue' === id ?
-		( isRevenueMode ? __( 'New Revenue', 'burst-statistics' ) : __( 'New Sales', 'burst-statistics' ) ) :
-		( isRevenueMode ? __( 'Renewal Revenue', 'burst-statistics' ) : __( 'Renewal Sales', 'burst-statistics' ) );
+		( isRevenueMode ? __( 'New Revenue', 'burst-mainwp' ) : __( 'New Sales', 'burst-mainwp' ) ) :
+		( isRevenueMode ? __( 'Renewal Revenue', 'burst-mainwp' ) : __( 'Renewal Sales', 'burst-mainwp' ) );
 
 	const total = ( data.newValue ?? 0 ) + ( data.renewalValue ?? 0 );
 	const formatValue = ( amount ) => isRevenueMode ?
@@ -37,7 +37,7 @@ export function RevenueTooltip({ id, value, color, data, mode = 'revenue', curre
 				<span className="font-medium text-gray-800 ml-auto">{ formatValue( value ) }</span>
 			</div>
 			<div className="border-t border-gray-100 mt-1.5 pt-1.5 flex justify-between text-gray-500">
-				<span>{ __( 'Total', 'burst-statistics' ) }</span>
+				<span>{ __( 'Total', 'burst-mainwp' ) }</span>
 				<span className="font-medium text-gray-700">{ formatValue( total ) }</span>
 			</div>
 		</ChartTooltip>

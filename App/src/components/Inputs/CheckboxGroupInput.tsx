@@ -125,7 +125,7 @@ const CheckboxGroupInput: React.FC<CheckboxGroupInputProps> = ({
 	const allDisabled = disabled && ! Array.isArray( disabled ) ? disabled : false;
 
 	if ( 0 === Object.keys( options ).length ) {
-		return <>{__( 'No options found', 'burst-statistics' )}</>;
+		return <>{__( 'No options found', 'burst-mainwp' )}</>;
 	}
 
 	return (
@@ -169,7 +169,7 @@ const CheckboxGroupInput: React.FC<CheckboxGroupInputProps> = ({
 						onClick={loadMoreHandler}
 						className="underline w-fit"
 					>
-						{__( 'Show more', 'burst-statistics' )}
+						{__( 'Show more', 'burst-mainwp' )}
 					</button>
 				</div>
 			)}
@@ -179,7 +179,7 @@ const CheckboxGroupInput: React.FC<CheckboxGroupInputProps> = ({
 						onClick={loadMoreHandler}
 						className="underline w-fit"
 					>
-						{__( 'Show less', 'burst-statistics' )}
+						{__( 'Show less', 'burst-mainwp' )}
 					</button>
 				</div>
 			)}

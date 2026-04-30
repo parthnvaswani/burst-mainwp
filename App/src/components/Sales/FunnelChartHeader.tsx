@@ -20,7 +20,7 @@ export const FunnelChartHeader: React.FC = () => {
 	const [ selectedPagesLocal, setSelectedPagesLocal ] = useState( selectedPages );
 	const field = {
 		id: 'pageFilter',
-		label: __( 'Product Pages', 'burst-statistics' ),
+		label: __( 'Product Pages', 'burst-mainwp' ),
 		value: selectedPagesLocal
 	};
 
@@ -68,20 +68,20 @@ export const FunnelChartHeader: React.FC = () => {
 
 				<div className="border-b border-gray-100 px-4 py-3">
 					<h5 className="m-0 text-base font-semibold text-text-black">
-						{__( 'Product pages', 'burst-statistics' )}
+						{__( 'Product pages', 'burst-mainwp' )}
 					</h5>
 				</div>
 
 				<div className="max-h-[80vh] overflow-y-auto px-4 py-4">
 					<div className="mb-6">
 						<label className="mb-3 block text-sm font-medium text-text-gray">
-							{__( 'Select pages', 'burst-statistics' )}
+							{__( 'Select pages', 'burst-mainwp' )}
 						</label>
 
 						<RadioInput
 							id="pages_all"
 							name="pages_selection"
-							label={__( 'All product pages', 'burst-statistics' )}
+							label={__( 'All product pages', 'burst-mainwp' )}
 							value="all"
 							checked={'all' === pageSettingsLocal}
 							onChange={() => {
@@ -95,7 +95,7 @@ export const FunnelChartHeader: React.FC = () => {
 							name="pages_selection"
 							label={__(
 								'Custom product pages',
-								'burst-statistics'
+								'burst-mainwp'
 							)}
 							value="specific"
 							checked={'custom' === pageSettingsLocal}
@@ -134,7 +134,7 @@ export const FunnelChartHeader: React.FC = () => {
 								size="sm"
 								className="flex-1"
 							>
-								{__( 'Apply', 'burst-statistics' )}
+								{__( 'Apply', 'burst-mainwp' )}
 							</ButtonInput>
 
 							<ButtonInput
@@ -147,7 +147,7 @@ export const FunnelChartHeader: React.FC = () => {
 								size="sm"
 								className="flex-1"
 							>
-								{__( 'Reset to defaults', 'burst-statistics' )}
+								{__( 'Reset to defaults', 'burst-mainwp' )}
 							</ButtonInput>
 						</div>
 					</div>

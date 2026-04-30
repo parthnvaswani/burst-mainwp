@@ -26,7 +26,7 @@ const OverviewFooter = () => {
 				const status = response.status ? response.status : 'error';
 				const last_test = response.last_test ?
 					response.last_test :
-					__( 'Just now', 'burst-statistics' );
+					__( 'Just now', 'burst-mainwp' );
 				setTrackingType( status );
 				setLastChecked( last_test );
 			} else {
@@ -37,32 +37,32 @@ const OverviewFooter = () => {
 	}, []);
 
 	const trackingLastCheckedText =
-		__( 'Last checked:', 'burst-statistics' ) +
+		__( 'Last checked:', 'burst-mainwp' ) +
 		' ' +
 		getRelativeTime( new Date( lastChecked * 1000 ) ); // times 1000 because JS
 	// uses milliseconds
 	const trackingTexts = {
-		loading: __( 'Loading tracking status…', 'burst-statistics' ),
-		error: __( 'Error checking tracking status', 'burst-statistics' ),
-		rest: __( 'Tracking with REST API', 'burst-statistics' ),
-		beacon: __( 'Tracking with an endpoint', 'burst-statistics' ),
-		disabled: __( 'Tracking is disabled', 'burst-statistics' )
+		loading: __( 'Loading tracking status…', 'burst-mainwp' ),
+		error: __( 'Error checking tracking status', 'burst-mainwp' ),
+		rest: __( 'Tracking with REST API', 'burst-mainwp' ),
+		beacon: __( 'Tracking with an endpoint', 'burst-mainwp' ),
+		disabled: __( 'Tracking is disabled', 'burst-mainwp' )
 	};
 	const trackingTooltipTexts = {
 		loading: '',
 		error: __(
 			'Tracking does not seem to work. Check manually or contact support.',
-			'burst-statistics'
+			'burst-mainwp'
 		),
 		rest: __(
 			'Tracking is working. You are using the REST API to collect statistics.',
-			'burst-statistics'
+			'burst-mainwp'
 		),
 		beacon: __(
 			'Tracking is working. You are using the Burst endpoint to collect statistics. This type of tracking is accurate and lightweight.',
-			'burst-statistics'
+			'burst-mainwp'
 		),
-		disabled: __( 'Tracking is disabled', 'burst-statistics' )
+		disabled: __( 'Tracking is disabled', 'burst-mainwp' )
 	};
 	const trackingIcons = {
 		loading: {
@@ -95,7 +95,7 @@ const OverviewFooter = () => {
 	return (
 		<>
 			<ButtonInput btnVariant={'tertiary'} link={{ to: '/statistics' }}>
-				{__( 'View my statistics', 'burst-statistics' )}
+				{__( 'View my statistics', 'burst-mainwp' )}
 			</ButtonInput>
 
 			<Tooltip content={trackingTooltipText}>

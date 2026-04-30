@@ -5,10 +5,10 @@ import {
 } from '@/utils/formatting';
 
 const deviceNames = {
-	desktop: __( 'Desktop', 'burst-statistics' ),
-	tablet: __( 'Tablet', 'burst-statistics' ),
-	mobile: __( 'Mobile', 'burst-statistics' ),
-	other: __( 'Other', 'burst-statistics' )
+	desktop: __( 'Desktop', 'burst-mainwp' ),
+	tablet: __( 'Tablet', 'burst-mainwp' ),
+	mobile: __( 'Mobile', 'burst-mainwp' ),
+	other: __( 'Other', 'burst-mainwp' )
 };
 
 // Existing transform function for title and value

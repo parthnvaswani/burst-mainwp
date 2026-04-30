@@ -49,19 +49,19 @@ export const LivePreviewClassic = ({ className }: { className?: string }) => {
         <div className={className}>
             { ! hasSelectedContent && (
                 <p className="text-text-gray-light text-center">
-                    { __( 'No content selected for preview.', 'burst-statistics' ) }
+                    { __( 'No content selected for preview.', 'burst-mainwp' ) }
                 </p>
             ) }
 
             { hasSelectedContent && isFetching && (
                 <p className="text-text-gray-light text-center">
-                    { __( 'Loading preview…', 'burst-statistics' ) }
+                    { __( 'Loading preview…', 'burst-mainwp' ) }
                 </p>
             ) }
 
             { hasSelectedContent && ! isFetching && isError && (
                 <p className="text-red-500 text-center">
-                    { __( 'Failed to load preview.', 'burst-statistics' ) }
+                    { __( 'Failed to load preview.', 'burst-mainwp' ) }
                 </p>
             ) }
 

@@ -215,34 +215,34 @@ const StringFilterSetup: React.FC<StringFilterSetupProps> = ({
 
 	const getPlaceholder = (): string => {
 		if ( config.options ) {
-			return __( 'Search or select an option…', 'burst-statistics' );
+			return __( 'Search or select an option…', 'burst-mainwp' );
 		}
 
 		switch ( filterKey ) {
 			case 'page_url':
-				return __( 'Enter page URL (e.g., /about)', 'burst-statistics' );
+				return __( 'Enter page URL (e.g., /about)', 'burst-mainwp' );
 			case 'referrer':
 				return __(
 					'Enter referrer URL (e.g., google.com)',
-					'burst-statistics'
+					'burst-mainwp'
 				);
 			case 'campaign':
-				return __( 'Enter campaign name', 'burst-statistics' );
+				return __( 'Enter campaign name', 'burst-mainwp' );
 			case 'source':
-				return __( 'Enter traffic source', 'burst-statistics' );
+				return __( 'Enter traffic source', 'burst-mainwp' );
 			case 'medium':
-				return __( 'Enter traffic medium', 'burst-statistics' );
+				return __( 'Enter traffic medium', 'burst-mainwp' );
 			case 'term':
-				return __( 'Enter search term', 'burst-statistics' );
+				return __( 'Enter search term', 'burst-mainwp' );
 			case 'content':
-				return __( 'Enter content identifier', 'burst-statistics' );
+				return __( 'Enter content identifier', 'burst-mainwp' );
 			case 'parameter':
 				return __(
 					'Enter URL parameter (e.g., utm_campaign)',
-					'burst-statistics'
+					'burst-mainwp'
 				);
 			default:
-				return __( 'Enter filter value…', 'burst-statistics' );
+				return __( 'Enter filter value…', 'burst-mainwp' );
 		}
 	};
 
@@ -251,7 +251,7 @@ const StringFilterSetup: React.FC<StringFilterSetupProps> = ({
 
 			<div className="relative flex flex-col gap-2">
 				<label className="block text-sm font-medium text-text-gray">
-					{ __( 'Filter value', 'burst-statistics' ) }
+					{ __( 'Filter value', 'burst-mainwp' ) }
 				</label>
 
 				<div className="flex items-center space-x-2 pr-0.5">

@@ -13,7 +13,7 @@ export const Route = createFileRoute( '/statistics' )({
 	errorComponent: ({ error }) => (
 		<div className="p-4 text-red-500">
 			{error.message ||
-				__( 'An error occurred loading statistics', 'burst-statistics' )}
+				__( 'An error occurred loading statistics', 'burst-mainwp' )}
 		</div>
 	)
 });
