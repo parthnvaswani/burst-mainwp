@@ -3,7 +3,7 @@ parameters:
     level: 5
     paths:
         - class
-        - burst-mainwp-extension.php
+        - burst-mainwp.php
     bootstrapFiles:
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
         - tests/phpstan-bootstrap.php

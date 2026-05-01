@@ -67,13 +67,13 @@ test:plugin-check:
   needs: [test:code-quality]
   before_script:
     - bash /usr/local/bin/entrypoint.sh
-    - cp -R . /var/www/html/wp-content/plugins/burst-mainwp-extension/
-    - chown -R www-data:www-data /var/www/html/wp-content/plugins/burst-mainwp-extension/
+    - cp -R . /var/www/html/wp-content/plugins/burst-mainwp/
+    - chown -R www-data:www-data /var/www/html/wp-content/plugins/burst-mainwp/
     - wp plugin install mainwp --activate --path=/var/www/html
-    - wp plugin activate burst-mainwp-extension --path=/var/www/html
+    - wp plugin activate burst-mainwp --path=/var/www/html
     - wp plugin install plugin-check --activate --path=/var/www/html
   script:
-    - wp plugin check burst-mainwp-extension --path=/var/www/html --format=table 2>&1 | tee plugin-check-report.txt
+    - wp plugin check burst-mainwp --path=/var/www/html --format=table 2>&1 | tee plugin-check-report.txt
   artifacts:
     paths:
       - plugin-check-report.txt

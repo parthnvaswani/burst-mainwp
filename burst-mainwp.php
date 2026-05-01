@@ -1,14 +1,18 @@
 <?php
 /**
- * Plugin Name: Burst MainWP Extension
- * Plugin URI:  https://burst-statistics.com
- * Description: View Burst Statistics data from child sites in your MainWP Dashboard.
- * Version:     1.0.0
- * Author:      Burst Statistics
- * Author URI:  https://burst-statistics.com
- * License:     GPL v3
- * Text Domain: burst-mainwp
- * Requires PHP: 8.0
+ * Plugin Name:       Burst Statistics - MainWP Extension
+ * Plugin URI:        https://burst-statistics.com
+ * Description:       View Burst Statistics data from child sites in your MainWP Dashboard.
+ * Version:           1.0.0
+ * Author:            Burst Statistics
+ * Author URI:        https://burst-statistics.com
+ * License:           GPLv2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       burst-mainwp
+ * Domain Path:       /languages
+ * Requires at least: 6.6
+ * Requires PHP:      8.0
+ * Requires Plugins:  mainwp
  *
  * @package BurstMainWP
  */
@@ -70,10 +74,10 @@ add_filter( 'mainwp_getextensions', 'burst_mainwp_register_extension' );
 function burst_mainwp_register_extension( array $extensions ): array {
 	$extensions[] = [
 		'plugin'   => BURST_MAINWP_FILE,
-		'api'      => 'burst-mainwp-extension',
-		'callback' => 'burst_mainwp_extension',
+		'api'      => 'burst-mainwp',
+		'callback' => 'burst_mainwp',
 		'mainwp'   => true,
-		'slug'     => 'burst-mainwp-extension',
+		'slug'     => 'burst-mainwp',
 		'name'     => 'Burst Statistics',
 	];
 	return $extensions;
@@ -85,7 +89,7 @@ function burst_mainwp_register_extension( array $extensions ): array {
  * This page intentionally keeps a short "how to use" message and points users
  * to the per-site Burst dashboard, which is where all functionality lives.
  */
-function burst_mainwp_extension(): void {
+function burst_mainwp(): void {
 	$manage_sites_url = admin_url( 'admin.php?page=managesites' );
 
 	// Render inside MainWP's standard extension page chrome.
@@ -138,22 +142,4 @@ function burst_mainwp_init(): void {
 	$initialized = true;
 
 	\BurstMainWP\Individual::instance();
-}
-
-// ── Activation ────────────────────────────────────────────────────────────────
-
-register_activation_hook( BURST_MAINWP_FILE, 'burst_mainwp_activate' );
-
-/**
- * Prevent activation when MainWP Dashboard is not active.
- */
-function burst_mainwp_activate(): void {
-	if ( ! is_plugin_active( 'mainwp/mainwp.php' ) ) {
-		deactivate_plugins( plugin_basename( BURST_MAINWP_FILE ) );
-		wp_die(
-			esc_html__( 'Burst MainWP Extension requires MainWP Dashboard to be installed and activated.', 'burst-mainwp' ),
-			esc_html__( 'Plugin Activation Error', 'burst-mainwp' ),
-			[ 'back_link' => true ]
-		);
-	}
 }

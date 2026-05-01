@@ -1,5 +1,5 @@
 {
-	"name": "burst-statistics/burst-mainwp-extension",
+	"name": "burst-statistics/burst-mainwp",
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
