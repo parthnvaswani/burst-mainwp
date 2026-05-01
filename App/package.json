@@ -40,6 +40,8 @@
     "@typescript-eslint/eslint-plugin": "^8.48.1",
     "@typescript-eslint/parser": "^8.48.1",
     "@wordpress/scripts": "^31.3.0",
+    "ajv": "^8.20.0",
+    "ajv-keywords": "^5.1.0",
     "browser-sync": "^3.0.4",
     "eslint": "^8.57.0",
     "eslint-config-wordpress": "^2.0.0",

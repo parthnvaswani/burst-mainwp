@@ -3,7 +3,7 @@
 	<config name="phpVersion" value="70400"/>
 	<description>Burst MainWP Extension standards</description>
 
-	<file>burst-mainwp-extension.php</file>
+	<file>burst-mainwp.php</file>
 	<file>class</file>
 
 	<exclude-pattern>/.gitlab/*</exclude-pattern>

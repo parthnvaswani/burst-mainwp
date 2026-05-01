@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_burst_statistics_burst_statistics=self.webpackChunk_burst_statistics_burst_statistics||[]).push([[699],{30699(s,r,t){t.r(r),t.d(r,{errorComponent:()=>a});var e=t(10790),i=t(27723),a=function(s){var r=s.error;return(0,e.jsx)("div",{className:"p-4 text-red-500",children:r.message||(0,i.__)("An error occurred loading reports","burst-mainwp")})}}}]);
