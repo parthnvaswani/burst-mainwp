@@ -143,21 +143,3 @@ function burst_mainwp_init(): void {
 
 	\BurstMainWP\Individual::instance();
 }
-
-// ── Activation ────────────────────────────────────────────────────────────────
-
-register_activation_hook( BURST_MAINWP_FILE, 'burst_mainwp_activate' );
-
-/**
- * Prevent activation when MainWP Dashboard is not active.
- */
-function burst_mainwp_activate(): void {
-	if ( ! is_plugin_active( 'mainwp/mainwp.php' ) ) {
-		deactivate_plugins( plugin_basename( BURST_MAINWP_FILE ) );
-		wp_die(
-			esc_html__( 'Burst MainWP Extension requires MainWP Dashboard to be installed and activated.', 'burst-mainwp' ),
-			esc_html__( 'Plugin Activation Error', 'burst-mainwp' ),
-			[ 'back_link' => true ]
-		);
-	}
-}
