@@ -115,6 +115,7 @@ create_rc_zip() {
     "--exclude=/App/postcss.config.mjs"
     "--exclude=/App/postcss-remove-layers.mjs"
     "--exclude=/App/tailwind.animations.mjs"
+    "--exclude=/App/tailwind.config.mjs"
     "--exclude=/App/posts.json"
     "--exclude=/App/tsconfig.json"
     "--exclude=/App/.prettierrc.js"
