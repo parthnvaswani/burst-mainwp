@@ -1,4 +1,4 @@
-=== Burst Statistics - MainWP Extension ===
+=== Burst MainWP ===
 Contributors: hesseldejong, RogierLankhorst, sh4lin, parthnvaswani
 Tags: analytics, statistics, mainwp, burst, dashboard
 Requires at least: 6.6

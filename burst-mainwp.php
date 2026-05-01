@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Burst Statistics - MainWP Extension
+ * Plugin Name:       Burst MainWP
  * Plugin URI:        https://github.com/Burst-Statistics/burst-mainwp
  * Description:       View Burst Statistics data from child sites in your MainWP Dashboard.
  * Version:           1.0.0
@@ -9,7 +9,6 @@
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       burst-mainwp
- * Domain Path:       /languages
  * Requires at least: 6.6
  * Requires PHP:      8.0
  * Requires Plugins:  mainwp
