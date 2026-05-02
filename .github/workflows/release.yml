@@ -37,7 +37,6 @@ jobs:
 
       - name: Create release zip
         run: |
-          # Copy repo to a staging folder
           mkdir -p staging
           rsync -av --progress . staging/ \
             --exclude staging \
@@ -51,17 +50,15 @@ jobs:
             --exclude "*.neon" \
             --exclude App
 
-          # Add only what we want from App
           mkdir -p staging/App/build
           cp -r App/build/. staging/App/build/
           mkdir -p staging/App/src
           cp App/src/tailwind.generated.css staging/App/src/tailwind.generated.css
 
-          # Zip the staging folder
-          cd staging && zip -r ../burst-mainwp.zip .
+          cd staging && zip -r ../burst-mainwp-${{ github.ref_name }}.zip .
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          files: burst-mainwp.zip
+          files: burst-mainwp-${{ github.ref_name }}.zip
           generate_release_notes: true
