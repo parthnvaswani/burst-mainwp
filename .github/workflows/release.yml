@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: App
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
       - name: Build React frontend
         working-directory: App
@@ -37,18 +37,28 @@ jobs:
 
       - name: Create release zip
         run: |
-          zip -r burst-mainwp.zip . \
-            --exclude "*.git*" \
-            --exclude ".gitignore" \
+          # Copy repo to a staging folder
+          mkdir -p staging
+          rsync -av --progress . staging/ \
+            --exclude staging \
+            --exclude .git \
+            --exclude .gitignore \
             --exclude "*.yml" \
             --exclude "*.yaml" \
             --exclude "composer.json" \
             --exclude "*.lock" \
             --exclude "*.dist" \
             --exclude "*.neon" \
-            --exclude "App/*" \
-            --include "App/build/*" \
-            --include "App/src/tailwind.generated.css"
+            --exclude App
+
+          # Add only what we want from App
+          mkdir -p staging/App/build
+          cp -r App/build/. staging/App/build/
+          mkdir -p staging/App/src
+          cp App/src/tailwind.generated.css staging/App/src/tailwind.generated.css
+
+          # Zip the staging folder
+          cd staging && zip -r ../burst-mainwp.zip .
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
