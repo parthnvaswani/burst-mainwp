@@ -20,12 +20,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: App/package-lock.json
 
       - name: Install dependencies
         working-directory: App
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Build React frontend
         working-directory: App
@@ -33,11 +31,27 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Zip build artifact
-        run: zip -r release.zip App/dist/
+      - name: Build CSS
+        working-directory: App
+        run: npm run build:css
+
+      - name: Create release zip
+        run: |
+          zip -r burst-mainwp.zip . \
+            --exclude "*.git*" \
+            --exclude ".gitignore" \
+            --exclude "*.yml" \
+            --exclude "*.yaml" \
+            --exclude "composer.json" \
+            --exclude "*.lock" \
+            --exclude "*.dist" \
+            --exclude "*.neon" \
+            --exclude "App/*" \
+            --include "App/build/*" \
+            --include "App/src/tailwind.generated.css"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          files: release.zip
+          files: burst-mainwp.zip
           generate_release_notes: true
